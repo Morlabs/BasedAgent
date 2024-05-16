@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Based Agent Landing Page</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         body {
             margin: 0;
@@ -19,12 +20,12 @@
             padding: 20px;
             background-color: #121212;
             display: flex;
-            justify-content: space-around;
-            align-items: center;
+            justify-content: center;
+            gap: 80px;
             border-bottom: 1px solid #333;
         }
         .navbar a {
-            color: #00FF00;
+            color: #64D894;
             text-decoration: none;
             font-size: 18px;
         }
@@ -63,12 +64,66 @@
             font-size: 16px;
             border: none;
             border-radius: 5px;
-            background-color: #00FF00;
+            background-color: #64D894;
             color: #121212;
             cursor: pointer;
         }
+        .email-form input[type="submit"]:hover {
+            background-color: #5AC485;
+        }
         .morpheus-image {
             margin: 50px 0;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .footer img {
+            width: 20px;
+            height: 20px;
+            margin: 0 10px;
+            vertical-align: middle;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #121212;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #64D894;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -79,16 +134,67 @@
         <a href="#community">Community</a>
     </div>
     <div class="container">
-        <img src="https://via.placeholder.com/400x100" alt="Based Agent Logo">
+        <img src="Based_Agent_logo.png" alt="Based Agent Logo">
         <h1>AI Coding Assistant</h1>
         <p>Built by Mor Labs, Based Agent is an innovative AI coding assistant for developers to turbocharge their productivity. It's built primarily for developers building web3 and AI applications.</p>
-        <form action="https://formspree.io/YOUR_FORMSPREE_URL" method="POST" class="email-form">
+        <form action="https://formspree.io/f/mqkrjnyg" method="POST" class="email-form">
             <input type="email" name="email" placeholder="Email Address" required>
             <input type="submit" value="Join Waitlist">
         </form>
         <div class="morpheus-image">
-            <img src="morpheus-ecosystem@3x_white.png" alt="Morpheus Ecosystem">
+            <img src="morpheus_ecosystem.png" alt="Morpheus Ecosystem">
         </div>
     </div>
+    <div class="footer">
+        <a href="https://x.com/basedagent" target="_blank">
+            <img src="x_logo_small.png" alt="X Logo">
+        </a>
+        <a href="https://discord.gg/KBD3XBmNUf" target="_blank">
+            <img src="discord.png" alt="Discord Logo">
+        </a>
+        <a href="https://github.com/Morlabs/BasedAgent/" target="_blank">
+            <img src="github.png" alt="Github Logo">
+        </a>
+    </div>
+    <!-- The Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Congratulations, you are now on the Based Agents waitlist</p>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var form = e.target;
+            var formData = new FormData(form);
+            fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(function(response) {
+                if (response.ok) {
+                    // Show the modal
+                    var modal = document.getElementById("successModal");
+                    modal.style.display = "block";
+                    // Close the modal
+                    document.querySelector('.close').onclick = function() {
+                        modal.style.display = "none";
+                    }
+                    // Close the modal if the user clicks anywhere outside of the modal
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+                    form.reset();
+                } else {
+                    alert('There was a problem with your submission. Please try again.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
