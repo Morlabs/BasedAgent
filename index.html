@@ -15,6 +15,7 @@
             flex-direction: column;
             align-items: center;
             position: relative;
+            min-height: 100vh;
         }
         .navbar {
             width: 100%;
@@ -153,13 +154,16 @@
         .contribution-box a:hover {
             text-decoration: underline;
         }
-        .morpheus-image {
-            margin: 50px 0;
-        }
         .footer {
-            margin-top: 50px;
             text-align: center;
-            margin-bottom: 75px;
+            padding: 40px 20px; /* Increased height of the footer */
+            background-color: #121212;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .footer img {
             width: 20px;
@@ -167,10 +171,21 @@
             margin: 0 10px;
             vertical-align: middle;
         }
+        .footer .morpheus-image-footer img {
+            width: 40px; /* Double the height of other footer images */
+            height: 40px; /* Double the height of other footer images */
+        }
         .footer a {
             color: white;
             text-decoration: none;
             margin: 0 10px;
+        }
+        .morpheus-image-footer {
+            margin: 0 10px;
+        }
+        .footer-right {
+            display: flex;
+            align-items: center;
         }
         /* Modal styles */
         .modal {
@@ -235,7 +250,7 @@
 
         .animation-container {
             position: fixed;
-            top: 20%; /* Move the animation up */
+            top: 30%; /* Move the animation down */
             left: 50%;
             transform: translate(-50%, -50%);
             width: 100%;
@@ -334,20 +349,22 @@
                 <a href="https://github.com/Morlabs/BasedAgent/blob/main/Contribute/community.md">I can contribute community →</a>
             </div>
         </div>
-        <div class="morpheus-image">
-            <img src="morpheus_ecosystem.png" alt="Morpheus Ecosystem">
-        </div>
     </div>
     <div class="footer">
-        <a href="https://x.com/basedagent" target="_blank">
-            <img src="x_logo_small.png" alt="X Logo">
-        </a>
-        <a href="https://discord.gg/KBD3XBmNUf" target="_blank">
-            <img src="discord.png" alt="Discord Logo">
-        </a>
-        <a href="https://github.com/Morlabs/BasedAgent/" target="_blank">
-            <img src="github.png" alt="Github Logo">
-        </a>
+        <div class="morpheus-image-footer">
+            <img src="morpheus_ecosystem.png" alt="Morpheus Ecosystem">
+        </div>
+        <div class="footer-right">
+            <a href="https://x.com/basedagent" target="_blank">
+                <img src="x_logo_small.png" alt="X Logo">
+            </a>
+            <a href="https://discord.gg/KBD3XBmNUf" target="_blank">
+                <img src="discord.png" alt="Discord Logo">
+            </a>
+            <a href="https://github.com/Morlabs/BasedAgent/" target="_blank">
+                <img src="github.png" alt="Github Logo">
+            </a>
+        </div>
     </div>
     <!-- The Modal -->
     <div id="successModal" class="modal">
@@ -419,6 +436,7 @@
     </script>
 </body>
 </html>
+
 
 
 
