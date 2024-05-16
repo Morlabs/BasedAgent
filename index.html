@@ -23,11 +23,57 @@
             justify-content: center;
             gap: 80px;
             border-bottom: 1px solid #333;
+            position: relative;
         }
         .navbar a {
-            color: #64D894;
+            color: white;
             text-decoration: none;
             font-size: 18px;
+            margin: 0 15px;
+            position: relative;
+            padding-right: 20px;
+        }
+        .dropdown > a::after {
+            content: ' \25BC'; /* Adding the down arrow */
+            margin-left: 5px;
+            color: #64D894;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1e1e1e;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+        }
+        .dropdown-content a::after {
+            content: '>';
+            padding-left: 20px;
+            color: #64D894;
+        }
+        .dropdown-content a:hover {
+            background-color: #333;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
         }
         .container {
             text-align: center;
@@ -70,6 +116,38 @@
         }
         .email-form input[type="submit"]:hover {
             background-color: #5AC485;
+        }
+        .contribution-section {
+            display: flex;
+            justify-content: space-around;
+            margin: 50px 0;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        .contribution-box {
+            width: 250px;
+            text-align: center;
+            margin: 20px;
+        }
+        .contribution-box img {
+            width: 50px;
+            height: 50px;
+        }
+        .contribution-box h3 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        .contribution-box p {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        .contribution-box a {
+            color: #64D894;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .contribution-box a:hover {
+            text-decoration: underline;
         }
         .morpheus-image {
             margin: 50px 0;
@@ -129,9 +207,25 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="#capital">Capital</a>
-        <a href="#code">Code</a>
-        <a href="#community">Community</a>
+        <div class="navbar-menu">
+            <div class="dropdown">
+                <a href="#">About Based Agent</a>
+                <div class="dropdown-content">
+                    <a href="#about">About</a>
+                    <a href="#baag-token">BAAG Token</a>
+                    <a href="#protection-fund">Protection Fund</a>
+                    <a href="#mor20-platform">MOR20 Platform</a>
+                </div>
+            </div>
+            <a href="https://github.com/Morlabs/BasedAgent/blob/main/Contribute/contribution_guidelines.md">Contribute</a>
+            <div class="dropdown">
+                <a href="#">Resources</a>
+                <div class="dropdown-content">
+                    <a href="#docs">Docs</a>
+                    <a href="#faqs">FAQs</a>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="container">
         <img src="Based_Agent_logo.png" alt="Based Agent Logo">
@@ -141,6 +235,32 @@
             <input type="email" name="email" placeholder="Email Address" required>
             <input type="submit" value="Join Waitlist">
         </form>
+        <div class="contribution-section">
+            <div class="contribution-box">
+                <img src="code.png" alt="Code Icon">
+                <h3>Code</h3>
+                <p>Your skills are the foundation of Based Agent. Contribute to the codebase, develop it's capabilities, and earn BAAG rewards based on the usage and impact of your work.</p>
+                <a href="https://github.com/Morlabs/BasedAgent/blob/main/Contribute/code.md">contribute code →</a>
+            </div>
+            <div class="contribution-box">
+                <img src="capital.png" alt="Capital Icon">
+                <h3>Capital</h3>
+                <p>Your resources are essential to the network's growth. Provide stETH liquidity, earn yield, and receive BAAG tokens for your crucial role in the ecosystem.</p>
+                <a href="https://dashboard.basedagent.co/#/mainnet/capital">contribute capital →</a>
+            </div>
+            <div class="contribution-box">
+                <img src="compute.png" alt="Compute Icon">
+                <h3>Compute</h3>
+                <p>Your hardware powers Based Agent. Supply compute resources, process user queries, and be rewarded in BAAG based on demand and performance.</p>
+                <a href="https://github.com/Morlabs/BasedAgent/blob/main/Contribute/contribution_guidelines.md">contribute compute →</a>
+            </div>
+            <div class="contribution-box">
+                <img src="community.png" alt="Community Icon">
+                <h3>Community</h3>
+                <p>Your passion and skills drive adoption of Based Agent. Help build the Based Agent community, drive awareness and usage and receive BAAG rewards.</p>
+                <a href="https://github.com/Morlabs/BasedAgent/blob/main/Contribute/community.md">contribute community →</a>
+            </div>
+        </div>
         <div class="morpheus-image">
             <img src="morpheus_ecosystem.png" alt="Morpheus Ecosystem">
         </div>
@@ -198,3 +318,4 @@
     </script>
 </body>
 </html>
+
