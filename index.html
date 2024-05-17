@@ -124,6 +124,8 @@
         }
         .contribution-section {
             display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
             justify-content: space-around;
             margin: 50px 0;
             max-width: 1200px;
@@ -158,12 +160,11 @@
             text-align: center;
             padding: 40px 20px; /* Increased height of the footer */
             background-color: #121212;
-            position: fixed;
             width: 100%;
-            bottom: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
         .footer img {
             width: 20px;
@@ -186,6 +187,7 @@
         .footer-right {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
         }
         /* Modal styles */
         .modal {
@@ -279,10 +281,71 @@
                 opacity: 1;
             }
         }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+                padding: 10px;
+                align-items: flex-start;
+            }
+            .navbar-menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                align-items: flex-start;
+            }
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+                padding: 10px;
+            }
+            .hamburger.active + .navbar-menu {
+                display: flex;
+            }
+            .container h1 {
+                font-size: 36px;
+            }
+            .container p {
+                font-size: 16px;
+            }
+            .email-form input[type="email"] {
+                width: calc(100% - 22px);
+                margin-bottom: 10px;
+            }
+            .email-form input[type="submit"] {
+                width: 100%;
+            }
+            .contribution-section {
+                flex-direction: column;
+                padding: 0;
+            }
+            .contribution-box {
+                width: 90%;
+                margin: 10px 0;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 10px;
+                padding: 20px;
+                position: static; /* Non-fixed footer on mobile */
+            }
+            .footer-right {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .animation-container {
+                display: none; /* Disable animation on mobile */
+            }
+        }
     </style>
 </head>
 <body>
     <div class="navbar">
+        <span class="hamburger">&#9776;</span>
         <div class="navbar-menu">
             <div class="dropdown">
                 <a href="#">About Based Agent</a>
@@ -315,7 +378,7 @@
             <svg viewBox="0 0 100 50">
                 <!-- Define gradient for glowing effect -->
                 <defs>
-                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%">
                         <stop offset="0%" style="stop-color:rgba(100, 216, 148, 1); stop-opacity:1" />
                         <stop offset="100%" style="stop-color:rgba(100, 216, 148, 0); stop-opacity:0" />
                     </linearGradient>
@@ -432,6 +495,12 @@
                 dot.style.left = `${x}%`;
                 dot.style.top = `${y}%`;
             }
+        });
+
+        // JavaScript for hamburger menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.navbar-menu').classList.toggle('active');
         });
     </script>
 </body>
