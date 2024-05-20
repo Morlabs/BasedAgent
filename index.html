@@ -124,17 +124,21 @@
         }
         .contribution-section {
             display: flex;
-            flex-direction: row;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: center;
+            align-items: flex-start;
             margin: 50px 0;
             max-width: 1200px;
             padding: 0 20px;
+            gap: 20px; /* Ensure there is space between items */
         }
         .contribution-box {
             width: 250px;
             text-align: center;
-            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         .contribution-box img {
             width: 50px;
@@ -391,25 +395,19 @@
                 <img src="code.png" alt="Code Icon">
                 <h3>Code</h3>
                 <p>Your skills are the foundation of Based Agent. Contribute to the codebase, develop its capabilities, and earn BAAG rewards based on the usage and impact of your work.</p>
-                <a href="https://github.com/Morlabs/BasedAgent/blob/main/Contribute/code.md">I can contribute code →</a>
+                <a href="https://github.com/Morlabs/BasedAgent/blob/main/Contribute/code.md">contribute code →</a>
             </div>
             <div class="contribution-box">
                 <img src="capital.png" alt="Capital Icon">
                 <h3>Capital</h3>
                 <p>Your resources are essential to the network's growth. Provide stETH liquidity, earn yield, and receive BAAG tokens for your crucial role in the ecosystem.</p>
-                <a href="https://dashboard.basedagent.co/#/mainnet/capital">I can contribute capital →</a>
-            </div>
-            <div class="contribution-box">
-                <img src="compute.png" alt="Compute Icon">
-                <h3>Compute</h3>
-                <p>Your hardware powers Based Agent. Supply compute resources, process user queries, and be rewarded in BAAG based on demand and performance.</p>
-                <a href="https://dashboard.basedagent.co/#/mainnet/capital">I can contribute compute →</a>
+                <a href="https://dashboard.basedagent.co/#/mainnet/capital">contribute capital →</a>
             </div>
             <div class="contribution-box">
                 <img src="community.png" alt="Community Icon">
                 <h3>Community</h3>
-                <p>Your passion and skills drive adoption of Based Agent. Build applications for end users, including smart agents, front-ends, dapps, tools, and receive BAAG rewards.</p>
-                <a href="https://github.com/Morlabs/BasedAgent/blob/main/Contribute/community.md">I can contribute community →</a>
+                <p>Your passion and skills drive adoption of Based Agent. Help build awareness and adoption of Based Agent, grow the community and receive BAAG rewards.</p>
+                <a href="https://github.com/Morlabs/BasedAgent/blob/main/Contribute/community.md">contribute community →</a>
             </div>
         </div>
     </div>
@@ -505,6 +503,7 @@
     </script>
 </body>
 </html>
+
 
 
 
