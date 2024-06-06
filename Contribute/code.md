@@ -15,7 +15,7 @@ All Code Contributions should include the following six elements:
 
 Example fields below: 
 
-| Wallet Address                             | Link to Issue | Link to Work        | Estimated Value USD | Description of Contribution | Date of Contribution |
+| Wallet Address                             | Link to Issue | Link to Work        | Time spent (hours) | Description of Contribution | Date of Contribution |
 | ------------------------------------------ | ------------- | ------------------- | ------------------- | --------------------------- | ------------------- |
 | 0x98eFf980C57c9D333340b3856481bF7B8698987c | Link to Issue | Link to Commit #127 | 50                  | Integration of ollama       | 12/03/2024          |
 
@@ -29,6 +29,6 @@ Please include the "pipe" `|` symbol correctly as seen above so your contributio
 > - It is your responsibility to make the proof easily verifiable. Don't assume reviewers of this table have an understanding of your code. Explain it simply. Limit your descriptions to 250 words.
 > - You need a wallet like Metamask that can receive Ethereum based tokens. BAAG token is an ERC-20 type token. Also must support Arbitrum.
 
-| Wallet Address | Link to Work | Estimated Value (USD) | Description of Contribution | Date of Contribution |
+| Wallet Address | Link to Work | Time spent hours | Description of Contribution | Date of Contribution |
 | -------------- | ------------ | --------------------- | --------------------------- | ------------------- |
-| 0x2ff360B98116119624e3cDD17b2D07EFbe6D6029 | https://github.com/Morlabs/ | 500 | Initial setup to the MorLabs Github | 01/04/2024 |
+| 0x2ff360B98116119624e3cDD17b2D07EFbe6D6029 | https://github.com/Morlabs/ | 5 | Initial setup to the MorLabs Github | 01/04/2024 |
