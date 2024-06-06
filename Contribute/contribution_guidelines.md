@@ -23,7 +23,7 @@ Freestyle contributions are one-time efforts that address a specific issue, feat
 3. Develop, test, and document your changes.
 4. Submit a pull request (PR) with a clear description of your changes and their impact.
 5. Engage in the code review process and address any feedback or suggestions.
-6. Submit your contribution on the Freestyle contributions table [Code](https://github.com/Morlabs/BasedAgent/blob/main/Contribute/code.md) or [Community](https://github.com/Morlabs/BasedAgent/blob/main/Contribute/community.md)
+6. Submit your contribution on the Freestyle contributions table for [Code](https://github.com/Morlabs/BasedAgent/blob/main/Contribute/code.md) or [Community](https://github.com/Morlabs/BasedAgent/blob/main/Contribute/community.md), depending on the type of contribution. 
 
 ### Recurring Roles
 
