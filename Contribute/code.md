@@ -9,7 +9,7 @@ All Code Contributions should include the following six elements:
 1. The Ethereum / Wallet address to be rewarded.
 2. Link to the Issue being addressed.
 3. Link to the Code Contribution.
-4. Estimated value in USD.
+4. Time spent in hours.
 5. Description of Contributions.
 6. Date of Contribution (format: day/month/year).
 
