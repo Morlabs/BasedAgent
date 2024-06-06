@@ -1,7 +1,7 @@
 # Code Contributor Guide to Earning Weights & Their Implied Value
 
 ## Overview
-Code Contributors earn rewards based on "weights." An individual's reward allocation is determined by their share of the total weights multiplied by the daily BAAG emissions. Morpheus is a competitive marketplace for code where contributors strive to deliver high-quality code at competitive prices. Contributors must actively maintain their code to maximize rewards, as weights are subject to decay, emphasizing the value of consistent participation.
+Code Contributors earn rewards based on "weights." An individual's reward allocation is determined by their share of the total weights multiplied by the daily BAAG emissions. Based Agent is a competitive marketplace for code where contributors strive to deliver high-quality code at competitive prices. Contributors must actively maintain their code to maximize rewards, as weights are subject to decay, emphasizing the value of consistent participation.
 
 ## Weights Emissions Schedule & Supply Cap
 Weights are capped at 100 million by the end of the 16-year reward period, ensuring their scarcity and value.
@@ -79,7 +79,7 @@ Please include the "pipe" `|` symbol correctly as seen above so your contributio
 > - Create a pull request and add a row to the following table.  
 > - If you are submitting multiple contributions, please create multiple pull requests - one pull request per contribution.  
 > - Only add your link at the bottom, and do not alter any other rows.  
-> - Detail the work you are contributing to Morpheus. You must include a link to the work for the work to be considered. Examples of proof include links to pull requests, GitHub issues, or other easily verifiable information.  
+> - Detail the work you are contributing to Based Agent. You must include a link to the work for the work to be considered. Examples of proof include links to pull requests, GitHub issues, or other easily verifiable information.  
 > - It is your responsibility to make the proof easily verifiable. Don't assume reviewers of this table have an understanding of your code. Explain it simply. Limit your descriptions to 250 words.
 > - You need a wallet like Metamask that can receive Ethereum-based tokens. BAAG token is an ERC-20 type token. Also must support Arbitrum.
 
