@@ -6,11 +6,11 @@ Based Agent welcomes three types of contributions: bounties, freestyle, and recu
 
 Bounties are predefined tasks with a specific scope of work and a clear form of deliverable. They provide a structured way for contributors to engage with the project. Here's how you can get involved with bounties:
 
-1. **Browse Existing Bounties**: Check the list of available bounties to find tasks that match your skills and interests.
-2. **Claim a Bounty**: Once you find a bounty you'd like to work on, claim it by notifying the relevant Repo Lead or following the project-specific procedure.
-3. **Complete the Work**: Develop, test, and document your solution according to the bounty's requirements.
-4. **Submit Your Work**: Submit your work through the designated process, which typically involves a pull request (PR) and filling out a submission form with your details.
-5. **Review and Feedback**: Engage in the code review process, address any feedback or suggestions, and finalize your submission.
+1. **Browse Existing Bounties**: Check the list of available bounties [here](https://app.wonderverse.xyz/pod/124525901772751121/boards?entity=bounty) to find tasks that match your skills and interests.
+3. **Claim a Bounty**: Once you find a bounty you'd like to work on, claim it by notifying the relevant Repo Lead or following the project-specific procedure.
+4. **Complete the Work**: Develop, test, and document your solution according to the bounty's requirements.
+5. **Submit Your Work**: Submit your work through the designated process, which typically involves a pull request (PR) and filling out a submission form with your details.
+6. **Review and Feedback**: Engage in the code review process, address any feedback or suggestions, and finalize your submission.
 
 Contributors can also propose their own bounties, which, if approved, will be listed alongside other available tasks.
 
