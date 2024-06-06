@@ -32,3 +32,6 @@ Please include the "pipe" `|` symbol correctly as seen above so your contributio
 | Wallet Address | Link to Work | Time spent hours | Description of Contribution | Date of Contribution |
 | -------------- | ------------ | --------------------- | --------------------------- | ------------------- |
 | 0x2ff360B98116119624e3cDD17b2D07EFbe6D6029 | https://github.com/Morlabs/ | 5 | Initial setup to the MorLabs Github | 01/04/2024 |
+| 0x463920553aa6cF489F55F81226Ebe50610FB97F1 | https://basedagent.co | 20 | Development, feedback and iterations | 03/06/2024 |
+| 0x463920553aa6cF489F55F81226Ebe50610FB97F1 | Opendevin research and testing | 15 | Testing feasibility of building on top of OpenDevin for BasedAgent | 06/06/2024 |
+
