@@ -35,7 +35,7 @@ Our reward model mirrors Bitcoin's, where rewards decrease over time but the val
 **Before adding a pull request, [please read the BEST PRACTICES GUIDE](https://github.com/Morlabs/BasedAgent/blob/main/Contribute/contribution_guidelines.md).**
 
 ### Snapshots
-We use midnight UTC on the 15th of each month as the cut-off for submissions within each snapshot.
+We use midnight UTC on the 15th of each month as the cut-off for submissions within each snapshot, with the first one ending on 15th June 2024. 
 
 ### Token Distribution
 The daily block reward of 14,400 BAAG tokens declines daily by 2.468994701 BAAG until reaching zero on day 5,833.
@@ -56,9 +56,7 @@ The value of weights a coder holds can decrease due to the system’s weight dec
 - **Month 1**: Coder 1 contributes 10 hours, Coder 2 contributes 30 hours.
 - **Month 2**: Coder 3 contributes 10 hours, Coder 2 contributes 30 hours again, while Coder 1 does not contribute but retains weights from Month 1.
 
-The following chart shows the BAAG distribution for the first 12 months, alongside the weight multiplier for each month, highlighting the impact of decay and new contributions.
-
-*Insert chart here*
+NB: The weight system and distrbution system is subject to change and dependent upon commmunity feedback as well as any technical limitations that may come with MOR20.
 
 ### Example Fields for Contribution Submissions
 Contributors must include:
