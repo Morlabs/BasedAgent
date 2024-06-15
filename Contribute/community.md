@@ -93,4 +93,8 @@ Please include the "pipe" `|` symbol correctly as seen above so your contributio
 | Wallet Address | Link to Work | Time spent (hours) | Description of Contribution | Date of Contribution |
 | -------------- | ------------ | --------------------- | --------------------------- | ------------------- |
 | 0x2ff360B98116119624e3cDD17b2D07EFbe6D6029 | Wonderverse setup | 3 | Initial setup to the BasedAgent Wonderverse | 06/06/2024 |
+| 0xCbcb2a6E6b4ed4a8D281709c831960a31547f738 | Discord setup | 6 | Initial setup Based Agent Discord | 14/06/2024 
+| 0xCbcb2a6E6b4ed4a8D281709c831960a31547f738 | https://docs.google.com/document/d/1ODJXuTuaw-gwrhEyKsXvyThImPwWpRAh3j4hirO1qoE/edit?usp=sharing | 30 | authorship of based Agent growth plan  | 14/06/2024 
+| 0xCbcb2a6E6b4ed4a8D281709c831960a31547f738 | Brand assets | 30 | Design of all Brand assets for Based Agent | 01/06/2024 
+| 0xCbcb2a6E6b4ed4a8D281709c831960a31547f738 | Website | 20 | Copy and design oversignt of website  | 01/06/2024 
 
