@@ -95,4 +95,6 @@ Please include the "pipe" `|` symbol correctly as seen above so your contributio
 | 0x2ff360B98116119624e3cDD17b2D07EFbe6D6029 | https://github.com/Morlabs/ | 5 | Initial setup to the MorLabs Github | 01/04/2024 |
 | 0x463920553aa6cF489F55F81226Ebe50610FB97F1 | https://basedagent.co | 20 | Development, feedback and iterations | 03/06/2024 |
 | 0x463920553aa6cF489F55F81226Ebe50610FB97F1 | Opendevin research and testing | 15 | Testing feasibility of building on top of OpenDevin for BasedAgent as well as evaluating altenatives | 06/06/2024 |
+| 0xe9EDa9585b6C917E7FAc1C0AD9724faB609491DC | [https://github.com/Morlabs/BasedAgent/pull/3](https://github.com/Morlabs/BasedAgent/pull/3) | 1 | Included the extension for markdown to display the contents properly | 11/04/2024 |
+| 0xe9EDa9585b6C917E7FAc1C0AD9724faB609491DC | [https://github.com/Morlabs/based_agent_be](https://github.com/Morlabs/based_agent_be) | 20 | Add nodejs backend for reviewer service | 14/06/2024 |
 
