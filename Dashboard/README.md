@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Dashboard Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the BasedAgent Dashboard application, part of the BasedAgent project. This application provides an interface for onboarding new developers to BasedAgent, featuring a React front-end and a Node.js server backend. Below are detailed instructions to help you set up and run the application.
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+Ensure you have the following installed on your system:
+- Node.js (LTS version recommended)
+- npm (usually comes with Node.js)
+- PostgreSQL
+- Optional: pgAdmin 4 (for managing the PostgreSQL database)
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Follow these steps to set up your environment:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Clone the Repository**
+    ```bash
+    git clone https://github.com/Morlabs/BasedAgent.git
+    cd BasedAgent/Dashboard
+    ```
 
-### `npm test`
+2. **Install Dependencies**
+    - This project uses a two-step installation process for its front-end and back-end dependencies.
+    ```bash
+    npm run setup
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. **Database Setup**
+    - Ensure PostgreSQL is running.
+    - Create a new database for the application.
+    - Use the provided SQL scripts in the `sql` directory to set up your tables and initial data.
+        ```bash
+        psql -U username -d your_database_name -a -f setup.sql
+        ```
+    - Update the `config/database.js` file or relevant configuration files with your database connection details.
 
-### `npm run build`
+4. **Environment Variables**
+    - Create a `.env` file in the root of the `Dashboard` directory with the necessary environment variables:
+        ```
+        DATABASE_URL=postgres://username:password@localhost:5432/your_database_name
+        PORT=3000
+        ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Running the Application
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Development Mode**:
+  - To run both the front-end React application and the Node.js server concurrently during development:
+    ```bash
+    npm run dev
+    ```
+  - This will start the React development server and the Node.js backend server concurrently. The React app will be available by default on `http://localhost:3000`, and the backend API will also use this or another specified port.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Production Build and Run**:
+  - To build the React application for production and run the server:
+    ```bash
+    npm run prod
+    ```
+  - This will place the production build in the specified directory and start the server to serve the React app and API from the same port.
 
-### `npm run eject`
+## Using pgAdmin 4 (Optional)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+If you prefer a graphical interface for database management:
+- Open pgAdmin 4.
+- Connect to your PostgreSQL server.
+- Manage the database, import SQL files, or run queries as needed.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Additional Information
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Contributing**: Contributions are welcome! Please fork the repository and submit pull requests.
+- **Issues**: For any issues or bugs, please file an issue on the GitHub repository page.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
