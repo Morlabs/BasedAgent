@@ -3,56 +3,6 @@
 ## Initiative Claim Process
 Before claiming an initiative, please read the [BEST PRACTICES GUIDE](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Coder%20Guide.md).
 
-## Detailed Initiatives and Milestones Overview
-
-### Milestone 1: Selection of AI Coding Assistant
-- Initiative 1.1: Research and compare open-source AI coding assistant frameworks
-- Initiative 1.2: Prepare comparison report and selection justification document
-- Initiative 1.3: Present findings and recommendations to the BasedAgent team
-
-### Milestone 2: Development of Technical Implementation Plan
-- Initiative 2.1: Create architecture diagrams for AI integration
-- Initiative 2.2: Develop implementation roadmap
-- Initiative 2.3: Conduct risk assessment
-- Initiative 2.4: Prepare resource planning document
-
-### Milestone 3: Development of Discord Bot and GitHub Integration
-- Initiative 3.1: Develop Discord bot for reviewer notifications
-- Initiative 3.2: Implement GitHub integration for code management
-- Initiative 3.3: Create comprehensive testing plan and execute tests
-- Initiative 3.4: Document bot functionality and GitHub integration process
-
-### Milestone 4: Developing the Payment Flow on Base or Arbitrum
-- Initiative 4.1: Design smart contracts for payment system
-- Initiative 4.2: Implement SAFE protocol integration for secure transactions
-- Initiative 4.3: Conduct security audits on smart contracts
-- Initiative 4.4: Create documentation for the payment process
-
-### Milestone 5: Training AI Model on Pilot Project Codebase and Documentation
-- Initiative 5.1: Prepare dataset from pilot project codebase and documentation
-- Initiative 5.2: Train initial AI model
-- Initiative 5.3: Conduct iterative refinement of the model
-- Initiative 5.4: Perform deployment testing
-- Initiative 5.5: Generate performance reports and analysis
-
-### Milestone 6: Reviewer Onboarding and Skill Assessment System
-- Initiative 6.1: Develop a skill assessment framework for reviewers
-- Initiative 6.2: Create an onboarding process for new reviewers
-- Initiative 6.3: Implement a skill matching algorithm for reviewer-task pairing
-- Initiative 6.4: Design a continuous learning system for reviewers
-
-### Milestone 7: AI-Driven Code Review and Feedback Loop
-- Initiative 7.1: Develop an AI system to assist in code review process
-- Initiative 7.2: Implement a feedback mechanism to improve AI suggestions
-- Initiative 7.3: Create a dashboard for tracking AI performance in code reviews
-- Initiative 7.4: Design a system for incorporating human reviewer insights into AI training
-
-### Milestone 8: Autonomous Code Submission Pipeline
-- Initiative 8.1: Develop a framework for autonomous code generation
-- Initiative 8.2: Implement quality checks and testing for generated code
-- Initiative 8.3: Create a staging system for human review before final submission
-- Initiative 8.4: Design an analytics system to track autonomous submission success rates
-
 ## Process for Submitting a Bid
 
 If you're interested in working on one of the listed initiatives or proposing a related contribution, follow these steps to submit a bid:
