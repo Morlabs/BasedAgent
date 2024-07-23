@@ -1,66 +1,91 @@
-# Bounty Contributor Guide to Earning Weights & Their Implied Value
+# Contributor Guide to BasedAgent Initiatives
 
-## Overview
-Bounty Contributors are compensated based on "weights" that are pre-defined for each deliverable within a bounty. This ensures clarity and predictability in the rewards, as contributors know the exact weight and corresponding value of their work. Bounties have specific tasks with set rewards, aligning with Based Agents' objectives to foster high-quality contributions and active participation.
+## Initiative Claim Process
+Before claiming an initiative, please read the [BEST PRACTICES GUIDE](https://github.com/Morlabs/BasedAgent/blob/main/Contribute/contribution_guidelines.md).
 
-## Weights Emissions Schedule & Supply Cap
-The total allocation of weights is capped at 100 million, distributed over a 16-year period, maintaining their scarcity and increasing their perceived value over time.
+## Detailed Initiatives and Milestones Overview
 
-### Yearly Bounty Weights Allocation
-- Year 1: 50,000,000
-- Year 2: 25,000,000
-- Year 3: 12,500,000
-- Year 4: 6,250,000
-- Year 5: 3,125,000
-- Year 6: 1,562,500
-- Year 7: 781,250
-- Year 8: 390,625
-- Year 9: 195,312
-- Year 10: 97,656
-- Year 11: 48,828
-- Year 12: 24,414
-- Year 13: 12,207
-- Year 14: 6,103
-- Year 15: 3,051
-- Year 16: 1,525
+### Milestone 1: Selection of AI Coding Assistant
+- Initiative 1.1: Research and compare open-source AI coding assistant frameworks
+- Initiative 1.2: Prepare comparison report and selection justification document
+- Initiative 1.3: Present findings and recommendations to the BasedAgent team
 
-### Total Weights
-A maximum of 100,000,000 weights will be issued by the end of year 16. Unused weights can be reassigned or returned to the reserve.
+### Milestone 2: Development of Technical Implementation Plan
+- Initiative 2.1: Create architecture diagrams for AI integration
+- Initiative 2.2: Develop implementation roadmap
+- Initiative 2.3: Conduct risk assessment
+- Initiative 2.4: Prepare resource planning document
 
-## Reward Model Based on Pre-defined Weights
-Each bounty lists specific tasks with assigned weights, ensuring that contributors can gauge the value of their work accurately. This model promotes transparency and fair compensation.
+### Milestone 3: Development of Discord Bot and GitHub Integration
+- Initiative 3.1: Develop Discord bot for reviewer notifications
+- Initiative 3.2: Implement GitHub integration for code management
+- Initiative 3.3: Create comprehensive testing plan and execute tests
+- Initiative 3.4: Document bot functionality and GitHub integration process
 
-## Bounty Claim Process
-Before claiming a bounty, [please read the BEST PRACTICES GUIDE](https://github.com/Morlabs/BasedAgent/blob/main/Contribute/contribution_guidelines.md).
+### Milestone 4: Developing the Payment Flow on Base or Arbitrum
+- Initiative 4.1: Design smart contracts for payment system
+- Initiative 4.2: Implement SAFE protocol integration for secure transactions
+- Initiative 4.3: Conduct security audits on smart contracts
+- Initiative 4.4: Create documentation for the payment process
 
-### Bounties Schedule
-Bounties are listed monthly, with deadlines and specific deliverables detailed for each task. Contributors must claim a bounty and have it marked as "In Progress" to begin work. Once a bounty is claimed, other contributors cannot claim the same task unless it is reopened.
+### Milestone 5: Training AI Model on Pilot Project Codebase and Documentation
+- Initiative 5.1: Prepare dataset from pilot project codebase and documentation
+- Initiative 5.2: Train initial AI model
+- Initiative 5.3: Conduct iterative refinement of the model
+- Initiative 5.4: Perform deployment testing
+- Initiative 5.5: Generate performance reports and analysis
 
-### Bounty Completion and Token Distribution
-Weights earned from completed bounties determine the distribution of daily BAAG token emissions. The process ensures contributors are rewarded proportionally to their contribution.
+### Milestone 6: Reviewer Onboarding and Skill Assessment System
+- Initiative 6.1: Develop a skill assessment framework for reviewers
+- Initiative 6.2: Create an onboarding process for new reviewers
+- Initiative 6.3: Implement a skill matching algorithm for reviewer-task pairing
+- Initiative 6.4: Design a continuous learning system for reviewers
 
-### Historical Weight Adjustments and BAAG Distribution
-Weights from bounties decay over time unless the contributor continues to engage with new bounties, maintaining or increasing their weight total.
+### Milestone 7: AI-Driven Code Review and Feedback Loop
+- Initiative 7.1: Develop an AI system to assist in code review process
+- Initiative 7.2: Implement a feedback mechanism to improve AI suggestions
+- Initiative 7.3: Create a dashboard for tracking AI performance in code reviews
+- Initiative 7.4: Design a system for incorporating human reviewer insights into AI training
 
-**Example Calculation:**
-- **Month 1**: Developer A completes Bounty 1.1 and earns 500 weights.
-- **Month 2**: Developer B completes Bounty 2.1 and earns 300 weights. Developer A does not complete additional bounties but retains weights from Month 1.
+### Milestone 8: Autonomous Code Submission Pipeline
+- Initiative 8.1: Develop a framework for autonomous code generation
+- Initiative 8.2: Implement quality checks and testing for generated code
+- Initiative 8.3: Create a staging system for human review before final submission
+- Initiative 8.4: Design an analytics system to track autonomous submission success rates
 
-### Bounty Submission Requirements
-Contributors must include:
-1. Ethereum/Wallet address for rewards.
-2. Link to the issue addressed.
-3. Link to the pull request or commit.
-4. Description of the bounty completed.
-5. Date of completion (format: day/month/year).
+## Process for Submitting a Bid
 
-### Bounty Status Updates
-After claiming a bounty, the status should be updated to "In Progress". Other possible statuses include:
-- **Open**: Available for claiming.
-- **In Progress**: Currently being worked on.
-- **Under Review**: Submitted for review.
-- **Completed**: Reviewed and closed.
-- **Reopened**: Available again due to incomplete or unsatisfactory completion.
+If you're interested in working on one of the listed initiatives or proposing a related contribution, follow these steps to submit a bid:
+
+1. **Review the Initiative**: Carefully read the initiative description and requirements.
+
+2. **Prepare Your Proposal**: Draft a brief proposal that includes:
+   - Your understanding of the task
+   - Your approach to completing the work
+   - Your estimated timeline
+   - Any relevant experience or skills you bring to the task
+   - The number of weights you're requesting for this initiative (your bid)
+
+3. **Complete the Bid Form**: Fill out the initiative bid form with the following information:
+   - Your name and contact information
+   - The Initiative ID you're bidding on
+   - Your Ethereum wallet address for potential rewards
+   - A link to your GitHub profile
+   - Your proposal (as prepared in step 2) 
+   - The BARI number
+   - The initiative number 
+   - The number of weights you're requesting
+   - Any questions or clarifications you need
+
+4. **Submit Your Bid**: Send your completed form.
+
+5. **Await Response**: The repo maintainer will review your bid and respond with any questions, acceptance, or feedback. They may negotiate the number of weights if necessary.
+
+6. **Claim the Initiative**: If your bid is accepted, follow the instructions to claim the initiative and update its status to "In Progress" in the project management system.
+
+Remember, you can always propose new ideas or variations that you believe would benefit the BasedAgent project. The team values initiative and creative contributions that align with the project's goals.
+
+By following this process and using this guide as a reference, you can effectively contribute to BasedAgent while ensuring your work is aligned with the project's current needs and priorities. The bidding process allows for a fair and transparent allocation of weights based on the value you propose to bring to the project.
 
 ## Detailed Bounties and Milestones Overview
 
