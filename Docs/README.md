@@ -1,10 +1,10 @@
 # Table of Contents
 
 ## Reference Guides and Best Practices
-- [Coder Guide](/Contributions/Coder%20Guide.md)
-- [Code Contributor Best Practices](Code%20Contributor%20Best%20Practices.md)
-- [Code Contributors Weights Guide](Code%20Contributors%20Weights%20Guide.md)
-- [Weight Maintenance Guide](Weight%20Maintenance%20Guide.md)
+- [Coder Guide](https://github.com/Morlabs/BasedAgent/blob/main/Contributions/Coder%20Guide.md)
+- [Code Contributor Best Practices](https://github.com/Morlabs/BasedAgent/blob/main/Contributions/Code%20Contributor%20Best%20Practices.md)
+- [Code Contributors Weights Guide](https://github.com/Morlabs/BasedAgent/blob/main/Contributions/Code%20Contributors%20Weights%20Guide.md)
+- [Weight Maintenance Guide](https://github.com/Morlabs/BasedAgent/blob/main/Contributions/Weight%20Maintenance%20Guide.md)
 
 ## Code Snapshots
 - [Snapshot1](code.md)
@@ -13,5 +13,5 @@
 - [Snapshot1](community.md)
 
 ## BasedAgent Strategy & Focus Areas
-- [BasedAgent Reference Implementations (BARIs)](BasedAgent%20Reference%20Implementations%20(BARIs).md)
-- [Code Bounties](code_bounties.md)
+- [BasedAgent Reference Implementations (BARIs)](https://github.com/Morlabs/BasedAgent/blob/main/Contributions/BasedAgent%20Reference%20Implementations%20(BARIs).md)
+- [Code Bounties](https://github.com/Morlabs/BasedAgent/blob/main/Contributions/code_bounties.md)
