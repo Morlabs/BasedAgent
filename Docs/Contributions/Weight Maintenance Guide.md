@@ -41,5 +41,5 @@ This document outlines the standard procedures to be followed in the ordinary co
 
 This guide provides a clear and structured framework for the maintenance of weights within each relevant GitHub repository, underlining the commitment to transparency and fairness in recognizing and rewarding contributions. By adhering to this guide, contributors can ensure that their efforts are not only acknowledged but also preserved over time. This system guarantees that the valuable work done today continues to provide benefits well into the future, fostering a collaborative and dynamic environment. Contributors should remain proactive in maintaining their work to retain their weights and uphold the integrity and effectiveness of the protocol.
 
-[← Previous](link-to-previous-page.md) 
+[← Previous](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code%20Contributors%20Weights%20Guide.md) 
 
