@@ -68,5 +68,5 @@ If you contribute documentation, such as a translation of a white paper there is
 
 The BasedAgent codebase is ever evolving. Weights credited only last as long as the codebase utilizes the code provided.
 
-[← Previous](link-to-previous-page.md) | [Next →](link-to-next-page.md)
+[← Previous](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Coder%20Guide.md) | [Next →](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code%20Contributors%20Weights%20Guide.md)
 
