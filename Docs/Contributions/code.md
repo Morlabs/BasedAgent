@@ -1,97 +1,84 @@
-# Code Contributor Guide to Earning Weights & Their Implied Value
+# Code Contributions - Proof of Contribution Table Snapshot #1
 
-## Overview
-Code Contributors earn rewards based on "weights." An individual's reward allocation is determined by their share of the total weights multiplied by the daily BAAG emissions. Based Agent is a competitive marketplace for code where contributors strive to deliver high-quality code at competitive prices. Contributors must actively maintain their code to maximize rewards, as weights are subject to decay, emphasizing the value of consistent participation.
+## Code Provider - Proof of Contribution Table Snapshot #1
+### 1st July 2024 - 31st July 2024
 
-## Weights Emissions Schedule & Supply Cap
-Weights are capped at 100 million by the end of the 16-year reward period, ensuring their scarcity and value.
+This table is for code contributions in Snapshot 1.  
 
-### Yearly Coding Weights Allocation
-- Year 1: 50,000,000
-- Year 2: 25,000,000
-- Year 3: 12,500,000
-- Year 4: 6,250,000
-- Year 5: 3,125,000
-- Year 6: 1,562,500
-- Year 7: 781,250
-- Year 8: 390,625
-- Year 9: 195,312
-- Year 10: 97,656
-- Year 11: 48,828
-- Year 12: 24,414
-- Year 13: 12,207
-- Year 14: 6,103
-- Year 15: 3,051
-- Year 16: 1,525
 
-### Total Weights
-A maximum of 100,000,000 weights will be issued by the end of year 16. Weights not maintained by their holders can be re-assigned or returned to the reserve.
+> [!IMPORTANT]  
+> If this is your first pull request please read these documents first:
+> 
+> [**Coder Guide**](insert)
+>  
+> [**The Best Practices Guide**](insert)
+> 
+> [**The Code Contributors Weights Guide**](insert)
+>   
+> [**MRC:37 Weight Time**](insert)
 
-## Halving Model Based on Bitcoin
-Our reward model mirrors Bitcoin's, where rewards decrease over time but the value of each unit potentially increases due to scarcity.
+## Code Contribution Bidding Schedule
 
-## Contribution Provider - Proof of Contribution Table for Code Contribution
+![Monthly Dev Bid - Monthly](https://github.com/MorpheusAIs/MRC/assets/76454555/b4c42782-ca45-4a87-9583-12357cab2e85)
 
-**Before adding a pull request, [please read the BEST PRACTICES GUIDE](https://github.com/Morlabs/BasedAgent/blob/main/Contribute/contribution_guidelines.md).**
+- By the 7th - Maintainers judge contributions from the previous month
+- By the ~8th - Morpheus smart contract updated with new weights
+- By the 9th - Contributors submit new bids by filling out the Bid for Weights table
+- By the 15th - Maintainers will accept or reject new bidsSub
+- By the 31st - Contributors submit a Proof of Contribution (see forms) describing a delivered contribution add the normal information on Github to the [snapshot file](https://github.com/MorpheusAIs/Docs/tree/main/Contributions) for that month.
 
-### Snapshots
-We use midnight UTC on the 15th of each month as the cut-off for submissions within each snapshot, with the first one ending on 15th August 2024. 
+### Tables
+1. Bid for Weights: [here](insert).
+2. Proof of Contribution: [here](insert).
 
-### Token Distribution
-The daily block reward of 14,400 BAAG tokens declines daily by 2.468994701 BAAG until reaching zero on day 5,833.
+## Theoretical Implied Value of a Weight per Snapshot
+**Snapshot 1:** $0.025 USD per Weight  
 
-- 50% to Coders
-- 30% to Capital
-- 16% to Community
-- 4% to Protection
+The weight calculation method explained [here](insert).
 
-### Calculating Token Emissions
-The BAAG tokens a coder earns are determined by their proportion of total weights. For example, owning 200 weights out of 20,000 entitles a coder to 1% of the 3,600 BAAG allocated daily to coders—equating to 36 BAAG per day, or 1,080 BAAG monthly.
+## Structuring of Code Contributions
 
-### Historical Weight Adjustments and BAAG Distribution
-The value of weights a coder holds can decrease due to the system’s weight decay mechanism, which is designed to incentivize continuous contribution and maintenance. This section illustrates how the weights and subsequent BAAG distribution evolve, emphasizing the importance of ongoing engagement.
+All Code Contributions to include the following elements:
 
-**Example Calculation:**
-- **Month 1**: Coder 1 contributes 10 hours, Coder 2 contributes 30 hours.
-- **Month 2**: Coder 3 contributes 10 hours, Coder 2 contributes 30 hours again, while Coder 1 does not contribute but retains weights from Month 1.
+1. Snapshot number.
+2. BasedAgent Referrence Implementation a contributios falls under. The BARIs list is [here](insert)
+3. The Ethereum wallet address to be rewarded.
+4. Handle of a contributor GitHub.
+5. Full description of a contribution.
+6. Proof of the Code Contribution (this may be a commit or PR).
+7. Amount of [weights](insert) requested (as a number – do not include the word "weights").
+8. Weight Time. The number of snapshots for which the weights will be considered in emissions. Leave blank if it's for the maximum amount. 
 
-NB: The weight system and distrbution system is subject to change and dependent upon commmunity feedback as well as any technical limitations that may come with MOR20.
+<p align="center">Example fields</p>
+<b>Snapshot | MRI | Wallet Address | GitHub Handle | Description of Contribution | Proof | Weights Requested | Weight Time</b>
+<br><br>
+<p align="center">Input example</p>
+<b>5 | 3 | 0xf93de9fb07f5762a1e3db9a5c687595111928d77 | my GH name | "code does: this" | "http:// Link to proof" | 1250 | 6</b>
+<br><br>
 
-### Example Fields for Contribution Submissions
-Contributors must include:
-1. The Ethereum/Wallet address for rewards.
-2. Link to the issue addressed.
-3. Link to the code contribution.
-4. Hours worked.
-5. Description of contributions.
-6. Date of contribution (format: day/month/year).
-
-### Example Fields
-
-| Wallet Address                             | Link to Issue | Link to Work        | Time spent (hours) | Description of Contribution | Date of Contribution |
-| ------------------------------------------ | ------------- | ------------------- | ------------------- | --------------------------- | ------------------- |
-| 0x98eFf980C57c9D333340b3856481bF7B8698987c | Link to Issue | Link to Commit #127 | 50                  | Integration of ollama       | 12/03/2024          |
-
-Please include the "pipe" `|` symbol correctly as seen above so your contribution will format with the table.
-
-> [!NOTE]  
-> - Create a pull request and add a row to the following table.  
-> - If you are submitting multiple contributions, please create multiple pull requests - one pull request per contribution.  
-> - Only add your link at the bottom, and do not alter any other rows.  
-> - Detail the work you are contributing to Based Agent. You must include a link to the work for the work to be considered. Examples of proof include links to pull requests, GitHub issues, or other easily verifiable information.  
+> [!IMPORTANT]
+>
+> - Create a pull request and add a row to the following table.
+> - Only one MRI per entry.
+> - If you are submitting multiple contributions, please create multiple pull requests - one pull request per contribution.
+> - Only add your link at the bottom, and do not alter any other rows.
+> - Detail the work you are contributing to Morpheus. You must include a link to the work for the work to be considered. Examples of proof include links to pull requests, github issues, or other easily verifyable information.
 > - It is your responsibility to make the proof easily verifiable. Don't assume reviewers of this table have an understanding of your code. Explain it simply. Limit your descriptions to 250 words.
-> - You need a wallet like Metamask that can receive Ethereum-based tokens. BAAG token is an ERC-20 type token. Also must support Arbitrum.
+> - You need a wallet like Metamask that can receive Ethereum based tokens. MOR is an ERC-20 type token. Also must support Arbitrum.
 
-### Approval and Conversion Process
-1. **Submission:** Contributors submit their hours via pull requests to the Proof of Contribution table.
-2. **Review:** Submitted hours are reviewed and approved based on the quality and relevance of the work.
-3. **Conversion:** Approved hours are converted into weights. 
-4. **Emission:** Weights translate into daily BAAG token emissions.
+## Code Contributions for Snapshot 1
 
+| **Snapshot** | **BARI** | **Wallet Address**                         | **GitHub Handle** | **Description of Contribution** | **Proof of Contribution**   | **Weights Requested** | **Weight Time** |
+| ---------- | ----- | ------------------------------------------ | ----------------- | ---------------------------------- | --------------------------- | ------------- | -------- |
+| 1            | 2       | 0x1234567890123456789012345678901234567890 | ai_coder_1   | Implemented advanced NLP module for code understanding     | https://github.com/BasedAgent/ai-core/pull/123 | 50000  | 4  |
+| 1 | 1 | 0x2345678901234567890123456789012345678901 | smart_contract_dev | Developed smart contract for agent reputation system | https://github.com/BasedAgent/contracts/pull/45 | 75000 | 6 |
+| 1            | 3       | 0x3456789012345678901234567890123456789012 | mobile_wizard   | Created cross-platform mobile interface for BasedAgent   | https://github.com/BasedAgent/mobile-app/pull/78 | 60000  | 5  |
+| 1            | 4       | 0x4567890123456789012345678901234567890123 | tokenomics_guru | Designed token distribution model for incentivizing high-quality code contributions | https://github.com/BasedAgent/tokenomics/pull/32 | 40000 | 3 |
+| 1            | 5      | 0x5678901234567890123456789012345678901234  | security_expert  | Implemented advanced encryption for agent-to-agent communication | https://github.com/BasedAgent/security/pull/56 | 80000 | 7 |
+| 1 | 6 | 0x6789012345678901234567890123456789012345 | data_scientist | Developed machine learning model for code quality prediction | https://github.com/BasedAgent/ml-models/pull/89 | 70000 | 6 |
+| 1 | 7 | 0x7890123456789012345678901234567890123456 | devops_ninja | Set up scalable infrastructure for BasedAgent deployment | https://github.com/BasedAgent/infrastructure/pull/12 | 55000 | 5 |
+| 1            | 8       | 0x8901234567890123456789012345678901234567 | ui_designer   | Redesigned the main dashboard for better user experience | https://github.com/BasedAgent/frontend/pull/67 | 45000 | 4 |
+| 1 | 9 | 0x9012345678901234567890123456789012345678 | community_lead | Organized virtual hackathon for BasedAgent developers | https://github.com/BasedAgent/community/pull/23 | 30000 | 3 |
+| 1 | 10 | 0x0123456789012345678901234567890123456789 | biz_dev_pro | Secured partnership with major tech company for BasedAgent integration | https://github.com/BasedAgent/partnerships/pull/9 | 65000 | 5 |
 
-| Wallet Address | Link to Work | Time spent hours | Description of Contribution | Date of Contribution |
-| -------------- | ------------ | --------------------- | --------------------------- | ------------------- |
-| 0x2ff360B98116119624e3cDD17b2D07EFbe6D6029 | https://github.com/Morlabs/ | 5 | Initial setup to the MorLabs Github | 01/04/2024 |
-| 0x463920553aa6cF489F55F81226Ebe50610FB97F1 | https://basedagent.co | 20 | Development, feedback and iterations | 03/06/2024 |
-| 0x463920553aa6cF489F55F81226Ebe50610FB97F1 | Opendevin research and testing | 15 | Testing feasibility of building on top of OpenDevin for BasedAgent as well as evaluating altenatives | 06/06/2024 |
 
