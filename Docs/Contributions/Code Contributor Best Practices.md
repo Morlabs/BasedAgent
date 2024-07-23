@@ -12,7 +12,7 @@ To streamline the process of offering and accepting code contributions, please f
 
 - By the ~8th - BasedAgent smart contract updated with new weights
 
-- By the 9th - Contributors submit new bids by filling out the Bid for weights form (R&D version, pre BAAG.Software)
+- By the 9th - Contributors submit new bids by filling out the Bid for weights form (see the bounty to replace this)
 
 - By the 15th - Maintainers will accept or reject new bids
 
