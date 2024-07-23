@@ -1,7 +1,7 @@
 # Table of Contents
 
 ## Reference Guides and Best Practices
-- [Coder Guide](/contributions/Coder%20Guide.md)
+- [Coder Guide](/Contributions/Coder%20Guide.md)
 - [Code Contributor Best Practices](Code%20Contributor%20Best%20Practices.md)
 - [Code Contributors Weights Guide](Code%20Contributors%20Weights%20Guide.md)
 - [Weight Maintenance Guide](Weight%20Maintenance%20Guide.md)
