@@ -80,3 +80,6 @@ The initial implied value of weights will be determined based on the real costs 
 Subsequent snapshots will follow monthly, with the implied value potentially being calculated based on factors such as stETH deposits, trading prices, or other relevant metrics as the BasedAgent ecosystem develops.
 
 This guide provides a framework for understanding and calculating the value of code contributions to BasedAgent. The specific details of price determination and snapshot calculations may need to be adjusted as the BasedAgent project evolves. Contributors should stay informed about any updates or changes to this system as the project develops.
+
+[← Previous](link-to-previous-page.md) | [Next →](link-to-next-page.md)
+
