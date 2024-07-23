@@ -15,7 +15,7 @@ This table is for code contributions in Snapshot 1.
 > 
 > [**The Code Contributors Weights Guide**](insert)
 >   
-> [**MRC:37 Weight Time**](insert)
+> [**Weight Time**](insert)
 
 ## Code Contribution Bidding Schedule
 
