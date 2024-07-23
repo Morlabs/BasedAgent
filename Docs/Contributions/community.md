@@ -1,5 +1,3 @@
-Here's the amended version for Community Contributions:
-
 # Community Contributions - Proof of Contribution Table Snapshot #1
 
 ## Community Provider - Proof of Contribution Table Snapshot #1
