@@ -24,7 +24,7 @@ Includes a list of active issues reported on the BasedAgent GitHub.
 The step by step details of how to Contribute Code, increase those odds of having your Pull Request merged.
 [Best Practices Document Link]
 
-## Code Contributor Guide to Earning Weights & Their Implied Value
+## Contributor Guide to Earning Weights & Their Implied Value
 The detailed description of the implied value per weight which is updated each month.
 [Code Contributor Weights Guide Link]
 
