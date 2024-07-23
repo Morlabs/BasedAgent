@@ -81,5 +81,5 @@ Subsequent snapshots will follow monthly, with the implied value potentially bei
 
 This guide provides a framework for understanding and calculating the value of code contributions to BasedAgent. The specific details of price determination and snapshot calculations may need to be adjusted as the BasedAgent project evolves. Contributors should stay informed about any updates or changes to this system as the project develops.
 
-[← Previous](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code%20Contributor%20Best%20Practices.md) | [Next →](link-to-next-page.md)
+[← Previous](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code%20Contributor%20Best%20Practices.md) | [Next →](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions//Weight%20Maintenance%20Guide.md)
 
