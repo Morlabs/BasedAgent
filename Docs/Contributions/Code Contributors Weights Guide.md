@@ -19,30 +19,28 @@ The number of Coder weights is capped at 100 Million weights, at the end of the 
 
 ## Monthly Coding Weights
 
-The weights will be distributed monthly, starting from the initial period ending August 15, 2024. Here's the monthly distribution for the first year:
+The weights will be distributed monthly, starting from the initial period ending July 31, 2024. Here's the monthly distribution for the first year:
 
-Initial Period (Project Start - August 15, 2024): 6,250,000 weights
+Year 1 (July 1, 2024 - June 30, 2025):
 
-Year 1 (August 16, 2024 - August 15, 2025):
+1. July 1, 2024 - July 31, 2024: 6,250,000 weights
+2. August 1, 2024 - August 31, 2024: 5,729,167 weights
+3. September 1, 2024 - September 30, 2024: 5,208,333 weights
+4. October 1, 2024 - October 31, 2024: 4,687,500 weights
+5. November 1, 2024 - November 30, 2024: 4,166,667 weights
+6. December 1, 2024 - December 31, 2024: 3,645,833 weights
+7. January 1, 2025 - January 31, 2025: 3,125,000 weights
+8. February 1, 2025 - February 28, 2025: 2,604,167 weights
+9. March 1, 2025 - March 31, 2025: 2,083,333 weights
+10. April 1, 2025 - April 30, 2025: 1,562,500 weights
+11. May 1, 2025 - May 31, 2025: 1,041,667 weights
+12. June 1, 2025 - June 30, 2025: 520,833 weights
 
-1. August 16, 2024 - September 15, 2024: 5,729,167 weights
-2. September 16, 2024 - October 15, 2024: 5,208,333 weights
-3. October 16, 2024 - November 15, 2024: 4,687,500 weights
-4. November 16, 2024 - December 15, 2024: 4,166,667 weights
-5. December 16, 2024 - January 15, 2025: 3,645,833 weights
-6. January 16, 2025 - February 15, 2025: 3,125,000 weights
-7. February 16, 2025 - March 15, 2025: 2,604,167 weights
-8. March 16, 2025 - April 15, 2025: 2,083,333 weights
-9. April 16, 2025 - May 15, 2025: 1,562,500 weights
-10. May 16, 2025 - June 15, 2025: 1,041,667 weights
-11. June 16, 2025 - July 15, 2025: 520,833 weights
-12. July 16, 2025 - August 15, 2025: 520,833 weights
-
-Total for Initial Period and Year 1: 40,625,000 weights
+Total for Year 1: 40,625,000 weights
 
 Formula for subsequent months:
 
-For any given month after August 15, 2025, the weight distribution can be calculated as follows:
+For any given month after July 31, 2025, the weight distribution can be calculated as follows:
 
 1. Determine which year the month falls in (y), where y starts at 2 for the second year.
 2. Determine which month of the year it is (m), where m goes from 1 to 12.
@@ -73,6 +71,12 @@ The implied value is decided by the market. The amount of stETH deposited create
 
 ## Snapshot Summary
 
-Snapshots will be taken monthly, starting from August 15, 2024. The methodology for determining the implied BAAG price and USD per weight will be established as the project progresses.
+Snapshots will be taken monthly, starting from July 31, 2024. The methodology for determining the implied BAAG price and USD per weight will be established as the project progresses.
+
+## Initial Snapshot: Project Start to July 31, 2024
+
+The initial implied value of weights will be determined based on the real costs paid to auditors and developers sponsored by the BasedAgent community.
+
+Subsequent snapshots will follow monthly, with the implied value potentially being calculated based on factors such as stETH deposits, trading prices, or other relevant metrics as the BasedAgent ecosystem develops.
 
 This guide provides a framework for understanding and calculating the value of code contributions to BasedAgent. The specific details of price determination and snapshot calculations may need to be adjusted as the BasedAgent project evolves. Contributors should stay informed about any updates or changes to this system as the project develops.
