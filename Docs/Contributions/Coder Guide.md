@@ -1,7 +1,7 @@
-# Coder Guide:
-A lot of developers are joining the BasedAgent community. Welcome to you all! 
+# Contributor Guide:
+A lot of builders are joining the BasedAgent community. Welcome to you all! 
 You are a key part of the BasedAgent community and there are lots of rewards to be earned for your hard work. 
-In BasedAgent 50% of all BAAG emissions go to Coders and will for the next 16 years as part of all the 42 Million BAAG emitted. 
+In BasedAgent 50% of all BAAG emissions go to Coders and 16% to Community and will for the next 16 years as part of all the 42 Million BAAG emitted. 
 
 ## Guide:
 To get started here is a short list of resources and some of the best ways to get involved and add code to improve BasedAgent.
