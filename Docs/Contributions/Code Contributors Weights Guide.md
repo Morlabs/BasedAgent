@@ -1,8 +1,8 @@
-# Code Contributor Guide To Earning Weights & Their Implied Value for BasedAgent
+# Contributor Guide To Earning Weights & Their Implied Value for BasedAgent
 
 ## TL;DR
 
-The emissions for Code Contributors are calculated based on "weights". An individual's allocation is equal to their weights divided by the total number of weights, multiplied by the daily BAAG emissions. BasedAgent is a marketplace for Code. Coders compete to provide high-quality code at the best price, and then maintain that code and their weight in the Code Contributors' rewards.
+The emissions for Contributors (both Code and Community) are calculated based on "weights". An individual's allocation is equal to their weights divided by the total number of weights, multiplied by the daily BAAG emissions. 
 
 ## Introduction
 
@@ -15,9 +15,9 @@ The weights system encourages participation by clarifying the process, setting c
 
 ## Weights Emissions Schedule & Supply Cap
 
-The number of Coder weights is capped at 100 Million weights, at the end of the Coder reward period (16 years).
+The number of weights is capped at 100 Million weights, at the end of the reward period (16 years). This cap is shared between Code Contributors and Community Contributors.
 
-## Monthly Coding Weights
+## Monthly Weights Distribution
 
 The weights will be distributed monthly, starting from the initial period ending July 31, 2024. Here's the monthly distribution for the first year:
 
@@ -56,30 +56,31 @@ This formula ensures that:
 
 The implied weight value formula is:
 
-1. Total BAAG emissions for Coding per relevant month
+1. Total BAAG emissions per relevant month
 2. Divide by 100,000,000 (total weights)
 3. Equals pro-rata of BAAG earned by 1 weight per month
 4. Multiply by the current implied BAAG price
 
-## New Coding Weights
+## New Weights for Contributors
 
-New coders can contribute and earn weights based on their work. The value of these weights will depend on the current BAAG price and the total number of weights in circulation.
+Both new Code Contributors and Community Contributors can earn weights based on their work. The value of these weights will depend on the current BAAG price and the total number of weights in circulation.
 
-## Market Driven Implied Value of Code Resets Monthly
+## Market Driven Implied Value Resets Monthly
 
 The implied value is decided by the market. The amount of stETH deposited creates yield that buys BAAG from the AMM, increasing BAAG scarcity and providing liquidity for contributors.
 
 ## Snapshot Summary
 
-Snapshots will be taken monthly, starting from July 31, 2024. The methodology for determining the implied BAAG price and USD per weight will be established as the project progresses.
+Snapshots will be taken monthly, starting from July 1, 2024. The methodology for determining the implied BAAG price and USD per weight will be established as the project progresses.
 
 ## Initial Snapshot: Project Start to July 31, 2024
 
-The initial implied value of weights will be determined based on the real costs paid to auditors and developers sponsored by the BasedAgent community.
+The initial implied value of weights will be determined based on the real costs paid to auditors, developers, and community contributors sponsored by the BasedAgent community.
 
 Subsequent snapshots will follow monthly, with the implied value potentially being calculated based on factors such as stETH deposits, trading prices, or other relevant metrics as the BasedAgent ecosystem develops.
 
-This guide provides a framework for understanding and calculating the value of code contributions to BasedAgent. The specific details of price determination and snapshot calculations may need to be adjusted as the BasedAgent project evolves. Contributors should stay informed about any updates or changes to this system as the project develops.
+This guide provides a framework for understanding and calculating the value of contributions to BasedAgent, whether they are code contributions or community contributions. The specific details of price determination and snapshot calculations may need to be adjusted as the BasedAgent project evolves. All contributors should stay informed about any updates or changes to this system as the project develops.
+
 
 [← Previous](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code%20Contributor%20Best%20Practices.md) | [Next →](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions//Weight%20Maintenance%20Guide.md)
 
