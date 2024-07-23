@@ -39,3 +39,6 @@ Include an update to the Code Contributor table on GitHub with your Code Contrib
 [Code Contributions Table Link]
 
 If a developer is looking for committees, and RFPs they are looking at the wrong project. The nature of BasedAgent is Atomic Governance. That means experts build what they want and GitHub maintainers act as judges to merge if its in the platform or users decide to use the Smart Agent in an open marketplace. Coders here compete. No guarantees anyone will use the Code until its released.
+
+[← Previous](link-to-previous-page.md) | [Next →](link-to-next-page.md)
+
