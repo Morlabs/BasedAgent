@@ -1,7 +1,7 @@
 # Contributor Guide to BasedAgent Initiatives
 
 ## Initiative Claim Process
-Before claiming an initiative, please read the [BEST PRACTICES GUIDE](https://github.com/Morlabs/BasedAgent/blob/main/Contribute/contribution_guidelines.md).
+Before claiming an initiative, please read the [BEST PRACTICES GUIDE](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Coder%20Guide.md).
 
 ## Detailed Initiatives and Milestones Overview
 
