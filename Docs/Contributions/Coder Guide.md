@@ -7,11 +7,9 @@ In BasedAgent 50% of all BAAG emissions go to Coders and 16% to Community and wi
 To get started here is a short list of resources and some of the best ways to get involved and add code to improve BasedAgent.
 
 ## TL;DR
+- Read this Contributor Guide in full to better understand how to contribute, weights and their implied value.
 - Review BasedAgent Request for Comment (BARC) list for high level understanding.
 - Review list of GitHub Issues for specifics.
-- Review Best Practices for tips on how to get your code added.
-- Review Code Contributor Guide to Earning Weights & Their Implied Value.
-- Review Reference Implementations List.
 - Submit a Pull Request that adds value to BasedAgent.
 
 ## BasedAgent Request For Comments:
