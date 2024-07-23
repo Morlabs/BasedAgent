@@ -67,3 +67,6 @@ If you contribute documentation, such as a translation of a white paper there is
 ### 10. Code & Rewards Are Dynamic
 
 The BasedAgent codebase is ever evolving. Weights credited only last as long as the codebase utilizes the code provided.
+
+[← Previous](link-to-previous-page.md) | [Next →](link-to-next-page.md)
+
