@@ -2,7 +2,7 @@
 
 ## Reference Guides and Best Practices
 For Contributors to Code & Community 
-- [Code & Community Contributor Guide](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Contributor%20Guide.md)
+- [Code & Community Contributor Guide](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Code%20Providers/Contributor%20Guide.md)
 
 For Contributors to Capital 
 - [Capital Contributor Guide](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Capital%20Providers/Capital%20Contributors%20Guide.md)
