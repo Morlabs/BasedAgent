@@ -3,37 +3,12 @@
 ## Community Provider - Proof of Contribution Table Snapshot #1
 ### 1st July 2024 - 31st July 2024
 
-This table is for community contributions in Snapshot 1.  
 
 > [!IMPORTANT]  
 > If this is your first pull request please read these documents first:
 > 
-> [**Community Contributor Guide**](insert)
->  
-> [**The Best Practices Guide**](insert)
-> 
-> [**The Community Contributors Weights Guide**](insert)
->   
-> [**Weight Time**](insert)
+> [**Contribution Guide**](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Contributor%20Guide.md)
 
-## Community Contribution Bidding Schedule
-
-![Monthly Community Bid - Monthly](insert_image_link_here)
-
-- By the 7th - Maintainers judge contributions from the previous month
-- By the ~8th - BasedAgent smart contract updated with new weights
-- By the 9th - Contributors submit new bids by filling out the Bid for Weights table
-- By the 15th - Maintainers will accept or reject new bids
-- By the 31st - Contributors submit a Proof of Contribution (see forms) describing a delivered contribution add the normal information on Github to the [snapshot file](insert_link_here) for that month.
-
-### Tables
-1. Bid for Weights: [here](insert).
-2. Proof of Contribution: [here](insert).
-
-## Theoretical Implied Value of a Weight per Snapshot
-**Snapshot 1:** $0.025 USD per Weight  
-
-The weight calculation method explained [here](insert).
 
 ## Structuring of Community Contributions
 
