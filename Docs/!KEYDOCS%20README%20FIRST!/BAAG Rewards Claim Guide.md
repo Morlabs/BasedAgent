@@ -2,10 +2,10 @@
 
 ## Table of contents
 1) [**Smart Contract Addresses**](#smart-contract-addresses)
-2) [**Get information about MOR rewards**](#how-much-mor-have-i-earned-as-rewards)
-3) [**Claim MOR rewards**](#how-to-claim-rewards)
-4) [**Get MOR on Arbitrum chain**](#how-to-verify-that-i-have-received-tokens)
-5) [**Add MOR to Metamask**](#add-mor-to-metamask)
+2) [**Get information about BAAG rewards**](#how-much-mor-have-i-earned-as-rewards)
+3) [**Claim BAAG rewards**](#how-to-claim-rewards)
+4) [**Get BAAG on Arbitrum chain**](#how-to-verify-that-i-have-received-tokens)
+5) [**Add BAAG to Metamask**](#add-mor-to-metamask)
 
 ---
 
