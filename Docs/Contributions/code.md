@@ -9,7 +9,7 @@ This table is for code contributions in Snapshot 1.
 > [!IMPORTANT]  
 > If this is your first pull request please read these documents first:
 > 
-> [**Contribution Guide**](insert)
+> [**Contribution Guide**](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Contributor%20Guide.md)
 
 
 ## Structuring of Code Contributions
