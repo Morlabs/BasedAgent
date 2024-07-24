@@ -1,7 +1,7 @@
 # BasedAgent Bounties
 
 ## Get started
-Before claiming or adding a bounty, please read the [BOUNTY GUIDE](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Code%20Providers/Contributor%20Guide.md#basedagent-bounties).
+Before claiming or adding a bounty, please read the [BOUNTY GUIDE](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Code%20Providers/Contributor%20Guide.md#4-explore-open-bounties-and-github-issues).
 
 Want to add your own bounty? If you propose a new bounty idea that is accepted and successfully implemented, you can earn 10% of the weights allocated to that bounty upon completion, for a maximum of 3 snapshots. [Add a Bounty](https://docs.google.com/forms/d/e/1FAIpQLSdeWhidlNjIF2QdQDqGHTYtzNFbIBvo8O1UQNQ08RgRkuTxcA/viewform?usp=sf_link)
 
