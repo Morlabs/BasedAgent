@@ -9,32 +9,8 @@ This table is for code contributions in Snapshot 1.
 > [!IMPORTANT]  
 > If this is your first pull request please read these documents first:
 > 
-> [**Coder Guide**](insert)
->  
-> [**The Best Practices Guide**](insert)
-> 
-> [**The Code Contributors Weights Guide**](insert)
->   
-> [**Weight Time**](insert)
+> [**Contribution Guide**](insert)
 
-## Code Contribution Bidding Schedule
-
-![Monthly Dev Bid - Monthly](https://github.com/MorpheusAIs/MRC/assets/76454555/b4c42782-ca45-4a87-9583-12357cab2e85)
-
-- By the 7th - Maintainers judge contributions from the previous month
-- By the ~8th - Morpheus smart contract updated with new weights
-- By the 9th - Contributors submit new bids by filling out the Bid for Weights table
-- By the 15th - Maintainers will accept or reject new bidsSub
-- By the 31st - Contributors submit a Proof of Contribution (see forms) describing a delivered contribution add the normal information on Github to the [snapshot file](https://github.com/MorpheusAIs/Docs/tree/main/Contributions) for that month.
-
-### Tables
-1. Bid for Weights: [here](insert).
-2. Proof of Contribution: [here](insert).
-
-## Theoretical Implied Value of a Weight per Snapshot
-**Snapshot 1:** $0.025 USD per Weight  
-
-The weight calculation method explained [here](insert).
 
 ## Structuring of Code Contributions
 
@@ -59,12 +35,12 @@ All Code Contributions to include the following elements:
 > [!IMPORTANT]
 >
 > - Create a pull request and add a row to the following table.
-> - Only one MRI per entry.
+> - Only one BARI per entry.
 > - If you are submitting multiple contributions, please create multiple pull requests - one pull request per contribution.
 > - Only add your link at the bottom, and do not alter any other rows.
-> - Detail the work you are contributing to Morpheus. You must include a link to the work for the work to be considered. Examples of proof include links to pull requests, github issues, or other easily verifyable information.
+> - Detail the work you are contributing to Based Agent. You must include a link to the work for the work to be considered. Examples of proof include links to pull requests, github issues, or other easily verifyable information.
 > - It is your responsibility to make the proof easily verifiable. Don't assume reviewers of this table have an understanding of your code. Explain it simply. Limit your descriptions to 250 words.
-> - You need a wallet like Metamask that can receive Ethereum based tokens. MOR is an ERC-20 type token. Also must support Arbitrum.
+> - You need a wallet like Metamask that can receive Ethereum based tokens. BAAAG is an ERC-20 type token. Also must support Arbitrum.
 
 ## Code Contributions for Snapshot 1
 
