@@ -1,6 +1,6 @@
 # Based Agent Request for Comments (BARC)
 Proposals to improve any of the Based Agent Reference Implementations (BARIs).  
-See the details on all of the MRIs [here](https://github.com/Morlabs/BasedAgent/Docs/Based%20Agent%20Reference%20Implementations%20(BARI).md)
+See the details on all of the BARIs [here](https://github.com/Morlabs/BasedAgent/Docs/Based%20Agent%20Reference%20Implementations%20(BARI).md)
 
 ## Meta MRCs about MRCs
 - [BARC00](https://github.com/MorpheusAIs/MRC/blob/main/MRC00.md) is the first Meta BARC about how to submit a BARC. 
