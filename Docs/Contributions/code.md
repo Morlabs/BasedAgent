@@ -28,7 +28,7 @@ All Code Contributions to include the following elements:
 <p align="center">Example fields</p>
 <b>Snapshot | MRI | Wallet Address | GitHub Handle | Description of Contribution | Proof | Weights Requested | Weight Time</b>
 <br><br>
-<b>5 | 3 | 0xf93de9fb07f5762a1e3db9a5c687595111928d77 | my GH name | "code does: this" | "http:// Link to proof" | 1250 | 6</b>
+<b>1 | 3 | 0xf93de9fb07f5762a1e3db9a5c687595111928d77 | my GH name | "code does: this" | "http:// Link to proof" | 1250 | 6</b>
 <br><br>
 
 > [!IMPORTANT]
