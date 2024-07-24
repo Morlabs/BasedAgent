@@ -1,41 +1,9 @@
-# Contributor Guide to BasedAgent Initiatives
+# BasedAgent Bounties
 
-## Initiative Claim Process
-Before claiming an initiative, please read the [BEST PRACTICES GUIDE](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Coder%20Guide.md).
+## Get started
+Before claiming or adding a bounty, please read the [BOUNTY GUIDE](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Code%20Providers/Contributor%20Guide.md#basedagent-bounties).
 
-## Process for Submitting a Bid
-
-If you're interested in working on one of the listed initiatives or proposing a related contribution, follow these steps to submit a bid:
-
-1. **Review the Initiative**: Carefully read the initiative description and requirements.
-
-2. **Prepare Your Proposal**: Draft a brief proposal that includes:
-   - Your understanding of the task
-   - Your approach to completing the work
-   - Your estimated timeline
-   - Any relevant experience or skills you bring to the task
-   - The number of weights you're requesting for this initiative (your bid)
-
-3. **Complete the Bid Form**: Fill out the initiative bid form with the following information:
-   - Your name and contact information
-   - The Initiative ID you're bidding on
-   - Your Ethereum wallet address for potential rewards
-   - A link to your GitHub profile
-   - Your proposal (as prepared in step 2) 
-   - The BARI number
-   - The initiative number 
-   - The number of weights you're requesting
-   - Any questions or clarifications you need
-
-4. **Submit Your Bid**: Send your completed form.
-
-5. **Await Response**: The repo maintainer will review your bid and respond with any questions, acceptance, or feedback. They may negotiate the number of weights if necessary.
-
-6. **Claim the Initiative**: If your bid is accepted, follow the instructions to claim the initiative and update its status to "In Progress" in the project management system.
-
-Remember, you can always propose new ideas or variations that you believe would benefit the BasedAgent project. The team values initiative and creative contributions that align with the project's goals.
-
-By following this process and using this guide as a reference, you can effectively contribute to BasedAgent while ensuring your work is aligned with the project's current needs and priorities. The bidding process allows for a fair and transparent allocation of weights based on the value you propose to bring to the project.
+Want to add your own bounty? If you propose a new bounty idea that is accepted and successfully implemented, you can earn 10% of the weights allocated to that bounty upon completion, for a maximum of 3 snapshots. [Add a Bounty](https://docs.google.com/forms/d/e/1FAIpQLSdeWhidlNjIF2QdQDqGHTYtzNFbIBvo8O1UQNQ08RgRkuTxcA/viewform?usp=sf_link)
 
 ## Detailed Bounties and Milestones Overview
 
