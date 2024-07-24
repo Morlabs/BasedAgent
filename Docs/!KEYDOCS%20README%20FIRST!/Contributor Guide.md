@@ -1,7 +1,3 @@
-Below is the converted Markdown content from the provided document. All headings, subheadings, and links have been preserved in the Markdown format:
-
----
-
 # BasedAgent Contributor Guide
 
 This guide is exclusively for contributors wanting to contribute to either the Code or Community Pools. If you want to contribute capital to BasedAgent, read the Capital Contributors Guide.
