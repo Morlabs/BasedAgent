@@ -10,5 +10,5 @@ See the details on all of the BARIs [here](https://github.com/Morlabs/BasedAgent
 ## List of BARCs:
 
 ## BARC 00: Introduction to BARCs
-- Status **Implemented**: Implemented
+- Status: **Implemented**
 - Link: (https://github.com/Morlabs/BasedAgent/blob/main/BARC/BARC%2000.md)
