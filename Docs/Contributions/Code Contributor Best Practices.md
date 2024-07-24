@@ -12,7 +12,7 @@ To streamline the process of offering and accepting code contributions, please f
 
 - By the ~8th - BasedAgent smart contract updated with new weights
 
-- By the 9th - Contributors submit new bids by filling out the Bid for weights form (see the bounty to replace this)
+- By the 9th - Contributors submit new bids by filling out the [Bid for weights form](https://docs.google.com/forms/d/e/1FAIpQLSe6wdlvCPozf3GQpOCOW8Yj0OAdeA-4UqIRjt_s6d0-QMq44A/viewform?usp=sf_link) (see the bounty to replace this)
 
 - By the 15th - Maintainers will accept or reject new bids
 
