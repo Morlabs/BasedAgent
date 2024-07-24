@@ -17,3 +17,4 @@ For Contributors to Capital
 - [Code Bounties](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions//code_bounties.md)
 
 ## Vouchers & Vouchies
+- [Voucher Public Ledger](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Voucher%20Ledger.md) 
