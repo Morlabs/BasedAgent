@@ -1,0 +1,29 @@
+# Multisignature Set Up For Based Agent
+
+## 1. Purposes of the Multisig
+- The primary need for the multisig is to deploy the Smart Contracts. 
+- Secondarily the Smart Contracts must be updated from time to time due to all the functions not yet being automated. For example while the Capital Provider function is fully automated, the Code Provider addresses and weights are currently manually updated. So new Code contributors will need to be credited in the Smart Contract monthly as they add their proof of work to the network. Hopefully all these functions can be automated in the future.
+- The third purpose of the multisig is in case of bugs or errors in the Smart Contracts. This may require pausing or upgrading the Smart Contacts. Hopefully this function can be Decentralized in the future, however the need for expert oracles among the Code Providers (to address bugs) is likely to persist.
+
+## 2. The Set Up Process and Key Holders
+Following the recommendations of the cybersecurity experts and auditors involved in testing the Smart Contracts the “SAFE'' software (previously known as the Gnosis SAFE) multisignature Smart Contract will be employed to manage the keys. https://app.safe.global/welcome
+
+- 5 key holders have been selected from the community to take part in the multisig.
+- Each key holder has deep experience in crypto.
+- The SAFE software will be set up to require 3 of the 5 key holders to sign transactions.
+- The key holders are jurisdictionally & geographically diverse.
+- None of the key holders are members of the same company.
+- Identities of the key holders will not be doxxed for obvious personal security reasons.
+
+## 3. Resulting Multisig Addresses:
+- Multisig Address for Ethereum: (insert)
+- Multisig Address for Arbitrum: (insert)
+- Multisig Address for Base: (insert)
+
+## 4. How The Multisig Is Likely To Evolve
+To be clear the key holders have little meaningful power over the Smart Contracts. On purpose most of the functions of the Smart Contracts cannot be changed by the admin (controlled by the multisig) and as the Smart Contracts evolve and mature it is anticipated that the admin key may not be required at all. This step of becoming non-upgradable should be taken carefully as it will make the Smart Contracts much harder for the community to upgrade in the future.
+
+Lastly, as the goal of the Based Agent community is always to move toward “atomic governance” everyone looks forward to multiple implementations of every aspect of the Based Agent code base from Smart Contracts to Agent software; this is welcomed and encouraged.
+
+## The multisig signers only act in line with what Atomic Governance process has already approved. 
+Effectuating Protocol Owned Liquidity, Smart Contract upgrades, and monthly Weight Assignments in accordance with Based Agent Reference Implementations Maintainers judgements on BARCs & code upgrades.
