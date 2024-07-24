@@ -91,6 +91,6 @@ To add BAAG token to your Metamask wallet token list, you need to follow steps f
 > [!TIP]  
 > **In case you face difficulties, find something unclear, or have questions, you can get assistance in the** [**Based Agent Discord server**](https://discord.gg/m2Qud5GDqp).
 >
-> **Information on how to deposit or withdraw stETH through the Smart Contract is in this** [**guide**](insert).
+> **Information on how to deposit or withdraw stETH through the Smart Contract is in this** [**guide**](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Capital%20Providers/Based%20Agent%20Capital%20Providers%20Contract%20Guide.md).
 
 ## Beware of scams, Based Agent has no tech support team, no support tickets and will not commence any airdrops. Anyone who message you with proposal to help is likely a scammer.
