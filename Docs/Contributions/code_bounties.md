@@ -39,12 +39,6 @@ By following this process and using this guide as a reference, you can effective
 
 ## Detailed Bounties and Milestones Overview
 
-### Combined Bounty Overview and Submissions Table
-
-Here's the updated table with the BARI column added and Bounty ID replaced with Initiative ID:
-
-### Combined Initiative Overview and Submissions Table
-
 | Milestone                                 | BARI | Initiative ID | Task Description                                       | Hours | Wallet Address                             | Link to Issue | Link to Work        | Description of Initiative | Date of Completion | Status     |
 | ----------------------------------------- | ---- | ------------- | ------------------------------------------------------ | ----- | ------------------------------------------ | ------------- | ------------------- | ------------------------- | ----------------- | ---------- |
 | **Milestone 1: Fork and Setup (Week 1)**  | 3    | Initiative 1.1| Fork the OpenDevin Repository and rename project       | 4     | 0x98eFf980C57c9D333340b3856481bF7B8698987c | Link to Issue | Link to Commit #127 | Completed Initiative 1.1  | 12/03/2024        | Completed  |
