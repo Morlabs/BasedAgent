@@ -23,7 +23,7 @@ BAAG Token: [**insert**](insert)
 
 ---
 
-## How much MOR have I earned as rewards?
+## How much BAAG have I earned as rewards?
 You need to go to the [Distribution](insert) contract, open the **"Contract"** tab, then the **"Read as Proxy"** tab.  
 
 Don't forget to connect your wallet by clicking on the **"Connect to Web3"** button.
@@ -49,7 +49,7 @@ Don't forget to connect your wallet by clicking on the **"Connect to Web3"** but
 Find and call the `claim()` function and input the following parameters:
 - `claim`: **0.001** - this is the amount of ETH that you will send with the transaction to pay for mint on the destination network. Any excess will be returned to you;
 - `poolId_`: pool identifier; enter `0` for capital providers pool or `1` for code providers pool;
-- `receiver_(address)`: Input the address that will receive the minted MOR tokens. 
+- `receiver_(address)`: Input the address that will receive the minted BAAG tokens. 
 
 > [!WARNING]  
 > **Ensure the address is correct, as this action is irreversible.**
@@ -59,7 +59,7 @@ Click **"Write"** and confirm the transaction.
 <img src="/Graphics/Docs%20Graphics/English/MOR%20Claim%20Test%20Guide/claim.png" width=55% height=55%>
 
 >[!NOTE]
-> **After your Ethereum transaction is confirmed, it may take up to 15 minutes for MOR to appear in your wallet on the Arbitrum chain.**
+> **After your Ethereum transaction is confirmed, it may take up to 15 minutes for BAAG to appear in your wallet on the Arbitrum chain.**
 >
 > **This function claims the whole available balance, you can not claim in parts.**
 
