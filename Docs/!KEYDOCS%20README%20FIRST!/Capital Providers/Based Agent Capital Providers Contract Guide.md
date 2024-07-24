@@ -124,6 +124,6 @@ Click “**Write**” and confirm the transaction.
 ---
 
 > [!TIP]  
-> **In case you face with difficulties, find something unclear or have questions, you can get assistance in** [**Based Discord server**](https://discord.com/channels/1251220927518216294/1253378165120696452).
+> **In case you face with difficulties, find something unclear or have questions, you can get assistance in** [**Based Agent Discord server**](https://discord.com/channels/1251220927518216294/1253378165120696452).
 
-## Beware of scams, Morpheus has no tech support team, no support tickets and will not commence any airdrops. Anyone who message you with proposal to help is likely a scammer.
+## Beware of scams, Based Agent has no tech support team, no support tickets and will not commence any airdrops. Anyone who message you with proposal to help is likely a scammer.
