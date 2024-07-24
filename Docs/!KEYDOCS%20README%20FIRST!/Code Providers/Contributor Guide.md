@@ -6,7 +6,7 @@ This guide is exclusively for contributors wanting to contribute to either the C
 1. [Welcome to BasedAgent Community](#1-welcome-to-basedagent-community)
 2. [Step-by-Step Guide to Contributing](#2-step-by-step-guide-to-contributing)
 3. [Reference Implementations List](#3-reference-implementations-list)
-4. [Explore Open Bounties and GitHub Issues](#4-explore-open-initiatives-and-github-issues)
+4. [Explore Open Bounties and GitHub Issues](#4-explore-open-bounties-and-github-issues)
 5. [Review the BasedAgent Request for Comments (BARC)](#5-review-the-basedagent-request-for-comments-barc)
 6. [Code Contributor Weights & Value](#6-code-contributor-weights--value)
 7. [Vouching for Contributors](#7-vouching-for-contributors)
