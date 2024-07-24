@@ -276,42 +276,44 @@ The Weight Maintenance Guide is designed to foster a dynamic and responsive cont
 
 ## 9. Contributing Code Best Practices
 
-Contributing code to BasedAgent involves adhering to best practices that ensure your contributions are effective, align with the project’s objectives, and have a higher likelihood of being integrated into the main repository.
+Contributing to BasedAgent involves adhering to best practices that ensure your contributions are effective, align with the project’s objectives, and have a high likelihood of being integrated into the main repository. Contributors have two primary options for how they can contribute and engage with the BasedAgent ecosystem:
 
-### Best Practices Overview
+### Option 1: Submit Work First, Agree Weights Later
 
-> [!IMPORTANT]
-> Before contributing code to BasedAgent-related GitHub repositories, make sure you have read this guide in full.
+Contributors who choose this option can submit their work without initially specifying the weights. This method involves a certain risk as the weights you receive may not align with your initial expectations.
 
-#### Monthly Weight Bidding Schedule
-To streamline the process of offering and accepting code contributions, please follow the following schedule:
+- **Where to Submit Contributions**:
+  - **Code Contribution**: Contributors can submit their code contributions directly through a pull request to the [Code Contributions Table](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/code.md).
+  - **Community Contribution**: Community contributions can be submitted through a pull request to the [Community Contributions Table](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/community.md).
+- **Submission Timing**: Contributions can be submitted at any time, without the need to fill out the Proof of Contribution form.
 
-- **By the 9th** - Contributors submit new bids by filling out the [Bid for weights form](https://docs.google.com/forms/d/e/1FAIpQLSe6wdlvCPozf3GQpOCOW8Yj0OAdeA-4UqIRjt_s6d0-QMq44A/viewform?usp=sf_link).
-- **By the 15th** - Maintainers will accept or reject new bids.
-- **By the 31st** - Contributors submit the [Proof of Contribution form](https://docs.google.com/forms/d/e/1FAIpQLSfx5DyQuZVh5XmRySoe0oftmumeEIbwViyOlPdlJlebUaLykg/viewform?usp=sf_link) describing the delivered contribution.
+### Option 2: Bid for Weights
 
-#### Key Practices for Code Contribution
+This option allows contributors to agree on the amount of weights for their work before beginning their tasks, providing more certainty in the rewards to be received.
 
-1. **Value-Based Contributions**: Focus on adding value rather than just contributing large quantities of code. The weight of your contribution is assessed based on the value it adds to the BasedAgent, not on the effort expended.
+- **Bid Submission Schedule**:
+  - **By the 9th**: Contributors must submit new bids by filling out the [Bid for Weights Form](https://docs.google.com/forms/d/e/1FAIpQLSe6wdlvCPozf3GQpOCOW8Yj0OAdeA-4UqIRjt_s6d0-QMq44A/viewform?usp=sf_link).
+  - **By the 15th**: Maintainers will accept or reject the bids.
+  - **By the 31st**: Contributors must submit the [Proof of Contribution Form](https://docs.google.com/forms/d/e/1FAIpQLSfx5DyQuZVh5XmRySoe0oftmumeEIbwViyOlPdlJlebUaLykg/viewform?usp=sf_link) describing the delivered contribution.
 
+### Common Monthly Procedures for Both Options
+
+- **By the 7th**: Maintainers judge contributions from the previous month.
+- **By the ~8th**: The BasedAgent smart contract is updated with new weights.
+
+### Best Practices for Code Contribution
+
+1. **Value-Based Contributions**: Focus on adding value rather than just contributing large quantities of code. The weight of your contribution is assessed based on the value it adds to BasedAgent, not on the effort expended.
 2. **Competitive and Reasonable Bids**: Be mindful of the competitive nature of contributions. Overbidding on weight requests or submitting low-quality contributions may lead to rejection.
-
-3. **Integrate Contributions and Weight Requests**: Combine your code contribution with your weight request in one pull request to streamline the review and acceptance process.
-
+3. **Integrate Contributions and Weight Requests**: When bidding for weights, combine your code contribution with your weight request in one pull request to streamline the review and acceptance process.
 4. **Proactive Communication**: Before embarking on significant contributions, discuss your plans with the repository owner to align on expectations and ensure interest in your proposed enhancements.
-
 5. **Licensing Considerations**: Start with a more restrictive license and offer to switch to an open-source license like MIT upon acceptance to protect your work and encourage its adoption.
-
-6. **Avoid Code Conflicts**: When updating the Proof_Of_Contribution.md file, avoid adding your entry to the last line to prevent merge conflicts. Consider adding your contribution on a line corresponding to the date of its commitment.
-
-7. **Set Clear Timelines**: When proposing a new contribution, include a timeline for its completion to set clear expectations and facilitate the review process.
-
+6. **Avoid Code Conflicts**: When updating contribution files, avoid adding your entry to the last line to prevent merge conflicts.
+7. **Set Clear Timelines**: Include a timeline for your contribution when bidding to set clear expectations and facilitate the review process.
 8. **Quality Review**: Engage a second contributor to review your work for quality. This reviewer can earn a percentage of the weights related to the submission, promoting high standards and accountability.
-
 9. **Maintain Your Contributions**: Stay responsible for updating any documentation or code you contribute, especially if they depend on content that evolves over time.
-
 10. **Understand the Dynamic Nature of Code and Rewards**: Recognize that the BasedAgent codebase and the relevance of contributions can change. Weights and rewards are contingent on the continued utility of your contributions to the project.
 
 ### Conclusion
 
-Following these best practices will not only increase the likelihood of your contributions being accepted but also ensure they are impactful and beneficial to the BasedAgent ecosystem. Engage actively, contribute thoughtfully, and stay aligned with the goals and standards of the BasedAgent community to maximize your success and rewards.
+Following these options and best practices will not only increase the likelihood of your contributions being accepted but also ensure they are impactful and beneficial to the BasedAgent ecosystem. Engage actively, contribute thoughtfully, and stay aligned with the goals and standards of the BasedAgent community to maximize your success and rewards.
