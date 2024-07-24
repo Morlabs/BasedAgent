@@ -43,3 +43,5 @@ For those looking to delve deeper or require specific guidance not covered here,
 Contributing capital to BasedAgent not only supports the ecosystem but also provides you with the opportunity to earn BAAG rewards while your capital is at work. This guide aims to facilitate your journey as a capital provider, ensuring a smooth and rewarding experience. 
 
 Remember to stay vigilant against scams, especially from unsolicited messages claiming to offer assistance. Always refer to verified sources and community-approved channels for information and support.
+
+[Start contributing capital to Based Agent](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Capital%20Providers/Based%20Agent%20Capital%20Providers%20Contract%20Guide.md)
