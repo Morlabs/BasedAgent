@@ -16,7 +16,7 @@ To streamline the process of offering and accepting code contributions, please f
 
 - By the 15th - Maintainers will accept or reject new bids
 
-- By the 31st - Contributors submit form describing a delivered contribution and add the normal information on Github to the snapshot file for that month.
+- By the 31st - Contributors submit the [Proof of Contribution form](https://docs.google.com/forms/d/e/1FAIpQLSfx5DyQuZVh5XmRySoe0oftmumeEIbwViyOlPdlJlebUaLykg/viewform?usp=sf_link) describing the delivered contribution. 
 
 *Note: The smart contract gets updated on or around the 8th to the 9th of the month reflecting the previous month's deliverables.
 
