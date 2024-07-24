@@ -33,7 +33,7 @@ Before you can earn weights and fully engage with the community, you need to be 
 - **Connect with an Existing Contributor**: Find someone within the community to vouch for your expertise and potential contribution.
 - **Understand the Impact**: Remember, your performance will reflect on your voucher as detailed in the "Vouching for Contributors" section.
 
-### Step 4: Engage with Open Initiatives and GitHub Issues
+### Step 4: Engage with Open Bounties and GitHub Issues
 Visit our GitHub page to explore current issues and bounties. Each listing provides a chance to contribute directly—whether through solving problems, enhancing the platform, or initiating new projects.
 
 ### Step 5: Propose New Ideas
@@ -112,8 +112,8 @@ Contributors interested in participating in specific BARIs should:
 
 By organizing work into distinct BARIs, BasedAgent ensures that each functional area of the project receives the necessary focus and expertise, promoting high-quality development and effective maintenance.
 
-## 4. Explore Open Initiatives and GitHub Issues
-Contributing to BasedAgent involves engaging with both Open Initiatives and GitHub Issues, which are central to the project's development and improvement. This consolidated section provides detailed instructions on how to discover, propose, and contribute effectively.
+## 4. Explore Open Bounties and GitHub Issues
+Contributing to BasedAgent involves engaging with both Open Bounties and GitHub Issues, which are central to the project's development and improvement. This consolidated section provides detailed instructions on how to discover, propose, and contribute effectively.
 
 ### Discovering Opportunities
 
