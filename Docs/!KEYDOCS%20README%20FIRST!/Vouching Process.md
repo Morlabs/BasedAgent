@@ -1,6 +1,6 @@
 # BasedAgent Vouching Incentive Program Guide
 
-This guide provides a comprehensive overview of the Vouching Incentive Program within the BasedAgent community. The program is designed to ensure the integrity and quality of contributions by requiring all new contributors (vouchees) to be endorsed by existing members (vouchers) before they can earn rewards.
+This guide provides a comprehensive overview of the Vouching Incentive Program within the BasedAgent community. The program is designed to ensure the integrity and quality of contributions by requiring all new contributors wanting to submit contributions for weights from the Code or Capital pools (vouchees) to be endorsed by existing members (vouchers). 
 
 ## The Vouching Process
 
