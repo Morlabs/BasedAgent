@@ -37,7 +37,7 @@ Before you can earn weights and fully engage with the community, you need to be 
 Visit our GitHub page to explore current issues and bounties. Each listing provides a chance to contribute directly—whether through solving problems, enhancing the platform, or initiating new projects.
 
 ### Step 5: Propose New Ideas
-Don’t hesitate to submit new bounty ideas. Ensure your suggestions are well-detailed, highlighting the benefits and deliverables.
+Don’t hesitate to [submit new bounty ideas](https://docs.google.com/forms/d/e/1FAIpQLSdeWhidlNjIF2QdQDqGHTYtzNFbIBvo8O1UQNQ08RgRkuTxcA/viewform?usp=sf_link). Ensure your suggestions are well-detailed, highlighting the benefits and deliverables.
 
 ### Step 6: Review and Participate in BARCs
 Engage with the BasedAgent Request for Comments (BARC) to understand ongoing discussions about enhancements and changes. Your input can shape the strategic direction of BasedAgent.
