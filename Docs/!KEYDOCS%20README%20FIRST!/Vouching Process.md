@@ -10,7 +10,7 @@ This guide provides a comprehensive overview of the Vouching Incentive Program w
 
 ### **Step 2: Official Vouching**
 - **Objective**: Formalize the inclusion of a new contributor into the project.
-- **Action**: The existing contributor completes the Vouching Form to officially endorse the new contributor. This form initiates the integration process, enabling the new contributor to start earning weights.
+- **Action**: The existing contributor completes the [Vouching form](https://docs.google.com/forms/d/e/1FAIpQLSdxiRugLBRT1m1gg9mZjv2SgYKfbVaXIUoB3drZCaQLKcL9Vw/viewform?usp=sf_link) to officially endorse the new contributor. This form initiates the integration process, enabling the new contributor to start earning weights.
 
 ## Responsibilities and Ledger Transparency
 
