@@ -234,7 +234,7 @@ In the BasedAgent community, each new contributor contributing to the Code or Co
 To become a contributor:
 
 1. **Find a Voucher**: New contributors must connect with an existing contributor who can vouch for their skills and potential value to the BasedAgent project.
-2. **Official Vouching**: The existing contributor formally vouches for the new contributor, initiating their integration into the project by completing the Vouching form.
+2. **Official Vouching**: The existing contributor formally vouches for the new contributor, initiating their integration into the project by completing the [Vouching form](https://docs.google.com/forms/d/e/1FAIpQLSdxiRugLBRT1m1gg9mZjv2SgYKfbVaXIUoB3drZCaQLKcL9Vw/viewform?usp=sf_link).
 
 ### Sourcing Fee Entitlement
 
