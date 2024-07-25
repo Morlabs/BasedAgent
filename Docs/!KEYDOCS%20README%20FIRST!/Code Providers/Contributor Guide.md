@@ -131,7 +131,7 @@ Bounties are aimed to be small scale tasks that include new feature developments
 
 - **Submit Proposals**: If you see an opportunity to contribute, or if you have a new initiative idea, prepare and submit a detailed proposal that outlines your planned approach and the potential impact.
 
-- **Bounty Incentives**: If you propose a new bounty idea that is accepted and successfully implemented, you can earn 10% of the weights allocated to that bounty upon completion, for a maximum of 3 snapshots.
+- **Bounty Incentives**: If you [propose a new bounty idea](https://docs.google.com/forms/d/e/1FAIpQLSdeWhidlNjIF2QdQDqGHTYtzNFbIBvo8O1UQNQ08RgRkuTxcA/viewform?usp=sf_link) that is accepted and successfully implemented, you can earn 10% of the weights allocated to that bounty upon completion, for a maximum of 3 snapshots.
 
 ### Effective Contribution Strategies
 
