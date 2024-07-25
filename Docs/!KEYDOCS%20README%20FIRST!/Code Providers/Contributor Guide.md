@@ -243,9 +243,7 @@ When an existing contributor vouches for a new member, they are entitled to a so
 ### Responsibilities and Ledger Transparency
 
 - **Voucher's Responsibility**: Vouchers bear a significant responsibility. The contributions of the new contributors they brought into the project can reflect positively or negatively on them. It is in the interest of the voucher to choose individuals who will make high-quality, valuable contributions.
-- **Public Ledger**: A public ledger will record who v
-
-ouched for whom, providing transparency and accountability within the community. This ledger helps maintain a clear line of responsibility and incentive alignment.
+- **Public Ledger**: A public ledger will record who vouched for whom, providing transparency and accountability within the community. This ledger helps maintain a clear line of responsibility and incentive alignment.
 
 ### Conclusion
 
