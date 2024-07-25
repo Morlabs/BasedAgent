@@ -236,6 +236,8 @@ To become a contributor:
 1. **Find a Voucher**: New contributors must connect with an existing contributor who can vouch for their skills and potential value to the BasedAgent project.
 2. **Official Vouching**: The existing contributor formally vouches for the new contributor, initiating their integration into the project by completing the [Vouching form](https://docs.google.com/forms/d/e/1FAIpQLSdxiRugLBRT1m1gg9mZjv2SgYKfbVaXIUoB3drZCaQLKcL9Vw/viewform?usp=sf_link).
 
+Learn more about the [Vouching Process](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Vouching%20Process.md) together with the rewards available for Vouchers. 
+
 ### Sourcing Fee Entitlement
 
 When an existing contributor vouches for a new member, they are entitled to a sourcing fee. This fee is equivalent to 20% of the weights earned by the new contributor for a period of 6 snapshots. This incentive encourages contributors to onboard valuable individuals from their network, enhancing the project's overall contribution quality.
