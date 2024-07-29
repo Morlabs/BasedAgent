@@ -11,14 +11,4 @@ Want to add your own bounty? If you propose a new bounty idea that is accepted a
 | ----------------------------------------- | ---- | ------------- | ------------------------------------------------------ | ----- | ------------------------------------------ | ------------- | ------------------- | ------------------------- | ----------------- | ---------- |
 
 
-Note: The BARI numbers correspond to the BasedAgent Reference Implementations as follows:
-1. Smart Contracts on Ethereum / Arbitrum
-2. AI Model Development and Training
-3. BasedAgent Local Install Desktop / Mobile
-4. Tokenomics and Economic Model
-5. Security and Risk Management
-6. Data Management and Analytics
-7. Infrastructure and DevOps
-8. Frontend Development and UI/UX Design
-9. Community Engagement and Education
-10. Business Development and Partnerships
+Note: The BARI numbers correspond to the [BasedAgent Reference Implementations](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Code%20Providers/Contributor%20Guide.md#3-reference-implementations-list)
