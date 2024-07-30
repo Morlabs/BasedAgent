@@ -1,12 +1,32 @@
 # BasedAgent Bounties
 
 ## Get started
-Before claiming or adding a bounty, please read the [BOUNTY GUIDE](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Code%20Providers/Contributor%20Guide.md#4-explore-open-bounties-and-github-issues).
 
-Want to add your own bounty? If you propose a new bounty idea that is accepted and successfully implemented, you can earn 10% of the weights allocated to that bounty upon completion, for a maximum of 3 snapshots. [Add a Bounty](https://docs.google.com/forms/d/e/1FAIpQLSdeWhidlNjIF2QdQDqGHTYtzNFbIBvo8O1UQNQ08RgRkuTxcA/viewform?usp=sf_link)
+### Reading the Guides and Understanding the Process
+Before claiming or adding a bounty, ensure you have thoroughly read the [Contributor Guide](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Code%20Providers/Contributor%20Guide.md#4-explore-open-bounties-and-github-issues). It is crucial to understand how bounties work within the BasedAgent ecosystem, their strategic importance, and the clarity they bring to task execution.
+
+Bounties are defined as small-scale, strategically important tasks, identified by BARI maintainers and aimed at driving the project forward through new features, enhancements, or bug fixes. These tasks are well-defined, short-term, generally expected not to last longer than 1 month, and align closely with our strategic goals.
+
+### Proposing a New Bounty
+If you have a new bounty idea:
+1. Draft your bounty using the template provided [here](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/bounty_template.md).
+2. Submit your draft by creating a new file in the [Bounties GitHub Repository](https://github.com/Morlabs/BasedAgent/tree/main/Docs/Contributions/Code/Bounties) under the appropriate directory.
+3. Title your submission according to this format: `Bounty ID XX - Your Bounty Title`.
+4. Submit a pull request with your draft. This pull request is considered a draft and subject to approval by a BARI maintainer who may contact you for further questions or edits.
+5. Upon approval, your bounty will be listed in the [Approved Bounties Summary](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/code_bounties.md) and you can earn a commission as detailed below.
+
+### Commission for Bounty Creation
+The commission for proposing a successful bounty is 10% of the weights awarded to the bounty per snapshot, over the duration it is active. This is designed to reward contributors who identify and propose impactful tasks that align with project goals.
+
+**Example of Commission Calculation:**
+- Charlie proposes a bounty that is approved with a reward of 500 weights per snapshot over 5 snapshots.
+- Charlie’s commission is 10% per snapshot, totaling 50 weights per snapshot, and 250 weights over the period.
+
+### Submission Review and Approval
+Bounties will be reviewed on a rolling basis. Approved bounties will be merged into the main branch and included in the bounty summary page, with the proposer eligible for the aforementioned rewards.
 
 ## Approved Bounties 
-Each of the bounties below have been approved by the relevant maintainer.
+Each of the bounties listed below has been approved by the relevant maintainer and is available for participation:
 
 | [Bounty ID](Link to GitHub) | Bounty Description                                                  | Proposer Wallet Address                    | Status |
 | --------------------------- | ------------------------------------------------------------------- | ------------------------------------------ | ------ |
