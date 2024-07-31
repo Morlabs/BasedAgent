@@ -43,17 +43,14 @@ All Code Contributions to include the following elements:
 
 ## Code Contributions for Snapshot 1
 
-| **Snapshot** | **BARI** | **Wallet Address**                         | **GitHub Handle** | **Description of Contribution** | **Proof of Contribution**   | **Weights Requested** | **Weight Time** |
-| ---------- | ----- | ------------------------------------------ | ----------------- | ---------------------------------- | --------------------------- | ------------- | -------- |
-| 1            | 2       | 0x1234567890123456789012345678901234567890 | ai_coder_1   | Implemented advanced NLP module for code understanding     | https://github.com/BasedAgent/ai-core/pull/123 | 50000  | 4  |
-| 1 | 1 | 0x2345678901234567890123456789012345678901 | smart_contract_dev | Developed smart contract for agent reputation system | https://github.com/BasedAgent/contracts/pull/45 | 75000 | 6 |
-| 1            | 3       | 0x3456789012345678901234567890123456789012 | mobile_wizard   | Created cross-platform mobile interface for BasedAgent   | https://github.com/BasedAgent/mobile-app/pull/78 | 60000  | 5  |
-| 1            | 4       | 0x4567890123456789012345678901234567890123 | tokenomics_guru | Designed token distribution model for incentivizing high-quality code contributions | https://github.com/BasedAgent/tokenomics/pull/32 | 40000 | 3 |
-| 1            | 5      | 0x5678901234567890123456789012345678901234  | security_expert  | Implemented advanced encryption for agent-to-agent communication | https://github.com/BasedAgent/security/pull/56 | 80000 | 7 |
-| 1 | 6 | 0x6789012345678901234567890123456789012345 | data_scientist | Developed machine learning model for code quality prediction | https://github.com/BasedAgent/ml-models/pull/89 | 70000 | 6 |
-| 1 | 7 | 0x7890123456789012345678901234567890123456 | devops_ninja | Set up scalable infrastructure for BasedAgent deployment | https://github.com/BasedAgent/infrastructure/pull/12 | 55000 | 5 |
-| 1            | 8       | 0x8901234567890123456789012345678901234567 | ui_designer   | Redesigned the main dashboard for better user experience | https://github.com/BasedAgent/frontend/pull/67 | 45000 | 4 |
-| 1 | 9 | 0x9012345678901234567890123456789012345678 | community_lead | Organized virtual hackathon for BasedAgent developers | https://github.com/BasedAgent/community/pull/23 | 30000 | 3 |
-| 1 | 10 | 0x0123456789012345678901234567890123456789 | biz_dev_pro | Secured partnership with major tech company for BasedAgent integration | https://github.com/BasedAgent/partnerships/pull/9 | 65000 | 5 |
+| **Snapshot** | **Description of Contribution**                  | **Proof of work**                                                                                                                                      | **BARI**               | **Days** | **Weights** | **Address**                             |
+|--------------|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|---------|-------------|------------------------------------------|
+| 1            | Code Snapshot tracker                             | [Proof](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/code.md)                                                                   | Engineering            | 0.5     | 4           | 0x552375B8BC807F30065Dca9A5828B645D64F53Ab |
+| 1            | Capital Providers contract guide                  | [Proof](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/Capital%20Providers/Based%20Agent%20Capital%20Providers%20Contract%20Guide.md) | Engineering            | 0.5     | 4           | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 |
+| 1            | App with Github authentication                    | [Proof](https://github.com/Morlabs/BasedAgent/tree/main/Dashboard)                                                                                     | Engineering            | 23      | 184         | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 |
+| 1            | MOR20 pool testing with distribution contract     | [Proof](https://sepolia.etherscan.io/address/0xC9A4e3B8dE5eF5003999a333D29DBD2aA575F65d)                                                                | Research & Development | 4       | 32          | 0x3D739f5460D20515D0D166Bd1609632754d9eEb9 |
+| 1            | System implementation for payments                | [Proof](https://docs.google.com/forms/d/e/1FAIpQLSfx5DyQuZVh5XmRySoe0oftmumeEIbwViyOlPdlJlebUaLykg/viewform)                                                | Research & Development | 1       | 8           | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 |
+| 1            | Pool configuration simulation and testing         | [Proof](https://docs.google.com/spreadsheets/d/1zQ0Rkpa5_yvv40ZRA0rixWuPyLygUT5g8BZp2E8M7CY/edit?usp=sharing)                                                                                                                                                     | Research & Development | 2       | 16          | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 |
+
 
 
