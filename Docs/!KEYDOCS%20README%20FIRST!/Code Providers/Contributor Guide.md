@@ -58,51 +58,7 @@ By following these steps, you’ll become an effective and valued contributor, e
 ## 3. Reference Implementations List
 BasedAgent Reference Implementations (BARI) play a critical role in structuring the development and maintenance of the BasedAgent ecosystem. Each BARI represents a specific segment of work or a functional area within the project, with each group managed by a dedicated maintainer. This system ensures focused attention, specialized development, and effective maintenance of different components of the BasedAgent platform.
 
-### Overview of BARIs
-BARIs are designed to compartmentalize the complex infrastructure and functionalities of the BasedAgent into manageable and specialized segments. Each BARI covers distinct aspects of the project, allowing contributors to focus on areas that match their skills and interests.
-
-### BasedAgent Reference Implementations (BARIs)
-Here is a comprehensive list of the current BARIs along with brief descriptions and the roles of their maintainers:
-
-1. **BARI Number 1: Smart Contracts on Ethereum / Arbitrum**
-   - **Description**: Focuses on the development and maintenance of smart contracts essential for BasedAgent’s operations on blockchain platforms like Ethereum and Arbitrum.
-   - **Maintainer**: Currently open for a qualified community member to take over.
-
-2. **BARI Number 2: AI Model Development and Training**
-   - **Description**: Involves creating and refining AI models that drive decision-making processes and automation within the BasedAgent ecosystem.
-   - **Maintainer**: Open for a community member with expertise in AI and machine learning.
-
-3. **BARI Number 3: BasedAgent Local Install Desktop / Mobile**
-   - **Description**: Covers the development of applications for desktop and mobile platforms, ensuring that users can access BasedAgent services directly from their devices.
-   - **Maintainer**: Looking for a developer with experience in desktop and mobile application development.
-
-4. **BARI Number 4: Tokenomics and Economic Model**
-   - **Description**: Focuses on the development and adjustment of BasedAgent's economic models, including token distribution mechanisms and incentive structures.
-   - **Maintainer**: Open position for an expert in economics or tokenomics.
-
-5. **BARI Number 5: Security and Risk Management**
-   - **Description**: Dedicated to establishing robust security protocols and risk management strategies to protect the network and its users.
-   - **Maintainer**: Open for a specialist in cybersecurity and risk analysis.
-
-6. **BARI Number 6: Data Management and Analytics**
-   - **Description**: Manages the handling of data generated within the BasedAgent ecosystem, focusing on efficient storage, processing, and analytical capabilities.
-   - **Maintainer**: Open for a data scientist or data engineer.
-
-7. **BARI Number 7: Infrastructure and DevOps**
-   - **Description**: Pertains to the foundational computing and network structures required for running BasedAgent, including continuous integration and deployment practices.
-   - **Maintainer**: Seeking a DevOps engineer or system administrator.
-
-8. **BARI Number 8: Frontend Development and UI/UX Design**
-   - **Description**: Focuses on the user interface and user experience design of BasedAgent, ensuring that the applications are accessible, intuitive, and engaging.
-   - **Maintainer**: Open for a UI/UX designer or frontend developer.
-
-9. **BARI Number 9: Community Engagement and Education**
-   - **Description**: Aims at building and nurturing the BasedAgent community, providing educational resources and engagement opportunities.
-   - **Maintainer**: Open for a community manager or educator.
-
-10. **BARI Number 10: Business Development and Partnerships**
-    - **Description**: Involves identifying and cultivating strategic partnerships and business opportunities to enhance BasedAgent’s market presence and operational capabilities.
-    - **Maintainer**: Open for a professional with experience in business development and partnerships.
+[View the full list of BARIs](https://github.com/Morlabs/BasedAgent/blob/main/Docs/!KEYDOCS%2520README%2520FIRST!/BasedAgent%20Reference%20Implementations%20(BARI).md)
 
 ### Engaging with BARIs
 Contributors interested in participating in specific BARIs should:
