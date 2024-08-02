@@ -34,7 +34,6 @@ Each of the bounties listed below has been approved by the relevant maintainer a
 | [2](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%202%20-%20Create%20a%20Developer%20Task%20Matching%20System.md) | Create a system to match developers with tasks based on their skills. | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
 | [3](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%203%20-%20Deploy%20Code%20into%20a%20Staging%20Environment.md) | Set up a staging environment with automated GitHub Actions deployments. | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
 | [4](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%204%20-%20Develop%20a%20Discord%20Bot%20for%20Developer%20Notifications.md) | Develop a Discord bot for notifying developers about new tasks and updates. | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
-| [5](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%205%20-%20Create%20Signup%20Form%20for%20New%20Projects.md
-) | Develop a form for new projects to hire BasedAgent. | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
+| [5](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%205%20-%20Create%20Signup%20Form%20for%20New%20Projects.md) | Develop a form for new projects to hire BasedAgent. | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
 
 
