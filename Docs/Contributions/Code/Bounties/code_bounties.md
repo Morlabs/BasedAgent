@@ -36,7 +36,7 @@ Each of the bounties listed below has been approved by the relevant maintainer a
 | [4](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%204%20-%20Develop%20a%20Discord%20Bot%20for%20Developer%20Notifications.md) | Develop a Discord bot for notifying developers about new tasks and updates. | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
 | [5](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%205%20-%20Create%20Signup%20Form%20for%20New%20Projects.md) | Develop a form for new projects to hire BasedAgent. | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
 | [6](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%206%20-%20Develop%20Onboarding%20Page%20for%20Ingesting%20Project%20Information.md) | Data ingestion system for new projects | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
-| [7](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%207%20-%20Develop%20AI%20Coding%20Agent%20with%20Human%20Review.md) | Data ingestion system for new projects | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
+| [7](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%207%20-%20Develop%20AI%20Coding%20Agent%20with%20Human%20Review.md) | AI Coding Agent with Human Review | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
 
 
 
