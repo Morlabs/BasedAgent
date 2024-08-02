@@ -37,6 +37,9 @@ Each of the bounties listed below has been approved by the relevant maintainer a
 | [5](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%205%20-%20Create%20Signup%20Form%20for%20New%20Projects.md) | Develop a form for new projects to hire BasedAgent. | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
 | [6](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%206%20-%20Develop%20Onboarding%20Page%20for%20Ingesting%20Project%20Information.md) | Data ingestion system for new projects | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
 | [7](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%207%20-%20Develop%20AI%20Coding%20Agent%20with%20Human%20Review.md) | AI Coding Agent with Human Review | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
+| [8](https://github.com/Morlabs/BasedAgent/blob/main/Docs/Contributions/Code/Bounties/Bounty%20ID%208%20-%20Update%20Reviewer%20Signup%20Process%20to%20Include%20Wallet%20Connection.md) | Adding wallet connect to sign up process | 0xAd3483be560a7CE85c4275344d8DED76B47880F6 | Open |
+
+
 
 
 
