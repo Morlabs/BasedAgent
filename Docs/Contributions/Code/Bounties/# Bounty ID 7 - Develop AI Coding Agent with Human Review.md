@@ -1,4 +1,4 @@
-# Bounty ID 7 - Develop AI Coding Agent with Human Review.md
+# Bounty ID 7 - Develop AI Coding Agent with Human Review
 
 ## Overview
 
