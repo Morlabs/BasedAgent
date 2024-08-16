@@ -21,9 +21,9 @@ function Account() {
                         </p>
                     </div>
 
-                    <div className="mt-6 flex flex-col lg:flex-row">
-                        <div className="flex-grow space-y-6">
-                            <div>
+                    <div className="mt-6 flex flex-col gap-5">
+                        <div className=" space-y-6">
+                            <div className='max-w-[200px]'>
                                 <label htmlFor="current_password" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
                                     Current Password
                                 </label>
@@ -38,37 +38,40 @@ function Account() {
                                 </div>
                             </div>
 
-                            <div>
-                                <label htmlFor="new_password" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
-                                    New Password
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        id="new_password"
-                                        name="new_password"
-                                        type="password"
-                                        autoComplete="new_password"
-                                        className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm  placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+                            <div className='flex gap-5'>
 
-                            <div>
-                                <label htmlFor="confirm_password" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
-                                    Confirm Password
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        id="confirm_password"
-                                        name="confirm_password"
-                                        type="password"
-                                        autoComplete="confirm_password"
-                                        className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm  placeholder:text-gray-400 sm:text-sm sm:leading-6" />
+                                <div>
+                                    <label htmlFor="new_password" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+                                        New Password
+                                    </label>
+                                    <div className="mt-2">
+                                        <input
+                                            id="new_password"
+                                            name="new_password"
+                                            type="password"
+                                            autoComplete="new_password"
+                                            className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm  placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label htmlFor="confirm_password" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+                                        Confirm Password
+                                    </label>
+                                    <div className="mt-2">
+                                        <input
+                                            id="confirm_password"
+                                            name="confirm_password"
+                                            type="password"
+                                            autoComplete="confirm_password"
+                                            className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm  placeholder:text-gray-400 sm:text-sm sm:leading-6" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="mt-6 flex-grow lg:ml-6 lg:mt-0 lg:flex-shrink-0 lg:flex-grow-0">
+                        <div className="mt-6 flex-grow lg:mt-0 lg:flex-shrink-0 lg:flex-grow-0">
                             <button
                                 type="submit"
                                 className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
@@ -87,31 +90,13 @@ function Account() {
                         </p>
                     </div>
 
-                    <div className="mt-6 flex flex-col lg:flex-row">
-                        <div className="flex-grow space-y-6">
-                            <div>
-                                <label htmlFor="deactivate_account" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
-                                    Deactivate Account
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        id="deactivate_account"
-                                        name="deactivate_account"
-                                        type="checkbox"
-                                        className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm  placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="mt-6 flex-grow lg:ml-6 lg:mt-0 lg:flex-shrink-0 lg:flex-grow-0">
-                            <button
-                                type="submit"
-                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                            >
-                                Deactivate Account
-                            </button>
-                        </div>
+                    <div className="mt-6 flex-grow lg:mt-0 lg:flex-shrink-0 lg:flex-grow-0">
+                        <button
+                            type="submit"
+                            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                            Deactivate Account
+                        </button>
                     </div>
                 </div>
             </form>

@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import ToggleSwitch from './formUI/ToggleSwitch'
+import Button from './formUI/Button'
 
 // CREATE TABLE integrations (
 //     id SERIAL PRIMARY KEY,
@@ -20,7 +22,14 @@ const integrationsData = {
 }
 
 function Integrations() {
-    const [integrations, setIntegrations] = useState(integrationsData)
+    const [githubOauth, setGithubOauth] = useState(integrationsData.github_oauth)
+    const [githubPersonalAccessToken, setGithubPersonalAccessToken] = useState(integrationsData.github_personal_access_token)
+    const [gitlabOauth, setGitlabOauth] = useState(integrationsData.gitlab_oauth)
+    const [gitlabSelfHostedOauth, setGitlabSelfHostedOauth] = useState(integrationsData.gitlab_self_hosted_oauth)
+    const [bitbucketOauth, setBitbucketOauth] = useState(integrationsData.bitbucket_oauth)
+    const [stackoverflowOauth, setStackoverflowOauth] = useState(integrationsData.stackoverflow_oauth)
+
+
 
     return (
         <>
@@ -35,19 +44,6 @@ function Integrations() {
 
                     <div className="mt-6 flex flex-col lg:flex-row">
                         <div className="flex-grow space-y-6">
-                            <div>
-                                <label htmlFor="github_oauth" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
-                                    GitHub
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        id="github_oauth"
-                                        name="github_oauth"
-                                        type="checkbox"
-                                        className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm  placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
 
                             <div>
                                 <label htmlFor="github_personal_access_token" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
@@ -58,22 +54,30 @@ function Integrations() {
                                         id="github_personal_access_token"
                                         name="github_personal_access_token"
                                         type="text"
-                                        autoComplete="github_personal_access_token"
-                                        className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm  placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                                    />
+                                        value={githubPersonalAccessToken}
+                                        onChange={(e) => setGithubPersonalAccessToken(e.target.value)}
+                                        className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm  placeholder:text-gray-400 sm:text-sm sm:leading-6" />
                                 </div>
                             </div>
+
+
+                            <div>
+                                <label htmlFor="github_oauth" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+                                    GitHub
+                                </label>
+                                <div className="mt-2">
+                                    <Button text="Add Integration" handleOnclick={() => setGithubOauth(!githubOauth)} />
+                                </div>
+                            </div>
+
+
 
                             <div>
                                 <label htmlFor="gitlab_oauth" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
                                     GitLab
                                 </label>
                                 <div className="mt-2">
-                                    <input
-                                        id="gitlab_oauth"
-                                        name="gitlab_oauth"
-                                        type="checkbox"
-                                        className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm  placeholder:text-gray-400 sm:text-sm sm:leading-6" />
+                                    <Button text="Add Integration" handleOnclick={() => setGitlabOauth(!gitlabOauth)} />
                                 </div>
                             </div>
 
@@ -82,11 +86,7 @@ function Integrations() {
                                     GitLab Self-Hosted
                                 </label>
                                 <div className="mt-2">
-                                    <input
-                                        id="gitlab_self_hosted_oauth"
-                                        name="gitlab_self_hosted_oauth"
-                                        type="checkbox"
-                                        className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm  placeholder:text-gray-400 sm:text-sm sm:leading-6" />
+                                    <Button text="Add Integration" handleOnclick={() => setGitlabSelfHostedOauth(!gitlabSelfHostedOauth)} />
                                 </div>
                             </div>
 
@@ -95,11 +95,7 @@ function Integrations() {
                                     Bitbucket
                                 </label>
                                 <div className="mt-2">
-                                    <input
-                                        id="bitbucket_oauth"
-                                        name="bitbucket_oauth"
-                                        type="checkbox"
-                                        className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm  placeholder:text-gray-400 sm:text-sm sm:leading-6" />
+                                    <Button text="Add Integration" handleOnclick={() => setBitbucketOauth(!bitbucketOauth)} />
                                 </div>
                             </div>
 
@@ -108,11 +104,7 @@ function Integrations() {
                                     StackOverflow
                                 </label>
                                 <div className="mt-2">
-                                    <input
-                                        id="stackoverflow_oauth"
-                                        name="stackoverflow_oauth"
-                                        type="checkbox"
-                                        className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm  placeholder:text-gray-400 sm:text-sm sm:leading-6" />
+                                    <Button text="Add Integration" handleOnclick={() => setStackoverflowOauth(!stackoverflowOauth)} />
                                 </div>
                             </div>
                         </div>
