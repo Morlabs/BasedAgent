@@ -6,6 +6,7 @@ import FAQs from './pages/FAQs';
 import BAAGToken from './pages/BAAGToken';
 import ReviewerSignupStart from './pages/ReviewerSignupStart';
 import ReviewerSignup from './pages/ReviewerSignup';
+import Dashboard from './pages/Dashboard';
 import './styles.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/reviewer-signup" element={<ReviewerSignupStart />} />
           <Route path="/reviewer-signup/complete" element={<ReviewerSignup />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>
