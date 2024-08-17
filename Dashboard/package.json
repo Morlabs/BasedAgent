@@ -32,7 +32,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "setup": "npm install && npm install --prefix ../server",
+    "setup": "npm install && npm install --prefix ./src/server",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build-prod": "BUILD_PATH='./src/server/build' react-scripts build",
