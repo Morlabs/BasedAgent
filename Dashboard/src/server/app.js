@@ -24,7 +24,7 @@ const bodyParserConfig = bodyParser.urlencoded({
 });
 
 app.use(bodyParserConfig);
-app.use(express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.use(response);
 app.use(logger('dev'));
@@ -32,11 +32,11 @@ app.use(logger('dev'));
 app.use(cors(corsOpts));
 app.use(bodyParser.json());
 
-app.use('/', healthRoute);
+// app.use('/', healthRoute);
 app.use('/api', appRoutes);
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 // catch 404 and forward to error handler
