@@ -46,7 +46,7 @@ const ReviewerSignup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3001/api/reviewer-signup', {
+      const response = await fetch('/api/reviewer-signup', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
