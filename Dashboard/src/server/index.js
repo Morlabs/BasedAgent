@@ -44,7 +44,7 @@ async function fetchContributions(username) {
 app.post('/api/reviewer-signup', async (req, res) => {
     try {
         console.log('Received reviewer signup:', req.body);
-        
+
         // Convert top_languages string to an array
         const topLanguagesArray = req.body.top_languages ? req.body.top_languages.split(',') : [];
 
@@ -57,7 +57,7 @@ app.post('/api/reviewer-signup', async (req, res) => {
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
             RETURNING *
         `;
-        
+
         const values = [
             req.body.name,
             req.body.github_username, // Using github_username for the 'github' column
@@ -75,15 +75,25 @@ app.post('/api/reviewer-signup', async (req, res) => {
         console.log('Executing query with values:', values);
 
         const result = await pool.query(query, values);
-        
+
         console.log('Inserted new reviewer:', result.rows[0]);
-        
+
         res.status(200).json({ message: 'Signup successful', reviewer: result.rows[0] });
     } catch (error) {
         console.error('Error processing reviewer signup:', error);
         console.error('Error details:', error.message);
         if (error.stack) console.error('Error stack:', error.stack);
         res.status(500).json({ error: 'Internal server error', details: error.message });
+    }
+});
+
+app.get('/api/reviewers', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM reviewers');
+        res.status(200).json(result.rows);
+    } catch (error) {
+        console.error('Error fetching reviewers:', error);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
