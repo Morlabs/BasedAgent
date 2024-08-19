@@ -20,7 +20,7 @@ function Home() {
 	}, []);
 	
 	const handleNavigateToSignup = () => {
-		router('/reviewer-signup');
+		router.push('/reviewer-signup');
 	};
 	
 	return (
