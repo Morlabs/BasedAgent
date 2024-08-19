@@ -1,4 +1,7 @@
 import {NextResponse} from 'next/server';
+import {users, jobPreferences} from "@/lib/db/schema";
+import {db} from "@/lib/db/connect";
+import {eq} from "drizzle-orm";
 
 export async function GET(req) {
 	console.log('Get Job Preference API Call');
@@ -6,16 +9,23 @@ export async function GET(req) {
 	try {
 		// Accessing the id query parameter from the request
 		const id = req.nextUrl.searchParams.get('id');
-		const url = new URL(req.url);
-		const searchParams = url.searchParams;
-		const userId = searchParams.get("id");
-		console.log(`ID received: ${id}`);
-		console.log(`ID received: ${userId}`);
+
+		if (id) {
+			
+			const job_prefrences = await db.select().from(jobPreferences).where(eq(jobPreferences.id, id));
+			return NextResponse.json(
+				{message: "Job Prefrence Fetched SuccessFully", job_prefrences},
+				{status: 200}
+			);
+		} else {
+			
+			return NextResponse.json(
+				{message: "id not given"},
+				{status: 404}
+			);
+		}
 		
-		return NextResponse.json(
-			{message: "User Password Changed Successfully", id},
-			{status: 200}
-		);
+		
 	} catch (error) {
 		console.error('Error in changing password:', error.message);
 		return NextResponse.json({error: error.message}, {status: 500});
