@@ -12,7 +12,7 @@ export async function GET(req) {
 		
 		if (id) {
 			
-			const job_prefrences = await db.select().from(jobPreferences);
+			const job_prefrences = await db.select().from(jobPreferences).where(eq(jobPreferences.id, Number(id)));
 			return NextResponse.json({message: "Job Prefrence Fetched SuccessFully", job_prefrences}, {status: 200});
 		} else {
 			
