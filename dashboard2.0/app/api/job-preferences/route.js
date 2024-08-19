@@ -26,8 +26,8 @@ export async function GET(req) {
 	}
 }
 
+
 export async function PATCH(req) {
-	console.log('Patch Job Preference API Call');
 	
 	try {
 		const id = req.nextUrl.searchParams.get('id');
@@ -35,19 +35,30 @@ export async function PATCH(req) {
 		
 		if (id) {
 			const job_preferences = await db.select().from(jobPreferences).where(eq(jobPreferences.id, Number(id)));
-			
 			if (job_preferences.length > 0) {
+				
 				await db
 					.update(jobPreferences)
-					.set(body)
-					.where(eq(jobPreferences.id, Number(id)))
-					.returning();
+					.set({
+						desiredPositions: body.desired_positions,
+						targetIndustry: body.target_industry,
+						openToRemoteWork: body.open_to_remote_work,
+						employmentType: body.employment_type,
+						compensationExpectations: body.compensation_expectations,
+						techStackDislikes: body.tech_stack_dislikes,
+						idealCompanyScale: body.ideal_company_scale,
+					})
+					.where(eq(jobPreferences.id, Number(id)));
+				
+				// Fetch the updated job preference manually
+				const updatedJobPreference = await db.select().from(jobPreferences).where(eq(jobPreferences.id, Number(id)));
 				
 				return NextResponse.json(
-					{message: "Job Preference Updated Successfully", job_preferences},
+					{message: "Job Preference Updated Successfully", updatedJobPreference},
 					{status: 200}
 				);
 			} else {
+				console.log('No job preference found for ID:', id);
 				return NextResponse.json(
 					{message: "Job Preference not found"},
 					{status: 404}
@@ -55,34 +66,11 @@ export async function PATCH(req) {
 			}
 			
 		} else {
+			console.log('ID not provided in the request');
 			return NextResponse.json({message: "ID not given"}, {status: 400});
 		}
 		
 	} catch (error) {
-		console.error('Error in updating job preference:', error.message);
-		return NextResponse.json({error: error.message}, {status: 500});
-	}
-}
-
-
-export async function POST(req) {
-	console.log('Patch Job Preference API Call');
-	
-	try {
-		const body = await req.json();
-		
-		
-		const job_preferences = await db
-			.insert(jobPreferences)
-			.values(body)
-			.returning();
-		
-		return NextResponse.json(
-			{message: "Job Preference Updated Successfully", job_preferences},
-			{status: 200}
-		)
-	} catch
-		(error) {
 		console.error('Error in updating job preference:', error.message);
 		return NextResponse.json({error: error.message}, {status: 500});
 	}
