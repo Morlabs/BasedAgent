@@ -3,7 +3,7 @@ import NextAuth from "next-auth"
 
 // importing providers
 import GithubProvider from "next-auth/providers/github"
-import {getUserDetails} from '@/actions/github'
+import {getTopLanguages, getTotalContributions, getUserDetails} from '@/actions/github'
 
 const handler = NextAuth({
 	providers: [
@@ -18,6 +18,8 @@ const handler = NextAuth({
 			session.user.id = token.sub ?? null;
 			session.user.accessToken = token?.accessToken ?? null;
 			session.user.githubDetails = await getUserDetails(token?.accessToken);
+			session.user.githubDetails.top_languages = await getTopLanguages(token?.accessToken, session.user.githubDetails.login);
+			session.user.githubDetails.total_contribution = await getTotalContributions(token?.accessToken, session.user.githubDetails.login);
 			return session;
 		},
 		async jwt({token, user, account, profile}) {

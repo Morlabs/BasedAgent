@@ -2,9 +2,10 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {useRouter} from 'next/navigation';
 import {useSession, signOut} from "next-auth/react";
+import axios from 'axios';
 
 const ReviewerSignup = () => {
 	const [formData, setFormData] = useState({
@@ -22,28 +23,34 @@ const ReviewerSignup = () => {
 	const [loading, setLoading] = useState(false);
 	const router = useRouter();
 	const {data: session} = useSession();
-	console.log(session);
+	
 	useEffect(() => {
 		if (session) {
+			const {name, email, githubDetails} = session.user || {};
 			setFormData((prevData) => ({
 				...prevData,
-				name: session.user?.name || '',
-				email: session.user?.email || '',
+				name: name || '',
+				email: email || '',
+				github_username: githubDetails?.login || '',
+				github_url: githubDetails?.html_url || '',
+				top_languages: githubDetails?.top_languages || [],
+				total_contributions: githubDetails?.total_contribution || 0,
 			}));
 		}
 	}, [session]);
 	
-	const handleChange = (e) => {
-		console.log(`Changing ${e.target.name} to ${e.target.value}`);
-		setFormData({...formData, [e.target.name]: e.target.value});
-	};
+	const handleChange = useCallback((e) => {
+		const {name, value} = e.target;
+		setFormData((prevData) => ({...prevData, [name]: value}));
+	}, []);
 	
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setLoading(true);
 		try {
-			// Make your API request here
-			// await apiCall(formData);
+			
+			const reviewerSignup = await axios.post('/api/reviewer-signup', formData)
+			console.log('reviewerSignup:', reviewerSignup)
 			setSubmitted(true);
 		} catch (error) {
 			console.error("Form submission error", error);
@@ -52,81 +59,88 @@ const ReviewerSignup = () => {
 		}
 	};
 	
+	if (!session) {
+		router.push('/reviewer-signup');
+	}
+	
 	if (loading) {
-		console.log("Loading state...");
 		return <div>Loading...</div>;
 	}
 	
 	if (submitted) {
-		console.log("Form successfully submitted, showing thank you message.");
-		return (
-			<div>
-				<Header/>
-				<div className="container">
-					<h2>Thank you for applying!</h2>
-					<p>Thanks for applying to become a Code Reviewer at BasedAgent. A member of our team will be in touch to
-						review your application and reach out to you if there is a fit.</p>
-					<button type="button" onClick={() => window.open('https://discord.gg/m2Qud5GDqp', '_blank')}>
-						Join Our Discord
-					</button>
-				</div>
-				<Footer/>
+		return (<div>
+			<Header/>
+			<div className="container" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px'}}>
+				<h2>Thank you for applying!</h2>
+				<p>Thanks for applying to become a Code Reviewer at BasedAgent. A member of our team will be in touch to review
+					your application and reach out to you if there is a fit.</p>
+				<button type="button" onClick={() => window.open('https://discord.gg/m2Qud5GDqp', '_blank')}>
+					Join Our Discord
+				</button>
+				<button
+					type="button"
+					className="bg-green-600 text-white py-2 px-6 rounded-md"
+					onClick={() => router.push('/dashboard')}
+				>
+					Go to Dashboard
+				</button>
 			</div>
-		);
+			
+			<Footer/>
+		</div>);
 	}
 	
-	return (
-		<div>
-			<Header/>
-			<div className="container">
-				<h1>Complete Your Reviewer Profile</h1>
-				<form onSubmit={handleSubmit} className="reviewer-form">
-					<input
-						type="text"
-						name="name"
-						placeholder="Name"
-						value={formData.name}
-						onChange={handleChange}
-						required
-					/>
-					<input
-						type="text"
-						name="availability"
-						placeholder="Availability (hours per week)"
-						value={formData.availability}
-						onChange={handleChange}
-						required
-					/>
-					<input
-						type="text"
-						name="discordHandle"
-						placeholder="Discord Handle"
-						value={formData.discordHandle}
-						onChange={handleChange}
-						required
-					/>
-					<input
-						type="email"
-						name="email"
-						placeholder="Email"
-						value={formData.email}
-						onChange={handleChange}
-						required
-					/>
-					{/* Hidden fields */}
-					<input type="hidden" name="github_username" value={formData.github_username}/>
-					<input type="hidden" name="github_url" value={formData.github_url}/>
-					<input type="hidden" name="top_languages" value={formData.top_languages}/>
-					<input type="hidden" name="total_contributions" value={formData.total_contributions}/>
-					<input type="hidden" name="public_repositories" value={formData.public_repositories}/>
-					
-					<button type="submit">Submit Application</button>
-					{session && <button className="bg-red-600 py-2 px-6 rounded-md" onClick={() => signOut()}>Sign out</button>}
-				</form>
-			</div>
-			<Footer/>
+	return (<div>
+		<Header/>
+		<div className="container">
+			<h1>Complete Your Reviewer Profile</h1>
+			<form onSubmit={handleSubmit} className="reviewer-form">
+				<input
+					type="text"
+					name="name"
+					placeholder="Name"
+					value={formData.name}
+					onChange={handleChange}
+					required
+				/>
+				<input
+					type="text"
+					name="availability"
+					placeholder="Availability (hours per week)"
+					value={formData.availability}
+					onChange={handleChange}
+					required
+				/>
+				<input
+					type="text"
+					name="discordHandle"
+					placeholder="Discord Handle"
+					value={formData.discordHandle}
+					onChange={handleChange}
+					required
+				/>
+				<input
+					type="email"
+					name="email"
+					placeholder="Email"
+					value={formData.email}
+					onChange={handleChange}
+					required
+				/>
+				{/* Hidden fields */}
+				<input type="hidden" name="github_username" value={formData.github_username}/>
+				<input type="hidden" name="github_url" value={formData.github_url}/>
+				<input type="hidden" name="top_languages" value={formData.top_languages}/>
+				<input type="hidden" name="total_contributions" value={formData.total_contributions}/>
+				<input type="hidden" name="public_repositories" value={formData.public_repositories}/>
+				
+				<button type="submit">Submit Application</button>
+				{session && <button type="button" className="bg-red-600 py-2 px-6 rounded-md" onClick={() => signOut()}>Sign
+					out</button>}
+			</form>
 		</div>
-	);
+		<Footer/>
+	</div>);
 };
 
 export default ReviewerSignup;
