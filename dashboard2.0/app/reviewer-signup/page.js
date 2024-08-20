@@ -7,24 +7,8 @@ import Image from 'next/image'
 
 const ReviewerSignupStart = () => {
 	
-	
 	const {data: session} = useSession()
-	
-	
-	// const handleGitHubLogin = () => {
-	// 	const rawRedirectUri = `http://localhost:3000/reviewer-signup/complete`;
-	// 	const redirectUri = encodeURIComponent(rawRedirectUri);
-	//
-	// 	const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=Ov23liMjT0z7a2gxWqKY&redirect_uri=${redirectUri}&scope=user`;
-	//
-	// 	console.log('GitHub Client ID:', process.env.REACT_APP_GITHUB_CLIENT_ID);
-	// 	console.log('Server Port:', process.env.REACT_APP_SERVER_PORT);
-	// 	console.log('Raw Redirect URI:', rawRedirectUri);
-	// 	console.log('Encoded Redirect URI:', redirectUri);
-	// 	console.log('GitHub Auth URL:', githubAuthUrl);
-	//
-	// 	window.location.href = githubAuthUrl;
-	// };
+	console.log('session:', session)
 	if (!session) {
 		
 		return (
