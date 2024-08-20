@@ -1,23 +1,22 @@
-'use client'
+'use client';
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+
 const ReviewerSignupStart = () => {
 	const handleGitHubLogin = () => {
-		// Use the SERVER_PORT for the redirect URI
-		const rawRedirectUri = `http://localhost:${process.env.REACT_APP_SERVER_PORT}/reviewer-signup/complete`;
+		const rawRedirectUri = `http://localhost:3000/reviewer-signup/complete`;
 		const redirectUri = encodeURIComponent(rawRedirectUri);
 		
-		// Prepare the URL for GitHub authentication
-		const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&redirect_uri=${redirectUri}&scope=user`;
+		const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=Ov23liMjT0z7a2gxWqKY&redirect_uri=${redirectUri}&scope=user`;
 		
-		// Debugging logs to help trace the URL construction
+		console.log('GitHub Client ID:', process.env.REACT_APP_GITHUB_CLIENT_ID);
+		console.log('Server Port:', process.env.REACT_APP_SERVER_PORT);
 		console.log('Raw Redirect URI:', rawRedirectUri);
 		console.log('Encoded Redirect URI:', redirectUri);
 		console.log('GitHub Auth URL:', githubAuthUrl);
 		
-		// Redirect the user to GitHub's OAuth page
 		window.location.href = githubAuthUrl;
 	};
 	
