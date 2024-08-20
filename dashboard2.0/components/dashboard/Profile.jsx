@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Combobox from './formUI/Combobox';
 import ToggleSwitch from './formUI/ToggleSwitch';
-import {backendUrl} from '@/utils/constants/urls';
+import axios from 'axios';
+
 
 function Profile() {
 	const [firstName, setFirstName] = useState('');
@@ -14,24 +15,27 @@ function Profile() {
 	const [portfolioWebsite, setPortfolioWebsite] = useState('');
 	const [twitterHandle, setTwitterHandle] = useState('');
 	const [profileDiscoverability, setProfileDiscoverability] = useState(true);
-	
+	const userID = 1
 	// Fetch initial profile data from API
 	useEffect(() => {
 		async function fetchProfileData() {
 			try {
-				const response = await fetch(`${backendUrl}/api/profile/1`);
-				const result = await response.json();
-				const data = result.data;
-				setFirstName(data.first_name || '');
-				setLastName(data.last_name || '');
-				setGenderIdentity(data.gender_identity || '');
-				setDateOfBirth(data.date_of_birth || '');
-				setCurrentLocation(data.current_location || '');
-				setPrimaryEmail(data.primary_email || '');
-				setLinkedinUrl(data.linkedin_url || '');
-				setPortfolioWebsite(data.portfolio_website || '');
-				setTwitterHandle(data.twitter_handle || '');
-				setProfileDiscoverability(data.profile_discoverability);
+				const response = await axios.get(`/api/profile?id=${userID}`);
+				const data = response.data.profiles[0];
+				console.log('data : ', data);
+				
+				setFirstName(data.firstName || '');
+				setLastName(data.lastName || '');
+				setGenderIdentity({
+					id: data.genderIdentity === 'Male' ? 1 : data.genderIdentity === 'Female' ? 2 : 3, name: data.genderIdentity
+				});
+				setDateOfBirth(data.dateOfBirth || '');
+				setCurrentLocation(data.currentLocation || '');
+				setPrimaryEmail(data.primaryEmail || '');
+				setLinkedinUrl(data.linkedinUrl || '');
+				setPortfolioWebsite(data.portfolioWebsite || '');
+				setTwitterHandle(data.twitterHandle || '');
+				setProfileDiscoverability(data.profileDiscoverability);
 			} catch (error) {
 				console.error('Error fetching profile data:', error);
 			}
@@ -39,6 +43,7 @@ function Profile() {
 		
 		fetchProfileData();
 	}, []);
+	
 	
 	async function handleSubmit(event) {
 		event.preventDefault();
@@ -57,16 +62,10 @@ function Profile() {
 		};
 		
 		try {
-			const response = await fetch(`${backendUrl}/api/profile/1`, {
-				method: 'PATCH',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(profileData),
-			});
-			if (response.ok) {
-				const result = await response.json();
-				console.log('Profile updated successfully:', result);
+			const response = await axios.patch(`/api/profile?id=${userID}`, profileData);
+			
+			if (response.status === 200) {
+				console.log('Profile updated successfully:', response.data);
 			} else {
 				console.error('Failed to update profile:', response.statusText);
 			}
@@ -74,6 +73,7 @@ function Profile() {
 			console.error('Error saving profile data:', error);
 		}
 	}
+	
 	
 	return (
 		<form action="#" method="POST" className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit}>
@@ -122,20 +122,13 @@ function Profile() {
 							Gender
 						</label>
 						<Combobox
-							options={[
-								{
-									id: 1,
-									name: 'Male',
-								},
-								{
-									id: 2,
-									name: 'Female',
-								},
-								{
-									id: 3,
-									name: 'Other',
-								},
-							]}
+							options={[{
+								id: 1, name: 'Male',
+							}, {
+								id: 2, name: 'Female',
+							}, {
+								id: 3, name: 'Other',
+							},]}
 							selected={genderIdentity}
 							onChange={setGenderIdentity}
 							placeholder="Select Gender"
@@ -247,8 +240,7 @@ function Profile() {
 					</button>
 				</div>
 			</div>
-		</form>
-	);
+		</form>);
 }
 
 export default Profile;
