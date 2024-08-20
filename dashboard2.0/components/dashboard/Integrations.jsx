@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Button from './formUI/Button';
 import {backendUrl} from '@/utils/constants/urls';
 import axios from 'axios';
+import {XMarkIcon} from '@heroicons/react/24/outline';
 
 const integrationsData = {
 	github_oauth: false,
@@ -70,7 +71,17 @@ function Integrations() {
 		}
 	}
 	
-	
+	const handleRemoveClick = async () => {
+		setGithubPersonalAccessToken('')
+		try {
+			const del = await axios.delete(`/api/integrations?id=${userID}`);
+			console.log(del.data);
+		} catch (e) {
+			console.error('error in deleting token:', e)
+		}
+		
+		console.log('button clicked')
+	}
 	return (
 		<>
 			<form action="#" method="POST" className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit}>
@@ -84,12 +95,13 @@ function Integrations() {
 					
 					<div className="mt-6 flex flex-col lg:flex-row">
 						<div className="flex-grow space-y-6">
+							
 							<div>
 								<label htmlFor="github_personal_access_token"
-											 className="block text-sm   leading-6 font-bold text-[#dadee2]">
+											 className="block text-sm leading-6 font-bold text-[#dadee2]">
 									GitHub Personal Access Token
 								</label>
-								<div className="mt-2">
+								<div className="mt-2 flex">
 									<input
 										id="github_personal_access_token"
 										name="github_personal_access_token"
@@ -98,8 +110,18 @@ function Integrations() {
 										onChange={(e) => setGithubPersonalAccessToken(e.target.value)}
 										className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6"
 									/>
+									{githubPersonalAccessToken && <button
+										type="button"
+										className="ml-2 bg-red-600 text-white font-bold py-1.5 px-4 rounded-md flex items-center"
+										onClick={handleRemoveClick} // Replace with your actual remove handler function
+									
+									>
+										<XMarkIcon className="h-5 w-5 mr-2"/>
+										Remove
+									</button>}
 								</div>
 							</div>
+							
 							
 							<div>
 								<label htmlFor="github_oauth" className="block text-sm   leading-6 font-bold text-[#dadee2]">
