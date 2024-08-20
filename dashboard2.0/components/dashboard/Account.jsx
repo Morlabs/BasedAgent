@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import {backendUrl} from '@/utils/constants/urls';
+import axios from 'axios';
 
 function Account() {
 	const [currentPassword, setCurrentPassword] = useState('');
 	const [newPassword, setNewPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const userID = 1
 	
 	async function handleUpdatePassword(event) {
 		event.preventDefault();
@@ -20,17 +22,10 @@ function Account() {
 		};
 		
 		try {
-			const response = await fetch(`/api/account/1`, {
-				method: 'PATCH',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(passwordData),
-			});
+			const response = await axios.patch(`/api/account?id=${userID}`, passwordData);
 			
-			if (response.ok) {
-				const result = await response.json();
-				console.log('Password updated successfully:', result);
+			if (response.status === 200) {
+				console.log('Password updated successfully:', response.data);
 			} else {
 				console.error('Failed to update password:', response.statusText);
 			}
@@ -38,6 +33,7 @@ function Account() {
 			console.error('Error updating password:', error);
 		}
 	}
+	
 	
 	// Handle account deactivation form submission
 	async function handleDeactivateAccount(event) {
