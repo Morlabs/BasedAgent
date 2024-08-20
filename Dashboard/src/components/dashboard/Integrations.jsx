@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ToggleSwitch from './formUI/ToggleSwitch';
 import Button from './formUI/Button';
 import { backendUrl } from '../../constants/urls';
 
