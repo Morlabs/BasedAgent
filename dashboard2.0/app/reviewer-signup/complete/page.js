@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import React, {useState, useEffect} from 'react';
 import {useRouter} from 'next/navigation';
+import {useSession, signOut} from "next-auth/react";
 
 const ReviewerSignup = () => {
 	const [formData, setFormData] = useState({
@@ -18,32 +19,19 @@ const ReviewerSignup = () => {
 		email: ''
 	});
 	const [submitted, setSubmitted] = useState(false);
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const router = useRouter();
-	
+	const {data: session} = useSession();
+	console.log(session);
 	useEffect(() => {
-		console.log("useEffect triggered");
-		const params = new URLSearchParams(window.location.search);
-		const githubData = Object.fromEntries(params.entries());
-		
-		console.log("params:", params);
-		console.log("GitHub data from URL:", githubData);
-		
-		if (githubData.github_username) {
-			setFormData(prevData => ({
+		if (session) {
+			setFormData((prevData) => ({
 				...prevData,
-				...githubData,
-				name: githubData.name || '',
-				total_contributions: Number(githubData.total_contributions),
-				public_repositories: Number(githubData.public_repositories)
+				name: session.user?.name || '',
+				email: session.user?.email || '',
 			}));
-			console.log("Updated formData:", formData);
-			setLoading(false);
-		} else {
-			console.log("GitHub username not found, redirecting...");
-			router.push('/reviewer-signup');
 		}
-	}, [router]);
+	}, [session]);
 	
 	const handleChange = (e) => {
 		console.log(`Changing ${e.target.name} to ${e.target.value}`);
@@ -52,25 +40,15 @@ const ReviewerSignup = () => {
 	
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log("Form submitted with data:", formData);
+		setLoading(true);
 		try {
-			const response = await fetch('/api/reviewer-signup', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'Accept': 'application/json'
-				},
-				body: JSON.stringify(formData)
-			});
-			console.log("Response status:", response.status);
-			if (!response.ok) {
-				throw new Error(`HTTP error! status: ${response.status}`);
-			}
-			const result = await response.json();
-			console.log("Server response:", result);
+			// Make your API request here
+			// await apiCall(formData);
 			setSubmitted(true);
 		} catch (error) {
-			console.error('Error:', error);
+			console.error("Form submission error", error);
+		} finally {
+			setLoading(false);
 		}
 	};
 	
@@ -88,8 +66,8 @@ const ReviewerSignup = () => {
 					<h2>Thank you for applying!</h2>
 					<p>Thanks for applying to become a Code Reviewer at BasedAgent. A member of our team will be in touch to
 						review your application and reach out to you if there is a fit.</p>
-					<button type="button" onClick={() => window.open('https://discord.gg/m2Qud5GDqp', '_blank')}>Join Our
-						Discord
+					<button type="button" onClick={() => window.open('https://discord.gg/m2Qud5GDqp', '_blank')}>
+						Join Our Discord
 					</button>
 				</div>
 				<Footer/>
@@ -143,6 +121,7 @@ const ReviewerSignup = () => {
 					<input type="hidden" name="public_repositories" value={formData.public_repositories}/>
 					
 					<button type="submit">Submit Application</button>
+					{session && <button className="bg-red-600 py-2 px-6 rounded-md" onClick={() => signOut()}>Sign out</button>}
 				</form>
 			</div>
 			<Footer/>
