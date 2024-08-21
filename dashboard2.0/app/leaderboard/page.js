@@ -1,0 +1,191 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import CustomDropdown from "@/components/leaderboard/CustomDropdown";
+import LeaderboardTable from "@/components/leaderboard/LeaderboardTable";
+import { currentUser, filterOptions, SortOptions, tableData } from "@/config/config";
+import { useRouter } from "next/navigation";
+
+const Leaderboard = () => {
+
+  const router = useRouter();
+
+  const [developers, setDevelopers] = useState([...tableData]);
+  const [filteredDevelopers, setFilteredDevelopers] = useState([]);
+  const [filters, setFilters] = useState({
+    country: "",
+    city: "",
+    technology: "",
+    sortBy: "",
+  });
+  const [isCity, setIsCity] = useState(true);
+  const [page, setPage] = useState(1);
+  const [results, setResults] = useState(20);
+
+  useEffect(() => {
+    setFilteredDevelopers(developers);
+  }, []);
+
+  useEffect(() => {
+    setFilteredDevelopers(applyFilters(developers, filters, isCity));
+  }, [filters, developers, isCity]);
+
+  const applyFilters = (developers, filters, isCity) => {
+    let filtered = [...developers];
+
+    filtered = filterByCountry(filtered, filters.country, isCity);
+    filtered = filterByCity(filtered, filters.city);
+    filtered = filterByTechnology(filtered, filters.technology);
+    filtered = sortDevelopers(filtered, filters.sortBy);
+
+    return filtered;
+  };
+
+  const filterByCountry = (developers, country, isCity) => {
+    if (country) {
+      setIsCity(false);
+      return developers.filter((dev) =>
+        dev.country.toLowerCase().includes(country.toLowerCase())
+      );
+    }
+    return developers;
+  };
+
+  const filterByCity = (developers, city) => {
+    if (city) {
+      return developers.filter((dev) =>
+        dev.city.toLowerCase().includes(city.toLowerCase())
+      );
+    }
+    return developers;
+  };
+
+  const filterByTechnology = (developers, technology) => {
+    if (technology) {
+      return developers.filter((dev) =>
+        dev.top_languages.includes(technology.toLowerCase())
+      );
+    }
+    return developers;
+  };
+
+  const sortDevelopers = (developers, sortBy) => {
+    if (!sortBy) return developers;
+
+    return developers.sort((a, b) => {
+      switch (sortBy) {
+        case "Rank":
+          return compareValues(Number(a.rank), Number(b.rank), true);
+        case "Weight":
+          return compareValues(Number(a.weight), Number(b.weight), true);
+        case "Name":
+          return compareValues(a.name, b.name);
+        case "Country":
+          return compareValues(a.country, b.country);
+        case "City":
+          return compareValues(a.city, b.city);
+        default:
+          return 0;
+      }
+    });
+  };
+
+  const compareValues = (a, b, isNumeric = false) => {
+    return isNumeric ? a - b : a.localeCompare(b);
+  };
+
+  const handleFilterChange = (id, value) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [id]: value,
+    }));
+  };
+
+  const handleNavigateToSignup = () => {
+		router.push('/reviewer-signup');
+	};
+
+  return (
+    <div className="px-4 xl:px-2">
+      <Header />
+      <div className="flex justify-between md:items-center gap-4 py-10 flex-col md:flex-row">
+        <div className="mb-4 md:mb-0">
+          <span className="uppercase text-xl font-medium">Top Developers</span>
+        </div>
+
+        {/* filters */}
+        <div className="flex gap-4 md:items-center flex-col md:flex-row">
+          <span className="text-gray-400">Filter by:</span>
+          {filterOptions.map((detail) => (
+            <CustomDropdown
+            value={filters[detail.id]}
+              key={detail.id}
+              id={detail.id}
+              label={detail.label}
+              countryValue={filters.country}
+              options={detail.datalistOptions}
+              onChange={(value) => handleFilterChange(detail.id, value)}
+            />
+          ))}
+          <span className="text-gray-400">Sort by:</span>
+          <CustomDropdown
+          value={filters.sortBy}
+            key={SortOptions.id}
+            id={SortOptions.id}
+            label={SortOptions.label}
+            options={SortOptions.datalistOptions}
+            onChange={(value) => handleFilterChange("sortBy", value)}
+          />
+        </div>
+      </div>
+      <div className="flex flex-col items-center bg-zinc-800 py-10 gap-4 rounded">
+        <span className="text-[20px] text-center mb-2 px-2">
+          Code Rank. <br /> Earn Transform your repositories into revenue streams.
+        </span>
+        <div className="reviewer-form font-bold px-2">
+          <button onClick={handleNavigateToSignup}>Try out for free</button>
+        </div>
+
+        <LeaderboardTable data={filteredDevelopers} currentUser={currentUser} handlePress={handleFilterChange} />
+
+        {/* pagination */}
+        <div className="flex justify-between flex-col md:flex-row gap-4 w-full mt-6 px-2 md:px-10">
+          <div className="flex gap-3 items-center">
+            <span className="text-gray-400">Results:</span>
+            <CustomDropdown
+              key={"results"}
+              id={"results"}
+              label={20}
+              value={results}
+              options={["20", "30", "40", "50"]}
+              onChange={(value) => {}}
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="reviewer-form">
+              <button className="font-extrabold">
+                <img src="/left_arrow.png" className="w-6 h-6" />
+              </button>
+            </div>
+            <input
+              type="tel"
+              value={1}
+              className="bg-zinc-700 rounded px-4 py-2 w-16 outline-none"
+            />
+            <span className="mx-2">of 3,343</span>
+            <div className="reviewer-form">
+              <button className="font-extrabold">
+                <img src="/right_arrow.png" className="w-6 h-6" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+};
+
+export default Leaderboard;

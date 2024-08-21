@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import DesktopNavbar from './DesktopNavbar';
 import ResponsiveNavbar from './ResponsiveNavbar';
