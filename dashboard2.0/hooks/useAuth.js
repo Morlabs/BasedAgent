@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
+import {useState, useEffect} from 'react';
+import {useSession} from 'next-auth/react';
 
 export const useAuth = () => {
-	const { data: session, status } = useSession();
+	const {data: session, status} = useSession();
 	const [authState, setAuthState] = useState({
 		isLoggedIn: false,
 		isLoading: true,
 		user: null,
 	});
-	
+	console.log('session from useAuth', session);
 	useEffect(() => {
 		if (status === 'loading') {
 			setAuthState({
