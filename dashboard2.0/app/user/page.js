@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from "@/hooks/useAuth";
-
+//TODO : need to add api here to populate the data
 const TempRedirect = () => {
 	const router = useRouter();
 	const { isLoggedIn, user, isLoading } = useAuth(); // Use useAuth hook
