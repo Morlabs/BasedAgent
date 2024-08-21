@@ -1,0 +1,1 @@
+ALTER TABLE "reviewers" ALTER COLUMN "skills" SET DATA TYPE text[];
