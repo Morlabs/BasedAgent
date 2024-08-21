@@ -1,18 +1,33 @@
-import {integer, serial, varchar, boolean, text, timestamp, pgTable, PgArray} from 'drizzle-orm/pg-core';
+import {integer, serial, varchar, boolean, text, timestamp, pgTable} from 'drizzle-orm/pg-core';
 import {relations} from 'drizzle-orm';
 
-export const users = pgTable('users', {
+export const developers = pgTable('developers', {
   id: serial('id').primaryKey(),
-  username: varchar('username', {length: 100}).notNull().unique(),
-  email: varchar('email', {length: 255}).notNull().unique(),
-  password: varchar('password', {length: 255}).notNull(),
+  name: varchar('name', {length: 255}),
+  skills: (text('skills')).array(),
+  email: varchar('email', {length: 255}),
   createdAt: timestamp('created_at').defaultNow(),
-  updatedAt: timestamp('updated_at').defaultNow(),
+  githubUsername: varchar('github_username', {length: 255}),
+  githubUrl: varchar('github_url', {length: 255}),
+  topLanguages: (text('top_languages')).array(),
+  publicRepositories: integer('public_repositories'),
+  Password: varchar('confirm_password', {length: 255}),
+  updateSettings: boolean('update_settings'),
+  deactivateAccount: boolean('deactivate_account'),
 });
+
+
+export const contributions = pgTable('contributions', {
+  id: serial('id').primaryKey(),
+  developerId: integer('developer_id').references(() => developers.id),
+  timestamp: timestamp('timestamp').notNull(),
+  contributionCount: integer('contribution_count').notNull(),
+});
+
 
 export const jobPreferences = pgTable('job_preferences', {
   id: serial('id').primaryKey(),
-  userId: integer('user_id').references(() => users.id),
+  developerId: integer('user_id').references(() => developers.id),
   desiredPositions: (text('desired_positions')).array(),
   targetIndustry: (text('target_industry')).array(),
   openToRemoteWork: boolean('open_to_remote_work'),
@@ -24,7 +39,7 @@ export const jobPreferences = pgTable('job_preferences', {
 
 export const integrations = pgTable('integrations', {
   id: serial('id').primaryKey(),
-  userId: integer('user_id').references(() => users.id),
+  developerId: integer('user_id').references(() => developers.id),
   githubOauth: boolean('github_oauth'),
   githubPersonalAccessToken: varchar('github_personal_access_token', {length: 255}),
   gitlabOauth: boolean('gitlab_oauth'),
@@ -39,7 +54,7 @@ export const integrations = pgTable('integrations', {
 
 export const profile = pgTable('profile', {
   id: serial('id').primaryKey(),
-  userId: integer('user_id').references(() => users.id),
+  developerId: integer('user_id').references(() => developers.id),
   firstName: varchar('first_name', {length: 100}).notNull(),
   lastName: varchar('last_name', {length: 100}).notNull(),
   genderIdentity: varchar('gender_identity', {length: 50}),
@@ -50,11 +65,13 @@ export const profile = pgTable('profile', {
   portfolioWebsite: varchar('portfolio_website', {length: 255}),
   twitterHandle: varchar('twitter_handle', {length: 255}),
   profileDiscoverability: boolean('profile_discoverability'),
+  discordHandle: varchar('discord_handle', {length: 255}),
+  
 });
 
 export const account = pgTable('account', {
   id: serial('id').primaryKey(),
-  userId: integer('user_id').references(() => users.id),
+  developerId: integer('user_id').references(() => developers.id),
   currentPassword: varchar('current_password', {length: 255}),
   newPassword: varchar('new_password', {length: 255}),
   confirmPassword: varchar('confirm_password', {length: 255}),
@@ -62,18 +79,60 @@ export const account = pgTable('account', {
   deactivateAccount: boolean('deactivate_account'),
 });
 
-export const reviewers = pgTable('reviewers', {
-  id: serial('id').primaryKey(),
-  name: varchar('name', {length: 255}),
-  github: varchar('github', {length: 255}),
-  skills: (text('skills')).array(),
-  availability: varchar('availability', {length: 50}),
-  email: varchar('email', {length: 255}),
-  discordHandle: varchar('discord_handle', {length: 255}),
-  createdAt: timestamp('created_at').defaultNow(),
-  githubUsername: varchar('github_username', {length: 255}),
-  githubUrl: varchar('github_url', {length: 255}),
-  topLanguages: (text('top_languages')).array(),
-  totalContributions: integer('total_contributions'),
-  publicRepositories: integer('public_repositories'),
-});
+export const developersRelations = relations(developers, ({one, many}) => ({
+  jobPreferences: one(jobPreferences, {
+    fields: [developers.id],
+    references: [jobPreferences.developerId],
+  }),
+  integrations: one(integrations, {
+    fields: [developers.id],
+    references: [integrations.developerId],
+  }),
+  profile: one(profile, {
+    fields: [developers.id],
+    references: [profile.developerId],
+  }),
+  account: one(account, {
+    fields: [developers.id],
+    references: [account.developerId],
+  }),
+  contributions: many(contributions, {
+    fields: [developers.id],
+    references: [contributions.developerId],
+  }),
+}));
+
+export const contributionsRelations = relations(contributions, ({one}) => ({
+  developer: one(developers, {
+    fields: [contributions.developerId],
+    references: [developers.id],
+  }),
+}));
+
+export const jobPreferencesRelations = relations(jobPreferences, ({one}) => ({
+  developer: one(developers, {
+    fields: [jobPreferences.developerId],
+    references: [developers.id],
+  }),
+}));
+
+export const integrationsRelations = relations(integrations, ({one}) => ({
+  developer: one(developers, {
+    fields: [integrations.developerId],
+    references: [developers.id],
+  }),
+}));
+
+export const profileRelations = relations(profile, ({one}) => ({
+  developer: one(developers, {
+    fields: [profile.developerId],
+    references: [developers.id],
+  }),
+}));
+
+export const accountRelations = relations(account, ({one}) => ({
+  developer: one(developers, {
+    fields: [account.developerId],
+    references: [developers.id],
+  }),
+}));
