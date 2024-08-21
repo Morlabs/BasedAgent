@@ -3,7 +3,7 @@
 *node_modules/
 
 # Build files
-/build/
+**/build/*
 
 # Environment configuration
 .env

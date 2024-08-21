@@ -12,6 +12,7 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "chart.js": "^4.4.3",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "http-proxy-middleware": "^3.0.0",
@@ -28,6 +29,7 @@
     "react-scripts": "5.0.1",
     "rxjs": "^7.8.1",
     "sequelize": "^6.37.3",
+    "recharts": "^2.12.7",
     "tailwindcss": "^3.4.10",
     "web-vitals": "^2.1.4"
   },
@@ -63,7 +65,8 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-private-property-in-object": "^7.24.6",
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "tailwindcss": "^3.4.10"
   },
   "proxy": "http://localhost:3001"
 }
