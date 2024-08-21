@@ -1,38 +1,59 @@
 'use client';
-import React from 'react';
+import React, {useEffect} from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import {useSession, signIn, signOut} from "next-auth/react"
-import Image from 'next/image'
-import {useRouter} from 'next/navigation'
+import {useRouter} from 'next/navigation';
+import Loader from '@/components/common/loader';
+import {useAuth} from "@/hooks/useAuth";
+import {signIn} from "next-auth/react";
 
 const ReviewerSignupStart = () => {
-	const router = useRouter()
+	const router = useRouter();
+	const {isLoggedIn, isLoading, user} = useAuth(); // Use useAuth hook
 	
-	const {data: session} = useSession()
-	console.log('session:', session)
-	
-	if (session) {
-		router.push('/reviewer-signup/complete')
+	const handleSignIn = async () => {
+		await signIn('github', {callbackUrl: '/reviewer-signup/complete'});
 	}
 	
-	if (!session) {
-		
+	// Effect to handle redirection if the user is already logged in
+	useEffect(() => {
+		if (isLoggedIn) {
+			router.push('/reviewer-signup/complete');
+		}
+	}, [isLoggedIn, router]);
+	
+	if (isLoading) {
+		return (
+			<div className="flex justify-center items-center h-screen">
+				<Loader/>
+			</div>
+		); // Show a loader while checking the session
+	}
+	
+	if (!isLoggedIn) {
 		return (
 			<div>
 				<Header/>
-				<div className="container">
-					<h1>Become a Reviewer</h1>
-					<p>To get started, please authenticate with GitHub. This will help us pre-fill some of your information.</p>
-					<button onClick={() => signIn('github')} className="github-auth-button">
-						<img src="/github.png" alt="GitHub Logo" className="github-logo"/>
-						Sign up with GitHub
+				<div className="container mx-auto p-4">
+					<h1 className="text-2xl font-bold mb-4">Become a Reviewer</h1>
+					<p className="mb-6">
+						To get started, please authenticate with GitHub. This will help us pre-fill some of your information.
+					</p>
+					<button
+						onClick={handleSignIn}
+						className={`flex items-center justify-center bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-700 transition ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+						disabled={isLoading}
+					>
+						<img src="/github.png" alt="GitHub Logo" className="w-5 h-5 mr-2"/>
+						Sign up with GitHub {isLoading && <Loader/>}
 					</button>
 				</div>
 				<Footer/>
 			</div>
 		);
 	}
+	
+	return null; // Prevents rendering when the session is available and navigation is handled.
 }
 
 export default ReviewerSignupStart;

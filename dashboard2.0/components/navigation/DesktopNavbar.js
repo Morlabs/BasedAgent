@@ -1,12 +1,26 @@
 import React from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
 import Logo from '../branding/Logo';
+import { signOut, signIn } from 'next-auth/react';
+import { useAuth } from "@/hooks/useAuth";
 
-function DesktopNavbar({toggleMenu, menuActive}) {
+function DesktopNavbar({ toggleMenu, menuActive }) {
+	const { isLoggedIn, isLoading } = useAuth(); // Use useAuth hook
+	
+	const handleLogout = async () => {
+		if (isLoggedIn) {
+			await signOut().then(() => {
+				console.log('Logout successful');
+			});
+		} else {
+			await signIn('github', { callbackUrl: '/reviewer-signup/complete' });
+		}
+	};
+	
 	return (
 		<div className="navbar">
 			<div className="navbar-logo">
-				<Logo/>
+				<Logo />
 			</div>
 			<div className="navbar-desktop">
 				<div className="dropdown">
@@ -30,16 +44,32 @@ function DesktopNavbar({toggleMenu, menuActive}) {
 						</a>
 					</div>
 				</div>
-				<a target='_blank' rel='noopener noreferrer'
-					 href="https://github.com/Morlabs/BasedAgent/blob/main/Contribute/contribution_guidelines.md">Contribute</a>
+				<a
+					target="_blank"
+					rel="noopener noreferrer"
+					href="https://github.com/Morlabs/BasedAgent/blob/main/Contribute/contribution_guidelines.md"
+				>
+					Contribute
+				</a>
 				<div className="dropdown">
 					<Link href="#">Resources</Link>
 					<div className="dropdown-content">
-						<a href="https://github.com/Morlabs/BasedAgent1/blob/main/README.md" target="_blank"
-							 rel="noopener noreferrer">Docs</a>
+						<a
+							href="https://github.com/Morlabs/BasedAgent1/blob/main/README.md"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Docs
+						</a>
 						<Link href="/faqs">FAQs</Link>
 					</div>
 				</div>
+				<button
+					onClick={handleLogout}
+					className="auth-button"
+				>
+					{isLoading ? 'Loading...' : isLoggedIn ? 'Logout' : 'Login'}
+				</button>
 			</div>
 			<div className="navbar-mobile">
 				<span className="hamburger" onClick={toggleMenu}>MENU</span>
@@ -50,10 +80,22 @@ function DesktopNavbar({toggleMenu, menuActive}) {
 							<Link href="/about" onClick={toggleMenu}>About</Link>
 							<Link href="/baag-token" onClick={toggleMenu}>BAAG Token</Link>
 							<Link href="/protection-fund" onClick={toggleMenu}>Protection Fund</Link>
-							<a href="https://github.com/Morlabs/BasedAgent1/blob/main/README.md#based-agent-protection-fund"
-								 target="_blank" rel="noopener noreferrer" onClick={toggleMenu}>Protection Fund</a>
-							<a href="https://mor.org/MOR20" target="_blank" rel="noopener noreferrer" onClick={toggleMenu}>MOR20
-								Platform!!</a>
+							<a
+								href="https://github.com/Morlabs/BasedAgent1/blob/main/README.md#based-agent-protection-fund"
+								target="_blank"
+								rel="noopener noreferrer"
+								onClick={toggleMenu}
+							>
+								Protection Fund
+							</a>
+							<a
+								href="https://mor.org/MOR20"
+								target="_blank"
+								rel="noopener noreferrer"
+								onClick={toggleMenu}
+							>
+								MOR20 Platform
+							</a>
 						</div>
 					</div>
 					<a
@@ -67,14 +109,25 @@ function DesktopNavbar({toggleMenu, menuActive}) {
 						<div className="dropdown-content">
 							<a
 								href="https://github.com/Morlabs/BasedAgent1/blob/main/README.md"
-								target="_blank" rel="noopener noreferrer" onClick={toggleMenu}>Docs</a>
+								target="_blank"
+								rel="noopener noreferrer"
+								onClick={toggleMenu}
+							>
+								Docs
+							</a>
 							<Link href="/faqs" onClick={toggleMenu}>FAQs</Link>
 						</div>
+						<button
+							onClick={handleLogout}
+							className="auth-button"
+						>
+							{isLoading ? 'Loading...' : isLoggedIn ? 'Logout' : 'Login'}
+						</button>
 					</div>
 				</div>
 			</div>
 		</div>
-	)
+	);
 }
 
-export default DesktopNavbar
+export default DesktopNavbar;

@@ -66,7 +66,7 @@ export const reviewers = pgTable('reviewers', {
   id: serial('id').primaryKey(),
   name: varchar('name', {length: 255}),
   github: varchar('github', {length: 255}),
-  skills: varchar('skills', {length: 255}),
+  skills: (text('skills')).array(),
   availability: varchar('availability', {length: 50}),
   email: varchar('email', {length: 255}),
   discordHandle: varchar('discord_handle', {length: 255}),

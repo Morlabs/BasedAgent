@@ -20,9 +20,9 @@ function Home() {
 	}, []);
 	
 	const handleNavigateToSignup = () => {
+		console.log('button clicked')
 		router.push('/reviewer-signup');
 	};
-	
 	return (
 		<div>
 			<Header/>
