@@ -12,6 +12,7 @@ export const developers = pgTable('developers', {
   imageUrl: varchar('image_url', {length: 255}),
   topLanguages: (text('top_languages')).array(),
   publicRepositories: integer('public_repositories'),
+  deletedAt: timestamp('deleted_at').defaultNow(),
 });
 
 

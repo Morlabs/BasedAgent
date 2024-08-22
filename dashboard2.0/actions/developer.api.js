@@ -1,6 +1,6 @@
 "use server";
 
-import {developers, integrations} from "@/lib/db/schema";
+import {developers} from "@/lib/db/schema";
 import {db} from "@/lib/db/connect";
 import {eq} from "drizzle-orm";
 
@@ -101,9 +101,10 @@ export async function deleteDeveloper(developerId) {
 
 export async function ChangeDeveloperPassword(passwordData, developerId) {
 	try {
-		// 1. Retrieve the current password hash from the database
+		// 1. Retrieve the current password from the database
 		const developer = await db.query.developers.findFirst({
-			where: (developer) => eq(developer.id, developerId), columns: ['password']  // Make sure 'password' is a field in your schema
+			where: (developer) => eq(developer.id, developerId),
+			columns: ['password']  // Make sure 'password' is a field in your schema
 		});
 		
 		if (!developer) {
@@ -111,18 +112,15 @@ export async function ChangeDeveloperPassword(passwordData, developerId) {
 		}
 		
 		// 2. Compare the provided current password with the stored password
-		const passwordMatch = await bcrypt.compare(passwordData.current_password, developer.password);
-		if (!passwordMatch) {
+		if (passwordData.current_password !== developer.password) {
 			throw new Error('Current password is incorrect');
 		}
 		
-		// 3. Hash the new password before storing it
-		const hashedNewPassword = await bcrypt.hash(passwordData.new_password, 10);
-		
-		// 4. Update the developer's password in the database
+		// 3. Update the developer's password in the database
 		await db.update(developers)
 			.set({
-				password: hashedNewPassword,
+				password: passwordData.new_password,  // Store the new password as a plain string
+				deletedAt: new Date(),  // Set the current timestamp
 			})
 			.where(eq(developers.id, developerId))
 			.execute();

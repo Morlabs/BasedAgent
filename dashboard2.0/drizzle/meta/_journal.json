@@ -50,6 +50,13 @@
       "when": 1724321457357,
       "tag": "0006_gray_iron_monger",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1724329798415,
+      "tag": "0007_certain_spencer_smythe",
+      "breakpoints": true
     }
   ]
 }
