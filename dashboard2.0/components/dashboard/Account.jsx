@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
-import {backendUrl} from '@/utils/constants/urls';
 import axios from 'axios';
+import {ChangeDeveloperPassword, deleteDeveloper} from "@/actions/developer.api"
+import {useRouter} from "next/navigation";
+import {signOut, signIn} from 'next-auth/react';
 
-function Account() {
+function Account({id}) {
 	const [currentPassword, setCurrentPassword] = useState('');
 	const [newPassword, setNewPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
-	const userID = 1
+	const router = useRouter();
 	
 	async function handleUpdatePassword(event) {
 		event.preventDefault();
@@ -22,14 +24,12 @@ function Account() {
 		};
 		
 		try {
-			const response = await axios.patch(`/api/account?id=${userID}`, passwordData);
-			
-			if (response.status === 200) {
-				console.log('Password updated successfully:', response.data);
-			} else {
-				console.error('Failed to update password:', response.statusText);
+			const resp = await ChangeDeveloperPassword(passwordData, id);
+			if (resp) {
+				alert('Password updated successfully');
 			}
 		} catch (error) {
+			alert('Error updating password: ' + error.message);
 			console.error('Error updating password:', error);
 		}
 	}
@@ -43,22 +43,9 @@ function Account() {
 		if (!confirm) return;
 		
 		try {
-			const response = await fetch(`${backendUrl}/api/account/1`, {
-				method: 'PATCH',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					deactivate_account: true,
-				}),
-			});
-			
-			if (response.ok) {
-				const result = await response.json();
-				console.log('Account deactivated successfully:', result);
-			} else {
-				console.error('Failed to deactivate account:', response.statusText);
-			}
+			await deleteDeveloper(id)
+			await signOut({redirect: false, callbackUrl: '/'});
+			router.push('/')
 		} catch (error) {
 			console.error('Error deactivating account:', error);
 		}
@@ -69,7 +56,7 @@ function Account() {
 			<form action="#" method="POST" className="divide-y divide-gray-200 lg:col-span-9">
 				<div className="px-4 py-6 sm:p-6 lg:pb-8">
 					<div>
-						<h2 className="text-lg font-medium leading-6 text-[#dadee2]">Account</h2>
+						<h2 className="text-lg leading-6 text-[#dadee2]">Account</h2>
 						<p className="mt-1 text-sm text-[#dadee2]">
 							Manage your account settings.
 						</p>
@@ -79,7 +66,7 @@ function Account() {
 						<div className="space-y-6">
 							<div className='max-w-[200px]'>
 								<label htmlFor="current_password"
-											 className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+											 className="block text-sm leading-6 font-bold text-[#dadee2]">
 									Current Password
 								</label>
 								<div className="mt-2">
@@ -98,7 +85,7 @@ function Account() {
 							<div className='flex gap-5'>
 								<div>
 									<label htmlFor="new_password"
-												 className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+												 className="block text-sm leading-6 font-bold text-[#dadee2]">
 										New Password
 									</label>
 									<div className="mt-2">
@@ -116,7 +103,7 @@ function Account() {
 								
 								<div>
 									<label htmlFor="confirm_password"
-												 className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+												 className="block text-sm leading-6 font-bold text-[#dadee2]">
 										Confirm Password
 									</label>
 									<div className="mt-2">
@@ -148,7 +135,7 @@ function Account() {
 				
 				<div className="px-4 py-6 sm:p-6">
 					<div>
-						<h2 className="text-lg font-medium leading-6 text-[#dadee2]">Danger Zone</h2>
+						<h2 className="text-lg leading-6 text-[#dadee2]">Danger Zone</h2>
 						<p className="mt-1 text-sm text-[#dadee2]">
 							Deactivate your account.
 						</p>

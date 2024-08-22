@@ -67,15 +67,6 @@ export const profile = pgTable('profile', {
   
 });
 
-export const account = pgTable('account', {
-  id: serial('id').primaryKey(),
-  developerId: integer('developer_id').references(() => developers.id),
-  currentPassword: varchar('current_password', {length: 255}),
-  newPassword: varchar('new_password', {length: 255}),
-  confirmPassword: varchar('confirm_password', {length: 255}),
-  updateSettings: boolean('update_settings'),
-  deactivateAccount: boolean('deactivate_account'),
-});
 
 export const developersRelations = relations(developers, ({one, many}) => ({
   jobPreferences: one(jobPreferences, {
@@ -89,10 +80,6 @@ export const developersRelations = relations(developers, ({one, many}) => ({
   profile: one(profile, {
     fields: [developers.id],
     references: [profile.developerId],
-  }),
-  account: one(account, {
-    fields: [developers.id],
-    references: [account.developerId],
   }),
   contributions: many(contributions, {
     fields: [developers.id],
@@ -128,9 +115,3 @@ export const profileRelations = relations(profile, ({one}) => ({
   }),
 }));
 
-export const accountRelations = relations(account, ({one}) => ({
-  developer: one(developers, {
-    fields: [account.developerId],
-    references: [developers.id],
-  }),
-}));
