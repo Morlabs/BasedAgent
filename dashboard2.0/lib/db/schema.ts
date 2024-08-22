@@ -9,11 +9,9 @@ export const developers = pgTable('developers', {
   createdAt: timestamp('created_at').defaultNow(),
   githubUsername: varchar('github_username', {length: 255}),
   githubUrl: varchar('github_url', {length: 255}),
+  imageUrl: varchar('image_url', {length: 255}),
   topLanguages: (text('top_languages')).array(),
   publicRepositories: integer('public_repositories'),
-  Password: varchar('confirm_password', {length: 255}),
-  updateSettings: boolean('update_settings'),
-  deactivateAccount: boolean('deactivate_account'),
 });
 
 

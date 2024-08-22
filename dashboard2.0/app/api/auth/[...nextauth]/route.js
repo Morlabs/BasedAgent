@@ -3,7 +3,7 @@ import NextAuth from "next-auth"
 
 // importing providers
 import GithubProvider from "next-auth/providers/github"
-import {getTopLanguages, getTotalContributions, getUserDetails} from '@/actions/github'
+import {getTopLanguages, getTotalContributions, getUserDetails} from '@/helpers/github'
 
 const handler = NextAuth({
 	providers: [

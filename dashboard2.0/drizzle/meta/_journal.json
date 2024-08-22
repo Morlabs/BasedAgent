@@ -29,6 +29,20 @@
       "when": 1724264195465,
       "tag": "0003_married_scarecrow",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1724277239152,
+      "tag": "0004_aberrant_thunderbolt",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1724278805202,
+      "tag": "0005_solid_the_fallen",
+      "breakpoints": true
     }
   ]
 }
