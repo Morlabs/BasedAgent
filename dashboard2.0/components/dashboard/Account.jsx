@@ -1,22 +1,24 @@
 import React, {useState} from 'react';
-import axios from 'axios';
-import {ChangeDeveloperPassword, deleteDeveloper} from "@/actions/developer.api"
 import {useRouter} from "next/navigation";
-import {signOut, signIn} from 'next-auth/react';
+import {signOut} from 'next-auth/react';
+import Loader from '@/components/common/loader';  // Assuming you have a Loader component
+import {ChangeDeveloperPassword, deleteDeveloper} from "@/actions/developer.api";
 
 function Account({id}) {
 	const [currentPassword, setCurrentPassword] = useState('');
 	const [newPassword, setNewPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const [loading, setLoading] = useState(false); // Add loading state
 	const router = useRouter();
 	
 	async function handleUpdatePassword(event) {
 		event.preventDefault();
-		
 		if (newPassword !== confirmPassword) {
 			alert('New password and confirm password do not match.');
 			return;
 		}
+		
+		setLoading(true); // Set loading to true when the operation starts
 		
 		const passwordData = {
 			current_password: currentPassword,
@@ -31,24 +33,36 @@ function Account({id}) {
 		} catch (error) {
 			alert('Error updating password: ' + error.message);
 			console.error('Error updating password:', error);
+		} finally {
+			setLoading(false); // Set loading to false when the operation ends
 		}
 	}
 	
-	
-	// Handle account deactivation form submission
 	async function handleDeactivateAccount(event) {
 		event.preventDefault();
-		
 		const confirm = window.confirm('Are you sure you want to deactivate your account?');
 		if (!confirm) return;
 		
+		setLoading(true); // Set loading to true when the operation starts
+		
 		try {
-			await deleteDeveloper(id)
+			await deleteDeveloper(id);
 			await signOut({redirect: false, callbackUrl: '/'});
-			router.push('/')
+			router.push('/');
 		} catch (error) {
 			console.error('Error deactivating account:', error);
+		} finally {
+			setLoading(false); // Set loading to false when the operation ends
 		}
+	}
+	
+	if (loading) {
+		return (
+			<div className="flex flex-col justify-center items-center h-screen">
+				<Loader/>
+				<div className="mt-4 text-center">Loading</div>
+			</div>
+		);
 	}
 	
 	return (
