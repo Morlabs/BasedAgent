@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Button from './formUI/Button';
-import {backendUrl} from '@/utils/constants/urls';
-import axios from 'axios';
+import Loader from '@/components/common/loader';
+import {getIntegration, upsertIntegration, deleteIntegration} from '@/actions/integration.api';
 import {XMarkIcon} from '@heroicons/react/24/outline';
 
 const integrationsData = {
@@ -12,9 +12,9 @@ const integrationsData = {
 	bitbucket_oauth: false,
 	stackoverflow_oauth: false,
 };
-const userID = 1
 
-function Integrations() {
+function Integrations({id}) {
+	const [loading, setLoading] = useState(true);
 	const [githubOauth, setGithubOauth] = useState(integrationsData.github_oauth);
 	const [githubPersonalAccessToken, setGithubPersonalAccessToken] = useState(integrationsData.github_personal_access_token);
 	const [gitlabOauth, setGitlabOauth] = useState(integrationsData.gitlab_oauth);
@@ -22,69 +22,75 @@ function Integrations() {
 	const [bitbucketOauth, setBitbucketOauth] = useState(integrationsData.bitbucket_oauth);
 	const [stackoverflowOauth, setStackoverflowOauth] = useState(integrationsData.stackoverflow_oauth);
 	
-	// Fetch initial data from API
 	useEffect(() => {
 		async function fetchData() {
+			setLoading(true);
 			try {
-				const response = await axios.get(`/api/integrations?id=${userID}`); // Replace with your API endpoint
-				const data = response.data.integration[0];
-				console.log('data:', data);
-				setGithubOauth(data.githubOauth || false);
-				setGithubPersonalAccessToken(data.githubPersonalAccessToken || '');
-				setGitlabOauth(data.gitlabOauth || false);
-				setGitlabSelfHostedOauth(data.gitlabSelfHostedOauth || false);
-				setBitbucketOauth(data.bitbucketOauth || false);
-				setStackoverflowOauth(data.stackoverflowOauth || false);
+				const data = await getIntegration(id);
+				console.log('integration Data', data);
+				if (data) {
+					setGithubOauth(data.githubOauth || false);
+					setGithubPersonalAccessToken(data.githubPersonalAccessToken || '');
+					setGitlabOauth(data.gitlabOauth || false);
+					setGitlabSelfHostedOauth(data.gitlabSelfHostedOauth || false);
+					setBitbucketOauth(data.bitbucketOauth || false);
+					setStackoverflowOauth(data.stackoverflowOauth || false);
+				}
 			} catch (error) {
 				console.error('Error fetching integrations:', error);
+			} finally {
+				setLoading(false);
 			}
 		}
 		
 		fetchData();
-	}, []);
+	}, [id]);
 	
-	
-	// Handle form submission
 	async function handleSubmit(event) {
 		event.preventDefault();
-		
+		setLoading(true);
 		const formData = {
 			github_oauth: githubOauth,
 			github_personal_access_token: githubPersonalAccessToken,
 			gitlab_oauth: gitlabOauth,
 			gitlab_self_hosted_oauth: gitlabSelfHostedOauth,
 			bitbucket_oauth: bitbucketOauth,
-			stackoverflow_oauth: stackoverflowOauth
+			stackoverflow_oauth: stackoverflowOauth,
 		};
 		
 		try {
-			const response = await axios.patch(`/api/integrations?id=${userID}`, formData);
-			
-			// Check if the response status is OK (status code 200-299)
-			if (response.status >= 200 && response.status < 300) {
-				console.log('Integrations saved successfully:', response.data);
-			} else {
-				console.error('Failed to save integrations:', response.statusText);
-			}
+			await upsertIntegration(id, formData);
 		} catch (error) {
 			console.error('Error saving integrations:', error);
+		} finally {
+			setLoading(false);
 		}
 	}
 	
 	const handleRemoveClick = async () => {
-		setGithubPersonalAccessToken('')
+		setLoading(true);
+		setGithubPersonalAccessToken('');
 		try {
-			const del = await axios.delete(`/api/integrations?id=${userID}`);
-			console.log(del.data);
-		} catch (e) {
-			console.error('error in deleting token:', e)
+			await deleteIntegration(id);
+		} catch (error) {
+			console.error('Error in deleting token:', error);
+		} finally {
+			setLoading(false);
 		}
-		
-		console.log('button clicked')
 	}
+	
+	if (loading) {
+		return (
+			<div className="flex flex-col justify-center items-center h-screen">
+				<Loader/>
+				<div className="mt-4 text-center">Loading</div>
+			</div>
+		);
+	}
+	
 	return (
 		<>
-			<form action="#" method="POST" className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit}>
+			<form method="POST" className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit}>
 				<div className="px-4 py-6 sm:p-6 lg:pb-8">
 					<div>
 						<h2 className="text-lg   leading-6 text-[#dadee2]">Integrations</h2>

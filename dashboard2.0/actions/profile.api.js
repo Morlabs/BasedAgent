@@ -9,7 +9,7 @@ export async function getProfile(id) {
 	try {
 		return await db.query.profile.findFirst({
 			where: (profiles, {eq}) => {
-				eq(profiles.id, id);
+				eq(profiles.developerId, id);
 			},
 		});
 	} catch (error) {
