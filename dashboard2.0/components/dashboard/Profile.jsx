@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import Combobox from './formUI/Combobox';
 import ToggleSwitch from './formUI/ToggleSwitch';
-import axios from 'axios';
+import {getProfile, upsertProfile} from "@/actions/profile.api";
+import Loader from '@/components/common/Loader';
 
-
-function Profile() {
+function Profile({id}) {
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [genderIdentity, setGenderIdentity] = useState('Male');
@@ -15,43 +15,49 @@ function Profile() {
 	const [portfolioWebsite, setPortfolioWebsite] = useState('');
 	const [twitterHandle, setTwitterHandle] = useState('');
 	const [profileDiscoverability, setProfileDiscoverability] = useState(true);
-	const userID = 1
+	const [loading, setLoading] = useState(true);
+	
 	// Fetch initial profile data from API
 	useEffect(() => {
-		async function fetchProfileData() {
-			try {
-				const response = await axios.get(`/api/profile?id=${userID}`);
-				const data = response.data.profiles[0];
-				console.log('data : ', data);
+		async function fetchProfile() {
+			setLoading(true);
+			const profileData = await getProfile(id);
+			console.log('profileData', profileData);
+			
+			if (profileData) {
+				setFirstName(profileData.firstName || '');
+				setLastName(profileData.lastName || '');
 				
-				setFirstName(data.firstName || '');
-				setLastName(data.lastName || '');
-				setGenderIdentity({
-					id: data.genderIdentity === 'Male' ? 1 : data.genderIdentity === 'Female' ? 2 : 3, name: data.genderIdentity
-				});
-				setDateOfBirth(data.dateOfBirth || '');
-				setCurrentLocation(data.currentLocation || '');
-				setPrimaryEmail(data.primaryEmail || '');
-				setLinkedinUrl(data.linkedinUrl || '');
-				setPortfolioWebsite(data.portfolioWebsite || '');
-				setTwitterHandle(data.twitterHandle || '');
-				setProfileDiscoverability(data.profileDiscoverability);
-			} catch (error) {
-				console.error('Error fetching profile data:', error);
+				// Parse the genderIdentity JSON string before setting it
+				const parsedGenderIdentity = profileData.genderIdentity
+					? JSON.parse(profileData.genderIdentity)
+					: {id: 1, name: 'Male'};
+				
+				setGenderIdentity(parsedGenderIdentity);
+				setDateOfBirth(profileData.dateOfBirth || '');
+				setCurrentLocation(profileData.currentLocation || '');
+				setPrimaryEmail(profileData.primaryEmail || '');
+				setLinkedinUrl(profileData.linkedinUrl || '');
+				setPortfolioWebsite(profileData.portfolioWebsite || '');
+				setTwitterHandle(profileData.twitterHandle || '');
+				setProfileDiscoverability(profileData.profileDiscoverability || true);
 			}
+			setLoading(false);
 		}
 		
-		fetchProfileData();
-	}, []);
+		fetchProfile();
+	}, [id]);
 	
 	
 	async function handleSubmit(event) {
 		event.preventDefault();
+		setLoading(true);
 		
 		const profileData = {
+			id,  // Pass the id to identify the profile
 			first_name: firstName,
 			last_name: lastName,
-			gender_identity: genderIdentity.name,
+			gender_identity: genderIdentity,
 			date_of_birth: dateOfBirth,
 			current_location: currentLocation,
 			primary_email: primaryEmail,
@@ -62,18 +68,23 @@ function Profile() {
 		};
 		
 		try {
-			const response = await axios.patch(`/api/profile?id=${userID}`, profileData);
-			
-			if (response.status === 200) {
-				console.log('Profile updated successfully:', response.data);
-			} else {
-				console.error('Failed to update profile:', response.statusText);
-			}
+			await upsertProfile(profileData);
+			console.log('Profile saved successfully.');
 		} catch (error) {
 			console.error('Error saving profile data:', error);
+		} finally {
+			setLoading(false);
 		}
 	}
 	
+	if (loading) {
+		return (
+			<div className="flex flex-col justify-center items-center h-screen">
+				<Loader/>
+				<div className="mt-4 text-center">Loading</div>
+			</div>
+		);
+	}
 	
 	return (
 		<form action="#" method="POST" className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit}>
@@ -88,7 +99,7 @@ function Profile() {
 				
 				<div className="mt-6 grid grid-cols-12 gap-6">
 					<div className="col-span-12 sm:col-span-6">
-						<label htmlFor="first-name" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+						<label htmlFor="first-name" className="block text-sm font-medium leading-6 text-[#dadee2]">
 							First name
 						</label>
 						<input
@@ -103,7 +114,7 @@ function Profile() {
 					</div>
 					
 					<div className="col-span-12 sm:col-span-6">
-						<label htmlFor="last-name" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+						<label htmlFor="last-name" className="block text-sm font-medium leading-6 text-[#dadee2]">
 							Last name
 						</label>
 						<input
@@ -118,17 +129,15 @@ function Profile() {
 					</div>
 					
 					<div className="col-span-12 sm:col-span-6">
-						<label htmlFor="gender-identity" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+						<label htmlFor="gender-identity" className="block text-sm font-medium leading-6 text-[#dadee2]">
 							Gender
 						</label>
 						<Combobox
-							options={[{
-								id: 1, name: 'Male',
-							}, {
-								id: 2, name: 'Female',
-							}, {
-								id: 3, name: 'Other',
-							},]}
+							options={[
+								{id: 1, name: 'Male'},
+								{id: 2, name: 'Female'},
+								{id: 3, name: 'Other'},
+							]}
 							selected={genderIdentity}
 							onChange={setGenderIdentity}
 							placeholder="Select Gender"
@@ -136,7 +145,7 @@ function Profile() {
 					</div>
 					
 					<div className="col-span-12 sm:col-span-6">
-						<label htmlFor="date-of-birth" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+						<label htmlFor="date-of-birth" className="block text-sm font-medium leading-6 text-[#dadee2]">
 							Date of Birth
 						</label>
 						<input
@@ -150,7 +159,7 @@ function Profile() {
 					</div>
 					
 					<div className="col-span-12">
-						<label htmlFor="current-location" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+						<label htmlFor="current-location" className="block text-sm font-medium leading-6 text-[#dadee2]">
 							Current Location
 						</label>
 						<input
@@ -164,7 +173,7 @@ function Profile() {
 					</div>
 					
 					<div className="col-span-12 sm:col-span-6">
-						<label htmlFor="primary-email" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+						<label htmlFor="primary-email" className="block text-sm font-medium leading-6 text-[#dadee2]">
 							Primary Email
 						</label>
 						<input
@@ -179,7 +188,7 @@ function Profile() {
 					</div>
 					
 					<div className="col-span-12 sm:col-span-6">
-						<label htmlFor="linkedin-url" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+						<label htmlFor="linkedin-url" className="block text-sm font-medium leading-6 text-[#dadee2]">
 							LinkedIn URL
 						</label>
 						<input
@@ -193,7 +202,7 @@ function Profile() {
 					</div>
 					
 					<div className="col-span-12 sm:col-span-6">
-						<label htmlFor="portfolio-website" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+						<label htmlFor="portfolio-website" className="block text-sm font-medium leading-6 text-[#dadee2]">
 							Portfolio Website
 						</label>
 						<input
@@ -207,7 +216,7 @@ function Profile() {
 					</div>
 					
 					<div className="col-span-12 sm:col-span-6">
-						<label htmlFor="twitter-handle" className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+						<label htmlFor="twitter-handle" className="block text-sm font-medium leading-6 text-[#dadee2]">
 							Twitter Handle
 						</label>
 						<input
@@ -221,8 +230,7 @@ function Profile() {
 					</div>
 					
 					<div className="col-span-12 sm:col-span-6">
-						<label htmlFor="profile-discoverability"
-									 className="block text-sm font-medium leading-6 font-bold text-[#dadee2]">
+						<label htmlFor="profile-discoverability" className="block text-sm font-medium leading-6 text-[#dadee2]">
 							Profile Discoverability
 						</label>
 						<div className="mt-2">
@@ -240,7 +248,8 @@ function Profile() {
 					</button>
 				</div>
 			</div>
-		</form>);
+		</form>
+	);
 }
 
 export default Profile;

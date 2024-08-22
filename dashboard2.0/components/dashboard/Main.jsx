@@ -130,7 +130,7 @@ export default function Sidebar({id}) {
 							</aside>
 							
 							<div className="lg:col-span-9 p-6">
-								{ActiveComponent && <ActiveComponent id={id} developer={developer}/>}
+								{ActiveComponent && <ActiveComponent id={id}/>}
 							</div>
 						</div>
 					</div>
