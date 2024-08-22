@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { primaryColor } from "@/config/config";
 import CountryFlag from "./CountryFlag";
+import { countries } from "@/utils/constants/countries";
 
 const LeaderboardTable = ({ data, handlePress, currentUser }) => {
   return (
@@ -76,15 +77,17 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
       }
 
       <div className="w-full">
-        {data?.map((item, index) => (
+        {data?.map((item, index) => {
+          const country = countries.find((country) => country?.name === item?.location?.country);
+          return (
           <div key={index}>
-            <div className="grid grid-cols-3 md:grid-cols-6 py-3 px-2 md:px-10">
+            <div className="grid grid-cols-3 md:grid-cols-6 py-3 px-2 md:px-10 items-center">
               <div className="col-span-1">
                 <span className="text-sm">
                   {index + 1 < 10 ? `0${index + 1}` : index + 1}.
                 </span>
               </div>
-              <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between gap-4 md:gap-0">
+              <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between gap-4 md:gap-0 item-center">
                 <Link
                   href={`/user/${item?.id}`}
                   className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
@@ -93,7 +96,7 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
                 </Link>
                 <span className="w-1/2 flex justify-start">
                   <img className="w-6 h-6" src="/favicon.png" />
-                  <a href={item?.github_url}>
+                  <a href={item?.githubUrl} target="_blank">
                     <img
                       className="w-6 h-6 ml-2"
                       src="https://img.icons8.com/ios-glyphs/30/FFFFFF/github.png"
@@ -101,27 +104,27 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
                   </a>
                 </span>
               </div>
-              <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between gap-4 md:gap-0">
+              <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between items-center gap-4 md:gap-0">
                 <span
-                  className={`w-8 cursor-pointer`}
-                  onClick={() => handlePress("country", item?.country)}
+                  className={`w-8 cursor-pointer text-3xl`}
+                  onClick={() => handlePress("country", item?.location?.country)}
                 >
-                  <CountryFlag countryName={item?.country} />
+                  {country?.flag || <img className="w-6 h-6" src="/favicon.png"/>}
                 </span>
                 <span
                   className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
-                  onClick={() => handlePress("city", item?.city)}
+                  onClick={() => handlePress("city", item?.location?.city)}
                 >
-                  {item?.city}
+                  {item?.location?.city || 'Location'}
                 </span>
               </div>
               <div className="col-span-1 -mt-6 md:mt-0">
-                <span className="text-sm font-semibold">{item?.weight}</span>
+                <span className="text-sm font-semibold">{item?.weight || 0}</span>
               </div>
             </div>
             <div className="h-[1px] bg-zinc-700 w-full"></div>
           </div>
-        ))}
+        )})}
       </div>
     </div>
   );

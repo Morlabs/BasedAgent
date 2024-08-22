@@ -9,6 +9,7 @@ import { currentUser, filterOptions, SortOptions, tableData } from "@/config/con
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { getAllDeveloper } from "@/actions/developer.api";
+import { getCityAndCountry } from "@/utils/country";
 
 const Leaderboard = () => {
 
@@ -37,12 +38,22 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchDeveloper = async () => {
       const devs = await getAllDeveloper();
-      coonsole.log('devs', devs)
-      setDevelopers(devs);
-      setFilteredDevelopers(devs);
-    }
+  
+      const updatedDevs = await Promise.all(
+        devs.map(async (dev) => {
+          const location = await getCityAndCountry(dev?.location);
+          return { ...dev, location };
+        })
+      );
+  
+      console.log('devs', updatedDevs);
+      setDevelopers(updatedDevs);
+      setFilteredDevelopers(updatedDevs);
+    };
+  
     fetchDeveloper();
-  }, [])
+  }, []);
+  
 
   useEffect(() => {
     setFilteredDevelopers(applyFilters(developers, filters, isCity));
@@ -62,8 +73,8 @@ const Leaderboard = () => {
   const filterByCountry = (developers, country, isCity) => {
     if (country) {
       setIsCity(false);
-      return developers.filter((dev) =>
-        dev.country.toLowerCase().includes(country.toLowerCase())
+      return developers?.filter((dev) =>
+        dev?.country?.toLowerCase().includes(country?.toLowerCase())
       );
     }
     return developers;
@@ -71,8 +82,8 @@ const Leaderboard = () => {
 
   const filterByCity = (developers, city) => {
     if (city) {
-      return developers.filter((dev) =>
-        dev.city.toLowerCase().includes(city.toLowerCase())
+      return developers?.filter((dev) =>
+        dev?.city?.toLowerCase().includes(city?.toLowerCase())
       );
     }
     return developers;
@@ -80,8 +91,8 @@ const Leaderboard = () => {
 
   const filterByTechnology = (developers, technology) => {
     if (technology) {
-      return developers.filter((dev) =>
-        dev.top_languages.includes(technology.toLowerCase())
+      return developers?.filter((dev) =>
+        dev?.top_languages?.includes(technology?.toLowerCase())
       );
     }
     return developers;
@@ -93,15 +104,15 @@ const Leaderboard = () => {
     return developers.sort((a, b) => {
       switch (sortBy) {
         case "Rank":
-          return compareValues(Number(a.rank), Number(b.rank), true);
+          return compareValues(Number(a?.rank), Number(b?.rank), true);
         case "Weight":
-          return compareValues(Number(a.weight), Number(b.weight), true);
+          return compareValues(Number(a?.weight), Number(b?.weight), true);
         case "Name":
-          return compareValues(a.name, b.name);
+          return compareValues(a?.name, b?.name);
         case "Country":
-          return compareValues(a.country, b.country);
+          return compareValues(a?.country, b?.country);
         case "City":
-          return compareValues(a.city, b.city);
+          return compareValues(a?.city, b?.city);
         default:
           return 0;
       }
