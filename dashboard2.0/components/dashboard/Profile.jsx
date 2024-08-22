@@ -77,17 +77,10 @@ function Profile({id}) {
 		}
 	}
 	
-	if (loading) {
-		return (
-			<div className="flex flex-col justify-center items-center h-screen">
-				<Loader/>
-				<div className="mt-4 text-center">Loading</div>
-			</div>
-		);
-	}
+
 	
 	return (
-		<form action="#" method="POST" className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit}>
+		<form method="POST" className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit}>
 			{/* Profile section */}
 			<div className="px-4 py-6 sm:p-6 lg:pb-8">
 				<div>
