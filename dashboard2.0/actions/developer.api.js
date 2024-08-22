@@ -90,8 +90,12 @@ export async function getDeveloper(id) {
 
 export async function deleteDeveloper(developerId) {
 	try {
-		await db.delete(developers)
-			.where(eq(developers.id, developerId));
+		await db.update(developers)
+			.set({
+				deletedAt: new Date(),  // Set the current timestamp
+			})
+			.where(eq(developers.id, developerId))
+			.execute();
 		return true
 	} catch (error) {
 		console.error('Error deleting integration:', error);
@@ -120,7 +124,6 @@ export async function ChangeDeveloperPassword(passwordData, developerId) {
 		await db.update(developers)
 			.set({
 				password: passwordData.new_password,  // Store the new password as a plain string
-				deletedAt: new Date(),  // Set the current timestamp
 			})
 			.where(eq(developers.id, developerId))
 			.execute();
