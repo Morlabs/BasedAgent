@@ -10,6 +10,8 @@ import Integrations from './Integrations';
 import Profile from './Profile';
 import Account from './Account';
 import Loader from '@/components/common/Loader';
+import {useAuth} from '@/hooks/useAuth'; // Import the custom hook
+import {useRouter} from "next/navigation";
 
 const subNavigation = [
 	{name: 'Profile', href: '#', icon: UserCircleIcon, component: Profile},
@@ -26,6 +28,8 @@ export default function Sidebar({id}) {
 	const [activeTab, setActiveTab] = useState(subNavigation[0]);
 	const [developer, setDeveloper] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const {isLoggedIn, isLoading} = useAuth(); // Use the custom hook
+	const router = useRouter();
 	
 	useEffect(() => {
 		async function fetchDeveloper() {
@@ -35,14 +39,24 @@ export default function Sidebar({id}) {
 			setLoading(false);
 		}
 		
-		fetchDeveloper();
-	}, [id]);
+		if (isLoggedIn) {
+			fetchDeveloper();
+		}
+	}, [id, isLoggedIn]);
 	
-	if (loading) {
+	
+	useEffect(() => {
+		if (!isLoading && !isLoggedIn) {
+			router.push('/'); // Redirect to homepage if not logged in
+		}
+	}, [isLoggedIn, isLoading, router]);
+	
+	
+	if (loading || isLoading) {
 		return <div className="flex flex-col justify-center items-center h-screen">
 			<Loader/>
 			<div className="mt-4 text-center">Loading</div>
-		</div>
+		</div>;
 	}
 	
 	const ActiveComponent = activeTab.component;
