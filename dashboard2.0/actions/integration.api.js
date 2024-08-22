@@ -1,8 +1,8 @@
 "use server";
 
-import { db } from "@/lib/db/connect";
-import { integrations } from "@/lib/db/schema";
-import { eq } from "drizzle-orm";
+import {db} from "@/lib/db/connect";
+import {integrations} from "@/lib/db/schema";
+import {eq} from "drizzle-orm";
 
 // Function to get integration data by developer ID
 export async function getIntegration(developerId) {
@@ -19,17 +19,19 @@ export async function getIntegration(developerId) {
 // Function to upsert integration data
 export async function upsertIntegration(developerId, formData) {
 	try {
+		
+		const {
+			github_oauth,
+			github_personal_access_token,
+			gitlab_oauth,
+			gitlab_self_hosted_oauth,
+			bitbucket_oauth,
+			stackoverflow_oauth,
+		} = formData;
+		
 		const existingData = await getIntegration(developerId);
 		if (existingData) {
-			// Update existing record
-			const {
-				github_oauth,
-				github_personal_access_token,
-				gitlab_oauth,
-				gitlab_self_hosted_oauth,
-				bitbucket_oauth,
-				stackoverflow_oauth,
-			} = formData;
+			
 			
 			return await db.update(integrations)
 				.set({
@@ -42,18 +44,8 @@ export async function upsertIntegration(developerId, formData) {
 				})
 				.where(eq(integrations.developerId, developerId));
 		} else {
-			// Insert new record
-			const {
-				github_oauth,
-				github_personal_access_token,
-				gitlab_oauth,
-				gitlab_self_hosted_oauth,
-				bitbucket_oauth,
-				stackoverflow_oauth,
-			} = formData;
-			
 			return await db.insert(integrations).values({
-				developerId,
+				developerId: developerId,
 				github_oauth,
 				github_personal_access_token,
 				gitlab_oauth,
