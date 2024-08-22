@@ -1,0 +1,477 @@
+{
+  "id": "0973e680-794a-47cf-b72b-84f6980d903a",
+  "prevId": "b96c2689-404a-4f3e-b5eb-67a70bb2e27a",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.account": {
+      "name": "account",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "developer_id": {
+          "name": "developer_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "current_password": {
+          "name": "current_password",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "new_password": {
+          "name": "new_password",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "confirm_password": {
+          "name": "confirm_password",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "update_settings": {
+          "name": "update_settings",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "deactivate_account": {
+          "name": "deactivate_account",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "account_developer_id_developers_id_fk": {
+          "name": "account_developer_id_developers_id_fk",
+          "tableFrom": "account",
+          "tableTo": "developers",
+          "columnsFrom": [
+            "developer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.contributions": {
+      "name": "contributions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "developer_id": {
+          "name": "developer_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "timestamp": {
+          "name": "timestamp",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contribution_count": {
+          "name": "contribution_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "contributions_developer_id_developers_id_fk": {
+          "name": "contributions_developer_id_developers_id_fk",
+          "tableFrom": "contributions",
+          "tableTo": "developers",
+          "columnsFrom": [
+            "developer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.developers": {
+      "name": "developers",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "skills": {
+          "name": "skills",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "github_username": {
+          "name": "github_username",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "github_url": {
+          "name": "github_url",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "top_languages": {
+          "name": "top_languages",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "public_repositories": {
+          "name": "public_repositories",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.integrations": {
+      "name": "integrations",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "developer_id": {
+          "name": "developer_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "github_oauth": {
+          "name": "github_oauth",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "github_personal_access_token": {
+          "name": "github_personal_access_token",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gitlab_oauth": {
+          "name": "gitlab_oauth",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gitlab_oauth_access_token": {
+          "name": "gitlab_oauth_access_token",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gitlab_self_hosted_oauth": {
+          "name": "gitlab_self_hosted_oauth",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gitlab_self_hosted_oauth_access_token": {
+          "name": "gitlab_self_hosted_oauth_access_token",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bitbucket_oauth": {
+          "name": "bitbucket_oauth",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bitbucket_oauth_access_token": {
+          "name": "bitbucket_oauth_access_token",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "stackoverflow_oauth": {
+          "name": "stackoverflow_oauth",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "stackoverflow_oauth_access_token": {
+          "name": "stackoverflow_oauth_access_token",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "integrations_developer_id_developers_id_fk": {
+          "name": "integrations_developer_id_developers_id_fk",
+          "tableFrom": "integrations",
+          "tableTo": "developers",
+          "columnsFrom": [
+            "developer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.job_preferences": {
+      "name": "job_preferences",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "developer_id": {
+          "name": "developer_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "desired_positions": {
+          "name": "desired_positions",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "target_industry": {
+          "name": "target_industry",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "open_to_remote_work": {
+          "name": "open_to_remote_work",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "employment_type": {
+          "name": "employment_type",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "compensation_expectations": {
+          "name": "compensation_expectations",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tech_stack_dislikes": {
+          "name": "tech_stack_dislikes",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ideal_company_scale": {
+          "name": "ideal_company_scale",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "job_preferences_developer_id_developers_id_fk": {
+          "name": "job_preferences_developer_id_developers_id_fk",
+          "tableFrom": "job_preferences",
+          "tableTo": "developers",
+          "columnsFrom": [
+            "developer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.profile": {
+      "name": "profile",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "developer_id": {
+          "name": "developer_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "first_name": {
+          "name": "first_name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_name": {
+          "name": "last_name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gender_identity": {
+          "name": "gender_identity",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_of_birth": {
+          "name": "date_of_birth",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "current_location": {
+          "name": "current_location",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "primary_email": {
+          "name": "primary_email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkedin_url": {
+          "name": "linkedin_url",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "portfolio_website": {
+          "name": "portfolio_website",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "twitter_handle": {
+          "name": "twitter_handle",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "profile_discoverability": {
+          "name": "profile_discoverability",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "discord_handle": {
+          "name": "discord_handle",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "profile_developer_id_developers_id_fk": {
+          "name": "profile_developer_id_developers_id_fk",
+          "tableFrom": "profile",
+          "tableTo": "developers",
+          "columnsFrom": [
+            "developer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

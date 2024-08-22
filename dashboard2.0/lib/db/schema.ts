@@ -25,7 +25,7 @@ export const contributions = pgTable('contributions', {
 
 export const jobPreferences = pgTable('job_preferences', {
   id: serial('id').primaryKey(),
-  developerId: integer('user_id').references(() => developers.id),
+  developerId: integer('developer_id').references(() => developers.id),
   desiredPositions: (text('desired_positions')).array(),
   targetIndustry: (text('target_industry')).array(),
   openToRemoteWork: boolean('open_to_remote_work'),
@@ -37,7 +37,7 @@ export const jobPreferences = pgTable('job_preferences', {
 
 export const integrations = pgTable('integrations', {
   id: serial('id').primaryKey(),
-  developerId: integer('user_id').references(() => developers.id),
+  developerId: integer('developer_id').references(() => developers.id),
   githubOauth: boolean('github_oauth'),
   githubPersonalAccessToken: varchar('github_personal_access_token', {length: 255}),
   gitlabOauth: boolean('gitlab_oauth'),
@@ -52,7 +52,7 @@ export const integrations = pgTable('integrations', {
 
 export const profile = pgTable('profile', {
   id: serial('id').primaryKey(),
-  developerId: integer('user_id').references(() => developers.id),
+  developerId: integer('developer_id').references(() => developers.id),
   firstName: varchar('first_name', {length: 100}).notNull(),
   lastName: varchar('last_name', {length: 100}).notNull(),
   genderIdentity: varchar('gender_identity', {length: 50}),
@@ -69,7 +69,7 @@ export const profile = pgTable('profile', {
 
 export const account = pgTable('account', {
   id: serial('id').primaryKey(),
-  developerId: integer('user_id').references(() => developers.id),
+  developerId: integer('developer_id').references(() => developers.id),
   currentPassword: varchar('current_password', {length: 255}),
   newPassword: varchar('new_password', {length: 255}),
   confirmPassword: varchar('confirm_password', {length: 255}),
