@@ -1,26 +1,38 @@
 import React from 'react';
 import Link from 'next/link';
 import Logo from '../branding/Logo';
-import { signOut, signIn } from 'next-auth/react';
-import { useAuth } from "@/hooks/useAuth";
+import {signOut, signIn} from 'next-auth/react';
+import {useAuth} from "@/hooks/useAuth";
+import {useRouter} from "next/navigation";
+import {Popover, PopoverButton, PopoverPanel} from '@headlessui/react';
+import {ChevronDownIcon} from '@heroicons/react/20/solid';
 
-function DesktopNavbar({ toggleMenu, menuActive }) {
-	const { isLoggedIn, isLoading } = useAuth(); // Use useAuth hook
+function DesktopNavbar({toggleMenu, menuActive}) {
+	const {isLoggedIn, user} = useAuth(); // Use useAuth hook
+	const router = useRouter();
 	
+	const handleRouting = async () => {
+		router.push(`/account-management/${user?.id}`);
+		
+	}
 	const handleLogout = async () => {
 		if (isLoggedIn) {
-			await signOut().then(() => {
+			try {
+				await signOut({redirect: false, callbackUrl: '/'});
 				console.log('Logout successful');
-			});
+				router.push('/');
+			} catch (error) {
+				console.error('Error during logout:', error);
+			}
 		} else {
-			await signIn('github', { callbackUrl: '/reviewer-signup/complete' });
+			await signIn('github', {callbackUrl: '/user'});
 		}
 	};
 	
 	return (
 		<div className="navbar">
 			<div className="navbar-logo">
-				<Logo />
+				<Logo/>
 			</div>
 			<div className="navbar-desktop">
 				<div className="dropdown">
@@ -64,13 +76,60 @@ function DesktopNavbar({ toggleMenu, menuActive }) {
 						<Link href="/faqs">FAQs</Link>
 					</div>
 				</div>
-				<button
-					onClick={handleLogout}
-					className="auth-button"
-				>
-					{isLoading ? 'Loading...' : isLoggedIn ? 'Logout' : 'Login'}
-				</button>
+				
+				{/* Avatar with Dropdown Menu */}
+				<Popover className="relative">
+					<PopoverButton className="inline-flex items-center gap-x-2">
+						<img
+							src={user?.image || '/default-user.png'} // Replace with the actual avatar image path
+							alt="User Avatar"
+							className="h-8 w-8 rounded-full"
+						/>
+						<ChevronDownIcon aria-hidden="true" className="h-5 w-5"/>
+					</PopoverButton>
+					
+					<PopoverPanel
+						className="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+						<div className="py-1">
+							{isLoggedIn ? (
+								<>
+									<div className="block px-4 py-2 text-sm text-gray-500">
+										{user.name}
+									</div>
+									
+									<hr className="border-gray-300 my-2 mx-2"/>
+									
+									<div className="block px-4 py-2 text-sm text-gray-500 cursor-pointer" onClick={handleRouting}>
+										
+										Account
+									</div>
+									<hr className="border-gray-300 my-2 mx-2"/>
+									
+									<button
+										onClick={handleLogout}
+										className="block w-full text-left px-4 py-2 text-sm text-gray-700"
+									>
+										Logout
+									</button>
+								</>
+							) : (
+								<>
+									<hr className="border-gray-300 my-2"/>
+									<button
+										onClick={() => signIn('github', {callbackUrl: '/user'})}
+										className="block w-full text-left px-4 py-2 text-sm text-gray-700"
+									>
+										Login
+									</button>
+									<hr className="border-gray-300 my-2"/>
+								</>
+							)}
+						</div>
+					
+					</PopoverPanel>
+				</Popover>
 			</div>
+			
 			<div className="navbar-mobile">
 				<span className="hamburger" onClick={toggleMenu}>MENU</span>
 				<div className={`navbar-menu ${menuActive ? 'active' : ''}`}>
@@ -117,12 +176,6 @@ function DesktopNavbar({ toggleMenu, menuActive }) {
 							</a>
 							<Link href="/faqs" onClick={toggleMenu}>FAQs</Link>
 						</div>
-						<button
-							onClick={handleLogout}
-							className="auth-button"
-						>
-							{isLoading ? 'Loading...' : isLoggedIn ? 'Logout' : 'Login'}
-						</button>
 					</div>
 				</div>
 			</div>

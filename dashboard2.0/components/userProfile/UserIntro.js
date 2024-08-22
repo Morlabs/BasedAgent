@@ -1,5 +1,7 @@
 import { primaryColor } from "@/config/config";
 
+
+
 const UserIntro = ({ data }) => {
   return (
     <div className="flex justify-between items-end">
