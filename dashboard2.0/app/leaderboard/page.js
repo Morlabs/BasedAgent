@@ -7,12 +7,18 @@ import CustomDropdown from "@/components/leaderboard/CustomDropdown";
 import LeaderboardTable from "@/components/leaderboard/LeaderboardTable";
 import { currentUser, filterOptions, SortOptions, tableData } from "@/config/config";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/hooks/useAuth";
+import { getAllDeveloper } from "@/actions/developer.api";
 
 const Leaderboard = () => {
 
   const router = useRouter();
 
-  const [developers, setDevelopers] = useState([...tableData]);
+  const auth = useAuth();
+
+  console.log('user iser', auth)
+
+  const [developers, setDevelopers] = useState([]);
   const [filteredDevelopers, setFilteredDevelopers] = useState([]);
   const [filters, setFilters] = useState({
     country: "",
@@ -27,6 +33,16 @@ const Leaderboard = () => {
   useEffect(() => {
     setFilteredDevelopers(developers);
   }, []);
+
+  useEffect(() => {
+    const fetchDeveloper = async () => {
+      const devs = await getAllDeveloper();
+      coonsole.log('devs', devs)
+      setDevelopers(devs);
+      setFilteredDevelopers(devs);
+    }
+    fetchDeveloper();
+  }, [])
 
   useEffect(() => {
     setFilteredDevelopers(applyFilters(developers, filters, isCity));
@@ -104,8 +120,8 @@ const Leaderboard = () => {
   };
 
   const handleNavigateToSignup = () => {
-		router.push('/reviewer-signup');
-	};
+    router.push('/reviewer-signup');
+  };
 
   return (
     <div className="px-4 xl:px-2">
@@ -120,7 +136,7 @@ const Leaderboard = () => {
           <span className="text-gray-400">Filter by:</span>
           {filterOptions.map((detail) => (
             <CustomDropdown
-            value={filters[detail.id]}
+              value={filters[detail.id]}
               key={detail.id}
               id={detail.id}
               label={detail.label}
@@ -131,7 +147,7 @@ const Leaderboard = () => {
           ))}
           <span className="text-gray-400">Sort by:</span>
           <CustomDropdown
-          value={filters.sortBy}
+            value={filters.sortBy}
             key={SortOptions.id}
             id={SortOptions.id}
             label={SortOptions.label}
@@ -160,7 +176,7 @@ const Leaderboard = () => {
               label={20}
               value={results}
               options={["20", "30", "40", "50"]}
-              onChange={(value) => {}}
+              onChange={(value) => { }}
             />
           </div>
           <div className="flex items-center gap-2">

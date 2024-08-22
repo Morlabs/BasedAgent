@@ -29,47 +29,51 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
       <div className="h-1 bg-zinc-700 w-full my-4"></div>
 
       {/* table data */}
-      <div className="w-full mb-4 bg-zinc-700 rounded px-2 md:px-10">
-        <div className="grid grid-cols-3 md:grid-cols-6 py-3">
-          <div className="col-span-1">
-            <span className="text-sm">{564}.</span>
+      {
+        currentUser && (
+          <div className="w-full mb-4 bg-zinc-700 rounded px-2 md:px-10">
+            <div className="grid grid-cols-3 md:grid-cols-6 py-3">
+              <div className="col-span-1">
+                <span className="text-sm">{564}.</span>
+              </div>
+              <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between gap-4 md:gap-0">
+                <Link
+                  href={`/user/${currentUser?.id}`}
+                  className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
+                >
+                  {currentUser?.name}
+                </Link>
+                <span className="w-1/2 flex justify-start">
+                  <img className="w-6 h-6" src="/favicon.png" />
+                  <a href={currentUser?.github_url}>
+                    <img
+                      className="w-6 h-6 ml-2"
+                      src="https://img.icons8.com/ios-glyphs/30/FFFFFF/github.png"
+                    />
+                  </a>
+                </span>
+              </div>
+              <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between gap-4 md:gap-0">
+                <span
+                  className={`w-8 cursor-pointer`}
+                  onClick={() => handlePress("country", currentUser?.country)}
+                >
+                  <CountryFlag countryName={currentUser?.country} />
+                </span>
+                <span
+                  className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
+                  onClick={() => handlePress("city", currentUser?.city)}
+                >
+                  {currentUser?.city}
+                </span>
+              </div>
+              <div className="col-span-1 -mt-6 md:mt-0">
+                <span className="text-sm font-semibold">{currentUser?.weight}</span>
+              </div>
+            </div>
           </div>
-          <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between gap-4 md:gap-0">
-            <Link
-              href={`/user/${currentUser?.id}`}
-              className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
-            >
-              {currentUser?.name}
-            </Link>
-            <span className="w-1/2 flex justify-start">
-              <img className="w-6 h-6" src="/favicon.png" />
-              <a href={currentUser?.github_url}>
-                <img
-                  className="w-6 h-6 ml-2"
-                  src="https://img.icons8.com/ios-glyphs/30/FFFFFF/github.png"
-                />
-              </a>
-            </span>
-          </div>
-          <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between gap-4 md:gap-0">
-            <span
-              className={`w-8 cursor-pointer`}
-              onClick={() => handlePress("country", currentUser?.country)}
-            >
-              <CountryFlag countryName={currentUser?.country} />
-            </span>
-            <span
-              className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
-              onClick={() => handlePress("city", currentUser?.city)}
-            >
-              {currentUser?.city}
-            </span>
-          </div>
-          <div className="col-span-1 -mt-6 md:mt-0">
-            <span className="text-sm font-semibold">{currentUser?.weight}</span>
-          </div>
-        </div>
-      </div>
+        )
+      }
 
       <div className="w-full">
         {data?.map((item, index) => (

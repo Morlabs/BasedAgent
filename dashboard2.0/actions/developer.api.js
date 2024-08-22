@@ -1,26 +1,26 @@
 "use server";
 
-import {developers} from "@/lib/db/schema";
-import {db} from "@/lib/db/connect";
-import {eq} from "drizzle-orm";
+import { developers } from "@/lib/db/schema";
+import { db } from "@/lib/db/connect";
+import { eq } from "drizzle-orm";
 
 export async function addDeveloper(user) {
 	try {
 		// Ensure that top_languages is an array
 		const topLanguagesArray = Array.isArray(user.githubDetails.top_languages) ? user.githubDetails.top_languages : [];
-		
+
 		// Convert the skills string back to an array
 		const skillsArray = user.githubDetails.top_languages.join(', ').split(', ');
-		
+
 		console.log("Generated skills array:", skillsArray);
-		
+
 		// 1. Check if the user exists in the database using their GitHub ID
 		const existingUser = await db.query.developers.findFirst({
-			where: (developer, {eq}) => eq(developers.githubUsername, user.githubDetails.login)
+			where: (developer, { eq }) => eq(developers.githubUsername, user.githubDetails.login)
 		});
-		
+
 		console.log("Existing user:", existingUser);
-		
+
 		if (!existingUser) {
 			// Case 1: User does not exist in the database, so add the user
 			console.log("User not found, inserting new user");
@@ -33,19 +33,20 @@ export async function addDeveloper(user) {
 				imageUrl: user.image,  // Storing the image URL
 				topLanguages: topLanguagesArray,  // Store as an array in topLanguages
 				skills: skillsArray,  // Store as an array in skills
+				location: user.githubDetails.location,
 				publicRepositories: user.githubDetails.public_repos,
 			});
-			
+
 			console.log("Developer added successfully: ", developer);
 			return true;
 		}
-		
+
 		// 2. Check if the data has changed
 		const dataChanged = (existingUser.name !== user.name || existingUser.email !== user.email || existingUser.skills.join(', ') !== skillsArray.join(', ') ||  // Compare skills as strings
 			existingUser.publicRepositories !== user.githubDetails.public_repos || existingUser.imageUrl !== user.image);
-		
+
 		console.log("Data changed:", dataChanged);
-		
+
 		if (dataChanged) {
 			// Case 2: User exists, but data has changed, so update the user
 			console.log("User data has changed, updating user");
@@ -57,15 +58,15 @@ export async function addDeveloper(user) {
 				})
 				.where(eq(developers.githubUsername, user.githubDetails.login))
 				.execute();
-			
+
 			console.log("User updated successfully");
 			return true;
 		}
-		
+
 		// Case 3: User exists and data has not changed, do nothing
 		console.log("User exists and no data changes detected, nothing to do");
 		return true;
-		
+
 	} catch (error) {
 		console.error('Error processing user:', error);
 		return null;
@@ -76,11 +77,21 @@ export async function addDeveloper(user) {
 export async function getDeveloper(id) {
 	try {
 		return await db.query.developers.findFirst({
-			where: (developer, {eq}) => {
+			where: (developer, { eq }) => {
 				eq(developer.id, id)
 			}
 		})
-		
+
+	} catch (error) {
+		console.error('Error processing user:', error);
+		return null;
+	}
+}
+
+export async function getAllDeveloper() {
+	try {
+		return await db.query.developers.findMany()
+
 	} catch (error) {
 		console.error('Error processing user:', error);
 		return null;
@@ -110,16 +121,16 @@ export async function ChangeDeveloperPassword(passwordData, developerId) {
 			where: (developer) => eq(developer.id, developerId),
 			columns: ['password']  // Make sure 'password' is a field in your schema
 		});
-		
+
 		if (!developer) {
 			throw new Error('Developer not found');
 		}
-		
+
 		// 2. Compare the provided current password with the stored password
 		if (passwordData.current_password !== developer.password) {
 			throw new Error('Current password is incorrect');
 		}
-		
+
 		// 3. Update the developer's password in the database
 		await db.update(developers)
 			.set({
@@ -127,7 +138,7 @@ export async function ChangeDeveloperPassword(passwordData, developerId) {
 			})
 			.where(eq(developers.id, developerId))
 			.execute();
-		
+
 		console.log('Password updated successfully');
 		return true;
 	} catch (error) {
