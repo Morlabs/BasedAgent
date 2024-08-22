@@ -1,8 +1,8 @@
 "use server";
 
-import { developers } from "@/lib/db/schema";
-import { db } from "@/lib/db/connect";
-import { eq } from "drizzle-orm";
+import {developers} from "@/lib/db/schema";
+import {db} from "@/lib/db/connect";
+import {eq} from "drizzle-orm";
 
 export async function addDeveloper(user) {
 	try {
@@ -16,7 +16,7 @@ export async function addDeveloper(user) {
 		
 		// 1. Check if the user exists in the database using their GitHub ID
 		const existingUser = await db.query.developers.findFirst({
-			where: (developer, { eq }) => eq(developers.githubUsername, user.githubDetails.login)
+			where: (developer, {eq}) => eq(developers.githubUsername, user.githubDetails.login)
 		});
 		
 		console.log("Existing user:", existingUser);
@@ -73,6 +73,21 @@ export async function addDeveloper(user) {
 		// Case 3: User exists and data has not changed, do nothing
 		console.log("User exists and no data changes detected, nothing to do");
 		return true;
+		
+	} catch (error) {
+		console.error('Error processing user:', error);
+		return null;
+	}
+}
+
+
+export async function getDeveloper(id) {
+	try {
+		return await db.query.developers.findFirst({
+			where: (developer, {eq}) => {
+				eq(developer.id, id)
+			}
+		})
 		
 	} catch (error) {
 		console.error('Error processing user:', error);

@@ -13,7 +13,6 @@ function DesktopNavbar({toggleMenu, menuActive}) {
 	
 	const handleRouting = async () => {
 		router.push(`/account-management/${user?.id}`);
-		
 	}
 	const handleLogout = async () => {
 		if (isLoggedIn) {
