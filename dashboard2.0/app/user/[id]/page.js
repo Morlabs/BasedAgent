@@ -19,9 +19,25 @@ import {
 	userData,
 } from "@/config/config";
 import {useParams} from "next/navigation";
+import { useEffect, useState } from "react";
+import { getDeveloper } from "@/actions/developer.api";
 
 const User = () => {
 	const {id} = useParams();
+
+	const [profileData, setProfileData] = useState(null);
+
+	useEffect(() => {
+		const getProfileData = async () => {
+			const user = await getDeveloper(id);
+
+			console.log('user', user);
+			console.log('id', id)
+		}
+
+		getProfileData();
+	}, [])
+	console.log('id', id);
 	
 	return (
 		<div>

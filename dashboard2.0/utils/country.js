@@ -10,19 +10,17 @@ export async function getCityAndCountry(location) {
   
       const data = await response.json();
 
-      console.log('data', data)
-  
       if (data.length > 0) {
-        const city = data[1]?.address?.village || data[1].name || '';
-        const country = data[0]?.address?.country || '';
-        const countryCode = data[0]?.address?.country_code || '';
+        const city = data?.[1]?.address?.village || data?.[1]?.name || '';
+        const country = data?.[0]?.address?.country || '';
+        const countryCode = data?.[0]?.address?.country_code || '';
   
         return { city, country, countryCode };
       }
   
       return { city: '', country: '', countryCode: '' };
     } catch (error) {
-      console.error('Geocoding error:', error);
+      console.log('Geocoding error:', error);
       return { city: '', country: '', countryCode: '' };
     }
   }

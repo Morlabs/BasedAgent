@@ -5,20 +5,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CustomDropdown from "@/components/leaderboard/CustomDropdown";
 import LeaderboardTable from "@/components/leaderboard/LeaderboardTable";
-import { currentUser, filterOptions, SortOptions, tableData } from "@/config/config";
+import { filterOptions, SortOptions } from "@/config/config";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { getAllDeveloper } from "@/actions/developer.api";
 import { getCityAndCountry } from "@/utils/country";
 
 const Leaderboard = () => {
-
   const router = useRouter();
-
   const auth = useAuth();
 
-  console.log('user iser', auth)
-
+  const [currentUser, setCurrentUser] = useState(null);
   const [developers, setDevelopers] = useState([]);
   const [filteredDevelopers, setFilteredDevelopers] = useState([]);
   const [filters, setFilters] = useState({
@@ -30,30 +27,39 @@ const Leaderboard = () => {
   const [isCity, setIsCity] = useState(true);
   const [page, setPage] = useState(1);
   const [results, setResults] = useState(20);
-
-  useEffect(() => {
-    setFilteredDevelopers(developers);
-  }, []);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     const fetchDeveloper = async () => {
-      const devs = await getAllDeveloper();
-  
+      const data = await getAllDeveloper(page, results);
+      const devs = data?.developers;
+
+      console.log(data);
+
       const updatedDevs = await Promise.all(
         devs.map(async (dev) => {
           const location = await getCityAndCountry(dev?.location);
           return { ...dev, location };
         })
       );
-  
-      console.log('devs', updatedDevs);
+      setTotalPages(data?.totalPages);
       setDevelopers(updatedDevs);
       setFilteredDevelopers(updatedDevs);
     };
-  
+
+    setFilteredDevelopers(developers);
     fetchDeveloper();
-  }, []);
-  
+  }, [results, page]);
+
+  useEffect(() => {
+    const getCurrentUser = async () => {
+      const location = await getCityAndCountry(
+        auth?.user?.githubDetails?.location
+      );
+      setCurrentUser({ ...auth, location });
+    };
+    getCurrentUser();
+  }, [auth]);
 
   useEffect(() => {
     setFilteredDevelopers(applyFilters(developers, filters, isCity));
@@ -131,8 +137,20 @@ const Leaderboard = () => {
   };
 
   const handleNavigateToSignup = () => {
-    router.push('/reviewer-signup');
+    router.push("/reviewer-signup");
   };
+
+  const increasePage = () => {
+    if (page != totalPages) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  }
+
+  const decreasePage = () => {
+    if (page > 0 && page != 1) {
+      setPage((prevPage) => prevPage - 1);
+    }
+  }
 
   return (
     <div className="px-4 xl:px-2">
@@ -169,13 +187,18 @@ const Leaderboard = () => {
       </div>
       <div className="flex flex-col items-center bg-zinc-800 py-10 gap-4 rounded">
         <span className="text-[20px] text-center mb-2 px-2">
-          Code Rank. <br /> Earn Transform your repositories into revenue streams.
+          Code Rank. <br /> Earn Transform your repositories into revenue
+          streams.
         </span>
         <div className="reviewer-form font-bold px-2">
           <button onClick={handleNavigateToSignup}>Try out for free</button>
         </div>
 
-        <LeaderboardTable data={filteredDevelopers} currentUser={currentUser} handlePress={handleFilterChange} />
+        <LeaderboardTable
+          data={filteredDevelopers}
+          currentUser={currentUser}
+          handlePress={handleFilterChange}
+        />
 
         {/* pagination */}
         <div className="flex justify-between flex-col md:flex-row gap-4 w-full mt-6 px-2 md:px-10">
@@ -186,24 +209,33 @@ const Leaderboard = () => {
               id={"results"}
               label={20}
               value={results}
-              options={["20", "30", "40", "50"]}
-              onChange={(value) => { }}
+              options={[20, 30, 40, 50]}
+              onChange={(value) => {
+                setResults(value);
+              }}
             />
           </div>
           <div className="flex items-center gap-2">
             <div className="reviewer-form">
-              <button className="font-extrabold">
+              <button
+                className="font-extrabold"
+                onClick={decreasePage}
+              >
                 <img src="/left_arrow.png" className="w-6 h-6" />
               </button>
             </div>
             <input
               type="tel"
-              value={1}
+              value={page}
+              onChange={(e) => setPage(e.target.value)}
               className="bg-zinc-700 rounded px-4 py-2 w-16 outline-none"
             />
-            <span className="mx-2">of 3,343</span>
+            <span className="mx-2">of {totalPages}</span>
             <div className="reviewer-form">
-              <button className="font-extrabold">
+              <button
+                className="font-extrabold"
+                onClick={increasePage}
+              >
                 <img src="/right_arrow.png" className="w-6 h-6" />
               </button>
             </div>

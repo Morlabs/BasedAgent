@@ -88,16 +88,36 @@ export async function getDeveloper(developerID) {
 	}
 }
 
-export async function getAllDeveloper() {
+export async function getAllDeveloper(page = 1, resultsPerPage = 10) {
 	try {
-		return await db.query.developers.findMany()
-		
+		// Calculate the offset for pagination
+		const offset = (page - 1) * resultsPerPage;
+
+		// Query the database with limit and offset for pagination
+		const developers = await db.query.developers.findMany({
+			offset: offset,
+			limit: resultsPerPage,
+		});
+
+		// Query to get the total count of developers using a separate count query
+		const totalCount = await db.query.developers.findMany({
+			select: { id: true },
+		});
+
+		// The total count is the length of the result from the count query
+		const count = totalCount.length;
+
+		return {
+			developers,
+			totalPages: Math.ceil(count / resultsPerPage),
+			currentPage: page,
+			totalCount: count,
+		};
 	} catch (error) {
 		console.error('Error processing user:', error);
 		return null;
 	}
 }
-
 
 export async function deleteDeveloper(developerId) {
 	try {
