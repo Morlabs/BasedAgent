@@ -8,8 +8,7 @@ import LeaderboardTable from "@/components/leaderboard/LeaderboardTable";
 import { filterOptions, SortOptions } from "@/config/config";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
-import { getAllDeveloper } from "@/actions/developer.api";
-import { getCityAndCountry } from "@/utils/country";
+import { getAllDeveloper, getDeveloper } from "@/actions/developer.api";
 
 const Leaderboard = () => {
   const router = useRouter();
@@ -32,34 +31,22 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchDeveloper = async () => {
       const data = await getAllDeveloper(page, results);
-      const devs = data?.developers;
 
-      console.log(data);
-
-      const updatedDevs = await Promise.all(
-        devs.map(async (dev) => {
-          const location = await getCityAndCountry(dev?.location);
-          return { ...dev, location };
-        })
-      );
       setTotalPages(data?.totalPages);
-      setDevelopers(updatedDevs);
-      setFilteredDevelopers(updatedDevs);
+      setDevelopers(data?.developers);
+      setFilteredDevelopers(data?.developers);
     };
 
-    setFilteredDevelopers(developers);
     fetchDeveloper();
   }, [results, page]);
 
   useEffect(() => {
-    const getCurrentUser = async () => {
-      const location = await getCityAndCountry(
-        auth?.user?.githubDetails?.location
-      );
-      setCurrentUser({ ...auth, location });
-    };
-    getCurrentUser();
-  }, [auth]);
+    const fetchUser = async () => {
+      const data = auth?.user?.id ? await getDeveloper(auth?.user?.id) : null;
+      setCurrentUser(data)
+    }
+    fetchUser();
+  }, [auth])
 
   useEffect(() => {
     setFilteredDevelopers(applyFilters(developers, filters, isCity));

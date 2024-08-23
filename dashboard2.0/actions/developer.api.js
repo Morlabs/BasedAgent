@@ -3,6 +3,8 @@
 import { developers } from "@/lib/db/schema";
 import { db } from "@/lib/db/connect";
 import { eq } from "drizzle-orm";
+import { upsertProfile } from "./profile.api";
+import { getCityAndCountry } from "@/utils/country";
 
 export async function addDeveloper(user) {
 	try {
@@ -24,6 +26,9 @@ export async function addDeveloper(user) {
 		if (!existingUser) {
 			// Case 1: User does not exist in the database, so add the user
 			console.log("User not found, inserting new user");
+
+			const location = await getCityAndCountry(user?.githubDetails?.location)
+
 			const developer = await db.insert(developers).values({
 				id: user.id,
 				name: user.name,
@@ -33,8 +38,22 @@ export async function addDeveloper(user) {
 				imageUrl: user.image,  // Storing the image URL
 				topLanguages: topLanguagesArray,  // Store as an array in topLanguages
 				skills: skillsArray,  // Store as an array in skills
-				location: user.githubDetails.location,
+				location: location,
 				publicRepositories: user.githubDetails.public_repos,
+			});
+
+			await upsertProfile({
+				id:  user.id,
+				first_name: user?.name?.split(' ')[0] || '',
+				last_name: user?.name?.split(' ')[1] || '',
+				gender_identity: '',
+				date_of_birth: null,
+				current_location: location || '',
+				primary_email: user?.email || '',
+				linkedin_url: '',
+				portfolio_website: '',
+				twitter_handle: null,
+				profile_discoverability: null,
 			});
 
 			console.log("Developer added successfully: ", developer);

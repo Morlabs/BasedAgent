@@ -1,4 +1,4 @@
-import {integer, serial, varchar, boolean, text, timestamp, pgTable} from 'drizzle-orm/pg-core';
+import {integer, serial, varchar, boolean, text, timestamp, pgTable, jsonb} from 'drizzle-orm/pg-core';
 import {relations} from 'drizzle-orm';
 
 export const developers = pgTable('developers', {
@@ -10,12 +10,11 @@ export const developers = pgTable('developers', {
   githubUsername: varchar('github_username', {length: 255}),
   githubUrl: varchar('github_url', {length: 255}),
   imageUrl: varchar('image_url', {length: 255}),
-  location: varchar('location', {length: 255}),
+  location: jsonb('location'),
   topLanguages: (text('top_languages')).array(),
   publicRepositories: integer('public_repositories'),
   deletedAt: timestamp('deleted_at').defaultNow(),
 });
-
 
 export const contributions = pgTable('contributions', {
   id: serial('id').primaryKey(),

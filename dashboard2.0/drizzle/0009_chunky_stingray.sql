@@ -1,0 +1,1 @@
+ALTER TABLE "developers" ALTER COLUMN "location" SET DATA TYPE jsonb;

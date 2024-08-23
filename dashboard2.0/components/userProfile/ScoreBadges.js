@@ -38,11 +38,11 @@ const ScoreBadges = ({ data, repos }) => {
           </div>
         </div>
 
-        <div className="flex justify-between items-center w-full">
+        <div className="flex justify-between items-center w-full flex-wrap gap-1">
           {data.badges.slice(0, 3).map((badge, index) => (
             <div
               key={index}
-              className="bg-[#72A0A8] py-1 px-6 rounded-sm flex flex-col w-1/3 items-center mx-1"
+              className="bg-[#72A0A8] py-1 px-6 rounded-sm flex flex-col w-full md:w-[32%] items-center"
             >
               <p className="text-md font-semibold text-gray-50">
                 {badge.level}

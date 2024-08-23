@@ -1,12 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import { primaryColor } from "@/config/config";
-import { countries } from "@/utils/constants/countries";
 import LoaderLocal from "../common/loaderLocal";
 
 const LeaderboardTable = ({ data, handlePress, currentUser }) => {
 
-  const currentUserLocation = countries.find((country) => country?.name === currentUser?.location?.country);
+  console.log('daaaaaaaaaa', currentUser)
 
   return (
     <div className="w-full px-2">
@@ -34,7 +33,7 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
 
       {/* table data */}
       {
-        currentUser?.user && (
+        currentUser && (
           <div className="w-full mb-4 bg-zinc-700 rounded px-2 md:px-10">
             <div className="grid grid-cols-3 md:grid-cols-6 py-3 items-center">
               <div className="col-span-1">
@@ -42,14 +41,14 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
               </div>
               <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between gap-4 md:gap-0 items-center">
                 <Link
-                  href={`/user/${currentUser?.user?.id}`}
+                  href={`/user/${currentUser?.id}`}
                   className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
                 >
-                  {currentUser?.user?.name}
+                  {currentUser?.name}
                 </Link>
                 <span className="w-1/2 flex justify-start">
                   <img className="w-6 h-6" src="/favicon.png" />
-                  <a href={currentUser?.user?.githubDetails?.url} target="_blank">
+                  <a href={currentUser?.githubUrl} target="_blank">
                     <img
                       className="w-6 h-6 ml-2"
                       src="https://img.icons8.com/ios-glyphs/30/FFFFFF/github.png"
@@ -60,9 +59,9 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
               <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between gap-4 md:gap-0 items-center">
                 <span
                   className={`w-8 cursor-pointer text-3xl`}
-                  onClick={() => handlePress("country", currentUser?.location?.country)}
+                  onClick={() => handlePress("country", currentUser?.location?.name)}
                 >
-                  {currentUserLocation?.flag || <img className="w-6 h-6" src="/favicon.png"/>}
+                  {currentUser?.location?.flag || <img className="w-6 h-6" src="/favicon.png"/>}
                 </span>
                 <span
                   className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
@@ -82,7 +81,6 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
       <div className="w-full">
         { data.length > 0 ?
         data?.map((item, index) => {
-          const country = countries.find((country) => country?.name === item?.location?.country);
           return (
           <div key={index}>
             <div className="grid grid-cols-3 md:grid-cols-6 py-3 px-2 md:px-10 items-center">
@@ -111,9 +109,9 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
               <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between items-center gap-4 md:gap-0">
                 <span
                   className={`w-8 cursor-pointer text-3xl`}
-                  onClick={() => handlePress("country", item?.location?.country)}
+                  onClick={() => handlePress("country", item?.location?.name)}
                 >
-                  {country?.flag || <img className="w-6 h-6" src="/favicon.png"/>}
+                  {item?.location?.flag || <img className="w-6 h-6" src="/favicon.png"/>}
                 </span>
                 <span
                   className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
