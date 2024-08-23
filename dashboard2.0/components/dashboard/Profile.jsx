@@ -23,7 +23,7 @@ function Profile({id}) {
 		async function fetchProfile() {
 			setLoading(true);
 			const profileData = await getProfile(id);
-			
+			console.log('profileData:', profileData)
 			if (profileData) {
 				setFirstName(profileData.firstName || '');
 				setLastName(profileData.lastName || '');

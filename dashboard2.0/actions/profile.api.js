@@ -7,17 +7,18 @@ import {eq} from "drizzle-orm";
 // Function to get the profile data by ID
 export async function getProfile(id) {
 	try {
-		return await db.query.profile.findFirst({
-			where: (profiles, {eq}) => {
-				eq(profiles.developerId, id);
-			},
-		});
+		const profiles = await db.select().from(profile).where(eq(profile.developerId, id))
+		console.log('profiles', profiles)
+		return profiles[0]
+		
+		
 	} catch (error) {
 		console.error('Error fetching profile:', error);
 		return null;
 	}
 }
 
+// Function to insert or update the profile data
 // Function to insert or update the profile data
 export async function upsertProfile(data) {
 	const {
@@ -34,16 +35,21 @@ export async function upsertProfile(data) {
 		profile_discoverability
 	} = data;
 	
+	console.log('Upsert Profile Function Called');
+	console.log('Received Data:', data);
+	
 	try {
 		// Check if the profile exists
-		const existingProfile = await db.query.profile.findFirst({
-			where: (profiles, {eq}) => {
-				eq(profiles.developerId, id);
-			},
-		});
+		console.log('Checking if profile exists for developerId:', id);
+		const profiles = await db.select().from(profile).where(eq(profile.developerId, id))
+		
+		const existingProfile = profiles[0];
+		
+		console.log('Existing Profile:', existingProfile);
 		
 		if (existingProfile) {
 			// Update the existing profile
+			console.log('Updating existing profile for developerId:', id);
 			await db.update(profile)
 				.set({
 					firstName: first_name,
@@ -60,9 +66,10 @@ export async function upsertProfile(data) {
 				.where(eq(profile.id, id))
 				.returning();
 			
-			console.log('Profile updated successfully.');
+			console.log('Profile updated successfully for developerId:', id);
 		} else {
 			// Insert a new profile
+			console.log('Inserting new profile for developerId:', id);
 			await db.insert(profile).values({
 				developerId: id,  // Assuming id is provided for new profiles as well
 				firstName: first_name,
@@ -77,9 +84,9 @@ export async function upsertProfile(data) {
 				profileDiscoverability: profile_discoverability,
 			});
 			
-			console.log('Profile inserted successfully.');
+			console.log('Profile inserted successfully for developerId:', id);
 		}
 	} catch (error) {
-		console.error('Error upserting profile:', error);
+		console.error('Error upserting profile for developerId:', id, error);
 	}
 }

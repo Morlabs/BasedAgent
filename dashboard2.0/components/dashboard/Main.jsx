@@ -61,7 +61,6 @@ export default function Sidebar({id}) {
 	
 	const ActiveComponent = activeTab.component;
 	
-	console.log('devData:', developer)
 	return (
 		<div>
 			<Header/>
