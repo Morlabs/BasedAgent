@@ -2,8 +2,11 @@ import React, {useState, useEffect} from 'react';
 import TagInput from './formUI/TagInput';
 import ToggleSwitch from './formUI/ToggleSwitch';
 import Combobox from './formUI/Combobox';
-import Loader from '@/components/common/loader';
+import LoaderLocal from '@/components/common/loaderLocal';
 import {getJobPreferences, upsertJobPreferences} from '@/actions/jobPrefrence.api';
+import {developerPositions, techIndustries} from "@/utils/constants/positions";
+import TagInputWithCombobox from "@/components/dashboard/formUI/comboxWithTagInput"
+
 
 function JobPreferences({id}) {
 	const [desiredPositions, setDesiredPositions] = useState([]);
@@ -70,7 +73,7 @@ function JobPreferences({id}) {
 	
 	if (loading) {
 		return (<div className="flex flex-col justify-center items-center h-screen">
-			<Loader/>
+			<LoaderLocal/>
 			<div className="mt-4 text-center">Loading</div>
 		</div>);
 	}
@@ -91,7 +94,8 @@ function JobPreferences({id}) {
 						<label htmlFor="desiredPositions" className="block text-sm font-medium leading-6 text-[#dadee2]">
 							Desired Positions
 						</label>
-						<TagInput
+						<TagInputWithCombobox
+							tempOptions={developerPositions}
 							tags={desiredPositions}
 							setTags={setDesiredPositions}
 							placeholder="Add desired positions"
@@ -102,7 +106,8 @@ function JobPreferences({id}) {
 						<label htmlFor="targetIndustries" className="block text-sm font-medium leading-6 text-[#dadee2]">
 							Target Industries
 						</label>
-						<TagInput
+						<TagInputWithCombobox
+							tempOptions={techIndustries}
 							tags={targetIndustry}
 							setTags={setTargetIndustry}
 							placeholder="Add target industries"

@@ -7,7 +7,7 @@ import {useRouter} from 'next/navigation';
 import {signOut} from "next-auth/react";
 import axios from 'axios';
 import {useAuth} from "@/hooks/useAuth";
-import Loader from "@/components/common/loader";
+import LoaderLocal from "@/components/common/loaderLocal";
 
 const ReviewerSignup = () => {
 	const [formData, setFormData] = useState({
@@ -89,7 +89,7 @@ const ReviewerSignup = () => {
 	if (isLoading) {
 		return (
 			<div className="flex justify-center items-center h-screen">
-				<Loader/>
+				<LoaderLocal/>
 			</div>
 		); // Show a loader while checking the session
 	}

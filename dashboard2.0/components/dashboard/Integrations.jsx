@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Button from './formUI/Button';
-import Loader from '@/components/common/loader';
+import LoaderLocal from '@/components/common/loaderLocal';
 import {getIntegration, upsertIntegration, deleteIntegration} from '@/actions/integration.api';
 import {XMarkIcon} from '@heroicons/react/24/outline';
 
@@ -90,7 +90,7 @@ function Integrations({id}) {
 	
 	if (loading) {
 		return (<div className="flex flex-col justify-center items-center h-screen">
-			<Loader/>
+			<LoaderLocal/>
 			<div className="mt-4 text-center">Loading</div>
 		</div>);
 	}
@@ -150,7 +150,7 @@ function Integrations({id}) {
 								GitLab
 							</label>
 							<div className="mt-2">
-								<Button text={gitlabOauth ? "Remove Integration" : "Add Integration"}
+								<Button text={gitlabOauth ? "Remove Integration" : "Coming Soon"}
 												handleOnclick={() => setGitlabOauth(!gitlabOauth)}/>
 							</div>
 						</div>
@@ -161,7 +161,7 @@ function Integrations({id}) {
 								GitLab Self-Hosted
 							</label>
 							<div className="mt-2">
-								<Button text={gitlabSelfHostedOauth ? "Remove Integration" : "Add Integration"}
+								<Button text={gitlabSelfHostedOauth ? "Remove Integration" : "Coming Soon"}
 												handleOnclick={() => setGitlabSelfHostedOauth(!gitlabSelfHostedOauth)}/>
 							</div>
 						</div>
@@ -172,7 +172,7 @@ function Integrations({id}) {
 								Bitbucket
 							</label>
 							<div className="mt-2">
-								<Button text={bitbucketOauth ? "Remove Integration" : "Add Integration"}
+								<Button text={bitbucketOauth ? "Remove Integration" : "Coming Soon"}
 												handleOnclick={() => setBitbucketOauth(!bitbucketOauth)}/>
 							</div>
 						</div>
@@ -183,7 +183,7 @@ function Integrations({id}) {
 								StackOverflow
 							</label>
 							<div className="mt-2">
-								<Button text={stackoverflowOauth ? "Remove Integration" : "Add Integration"}
+								<Button text={stackoverflowOauth ? "Remove Integration" : "Coming Soon"}
 												handleOnclick={() => setStackoverflowOauth(!stackoverflowOauth)}/>
 							</div>
 						</div>

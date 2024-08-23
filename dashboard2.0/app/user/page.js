@@ -2,7 +2,7 @@
 import React, {useEffect} from 'react';
 import {useRouter} from 'next/navigation';
 import {useAuth} from "@/hooks/useAuth";
-import Loader from "@/components/common/loader";
+import LoaderLocal from "@/components/common/loaderLocal";
 import {addDeveloper} from "@/actions/developer.api"; // Assuming this is the API you want to call
 
 const TempRedirect = () => {
@@ -31,7 +31,7 @@ const TempRedirect = () => {
 	
 	return (
 		<div className="flex flex-col justify-center items-center h-screen">
-			<Loader/>
+			<LoaderLocal/>
 			<div className="mt-4 text-center">Authenticating</div>
 		</div>
 	);

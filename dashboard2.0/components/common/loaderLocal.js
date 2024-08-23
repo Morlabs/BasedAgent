@@ -1,7 +1,7 @@
-// Loader.js
+// LoaderLocal.js
 import React from 'react';
 
-const Loader = () => {
+const LoaderLocal = () => {
 	return (
 		<div role="status" className='ml-4'>
 			<svg aria-hidden="true" className="w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-[#64D894]"
@@ -18,4 +18,4 @@ const Loader = () => {
 	);
 };
 
-export default Loader;
+export default LoaderLocal;

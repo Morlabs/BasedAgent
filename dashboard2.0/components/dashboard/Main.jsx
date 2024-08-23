@@ -9,7 +9,7 @@ import JobPreferences from './JobPreferences';
 import Integrations from './Integrations';
 import Profile from './Profile';
 import Account from './Account';
-import Loader from '@/components/common/Loader';
+import LoaderLocal from '@/components/common/loaderLocal';
 import {useAuth} from '@/hooks/useAuth'; // Import the custom hook
 import {useRouter} from "next/navigation";
 
@@ -54,12 +54,13 @@ export default function Sidebar({id}) {
 	
 	if (loading || isLoading) {
 		return <div className="flex flex-col justify-center items-center h-screen">
-			<Loader/>
+			<LoaderLocal/>
 			<div className="mt-4 text-center">Loading</div>
 		</div>;
 	}
 	
 	const ActiveComponent = activeTab.component;
+	
 	
 	return (
 		<div>

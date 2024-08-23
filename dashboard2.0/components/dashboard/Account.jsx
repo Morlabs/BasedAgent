@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useRouter} from "next/navigation";
 import {signOut} from 'next-auth/react';
-import Loader from '@/components/common/loader';  // Assuming you have a Loader component
+import LoaderLocal from '@/components/common/loaderLocal';  // Assuming you have a LoaderLocal component
 import {ChangeDeveloperPassword, deleteDeveloper} from "@/actions/developer.api";
 
 function Account({id}) {
@@ -59,7 +59,7 @@ function Account({id}) {
 	if (loading) {
 		return (
 			<div className="flex flex-col justify-center items-center h-screen">
-				<Loader/>
+				<LoaderLocal/>
 				<div className="mt-4 text-center">Loading</div>
 			</div>
 		);

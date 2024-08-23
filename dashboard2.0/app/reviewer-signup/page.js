@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useRouter } from 'next/navigation';
-import Loader from '@/components/common/loader';
+import LoaderLocal from '@/components/common/loaderLocal';
 import { useAuth } from "@/hooks/useAuth";
 import { signIn } from "next-auth/react";
 
@@ -25,7 +25,7 @@ const ReviewerSignupStart = () => {
 	if (isLoading) {
 		return (
 			<div className="flex justify-center items-center h-screen">
-				<Loader />
+				<LoaderLocal />
 			</div>
 		); // Show a loader while checking the session
 	}
@@ -45,7 +45,7 @@ const ReviewerSignupStart = () => {
 						disabled={isLoading}
 					>
 						<img src="/github.png" alt="GitHub Logo" className="w-5 h-5 mr-2" />
-						Sign up with GitHub {isLoading && <Loader />}
+						Sign up with GitHub {isLoading && <LoaderLocal />}
 					</button>
 				</div>
 				<Footer />

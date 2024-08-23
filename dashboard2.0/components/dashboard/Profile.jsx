@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import Combobox from './formUI/Combobox';
 import ToggleSwitch from './formUI/ToggleSwitch';
 import {getProfile, upsertProfile} from "@/actions/profile.api";
-import Loader from '@/components/common/Loader';
+import LoaderLocal from '@/components/common/loaderLocal';
+import {countries} from "@/utils/constants/countries";
 
 function Profile({id}) {
 	const [firstName, setFirstName] = useState('');
@@ -22,7 +23,6 @@ function Profile({id}) {
 		async function fetchProfile() {
 			setLoading(true);
 			const profileData = await getProfile(id);
-			console.log('profileData', profileData);
 			
 			if (profileData) {
 				setFirstName(profileData.firstName || '');
@@ -35,12 +35,13 @@ function Profile({id}) {
 				
 				setGenderIdentity(parsedGenderIdentity);
 				setDateOfBirth(profileData.dateOfBirth || '');
-				setCurrentLocation(profileData.currentLocation || '');
+				setCurrentLocation(profileData.currentLocation ? JSON.parse(profileData.currentLocation) : {});
 				setPrimaryEmail(profileData.primaryEmail || '');
 				setLinkedinUrl(profileData.linkedinUrl || '');
 				setPortfolioWebsite(profileData.portfolioWebsite || '');
 				setTwitterHandle(profileData.twitterHandle || '');
 				setProfileDiscoverability(profileData.profileDiscoverability || true);
+				
 			}
 			setLoading(false);
 		}
@@ -77,7 +78,14 @@ function Profile({id}) {
 		}
 	}
 	
-
+	
+	if (loading) {
+		return <div className="flex flex-col justify-center items-center h-screen">
+			<LoaderLocal/>
+			<div className="mt-4 text-center">Loading</div>
+		</div>;
+	}
+	
 	
 	return (
 		<form method="POST" className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit}>
@@ -153,17 +161,16 @@ function Profile({id}) {
 					
 					<div className="col-span-12">
 						<label htmlFor="current-location" className="block text-sm font-medium leading-6 text-[#dadee2]">
-							Current Location
+							Location
 						</label>
-						<input
-							id="current-location"
-							name="current-location"
-							type="text"
-							value={currentLocation}
-							onChange={(e) => setCurrentLocation(e.target.value)}
-							className="mt-2 bg-[#0b0b0c] block w-full rounded-md border-0 px-3 py-1.5 shadow-sm placeholder:text-gray-400 focus:border-0 sm:text-sm sm:leading-6"
+						<Combobox
+							options={countries}
+							selected={currentLocation}
+							onChange={setCurrentLocation}
+							placeholder="Select Country"
 						/>
 					</div>
+					
 					
 					<div className="col-span-12 sm:col-span-6">
 						<label htmlFor="primary-email" className="block text-sm font-medium leading-6 text-[#dadee2]">
