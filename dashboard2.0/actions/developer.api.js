@@ -74,16 +74,13 @@ export async function addDeveloper(user) {
 }
 
 
-export async function getDeveloper(id) {
-	console.log('id', id)
+export async function getDeveloper(developerID) {
+	console.log('id', developerID)
 	try {
-		const developer = await db.query.developers.findFirst({
-			where: (developer, {eq}) => {
-				eq(developer.id, id)
-			}
-		})
+		const developer = await db.select().from(developers).where(eq(developers.id, Number(developerID)));
 		console.log('developer:', developer)
-		return developer
+		
+		return developer[0]
 		
 	} catch (error) {
 		console.error('Error processing user:', error);
