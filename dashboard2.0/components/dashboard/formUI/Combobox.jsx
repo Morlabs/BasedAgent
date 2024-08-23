@@ -12,9 +12,7 @@ const CustomCombobox = ({ options = [], selected, onChange, placeholder = 'Selec
 			: options.filter((option) =>
 				option?.name?.toLowerCase().includes(query.toLowerCase())
 			);
-	
-	console.log('options:', options);
-	console.log('filteredOptions:', filteredOptions);
+
 	
 	return (
 		<div className="relative w-full">
