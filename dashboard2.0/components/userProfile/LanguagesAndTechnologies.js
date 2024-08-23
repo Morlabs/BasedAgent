@@ -19,7 +19,7 @@ const UserLanguages = ({ languages }) => {
         language overview
       </div>
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 mt-4">
-        {languages.map((language, index) => (
+        {languages?.map((language, index) => (
           <div
             key={index}
             className="bg-zinc-700  rounded-md flex flex-col justify-between"

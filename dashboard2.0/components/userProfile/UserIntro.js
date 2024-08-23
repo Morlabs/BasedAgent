@@ -8,26 +8,26 @@ const UserIntro = ({ data }) => {
       <div className="flex items-center gap-4">
         <div>
           <img
-            src={data.image}
+            src={data?.imageUrl}
             className={`w-24 h-24 rounded-full border-4 border-[#64D894]`}
           />
         </div>
         <div>
-          <span className="text-xl font-bold">{data.name}</span>
+          <span className="text-xl font-bold">{data?.name}</span>
           <div>
             <img
               src="https://img.icons8.com/ios-filled/100/FFFFFF/marker.png"
               className="w-4 h-4 inline"
             />
             <span className="text-sm text-zinc-400 ml-1">
-              {data.city}, {data.country}
+              {data?.location || '--'}
             </span>
           </div>
         </div>
       </div>
-      <div className="cursor-pointer hover:opacity-50">
+      <a className="cursor-pointer hover:opacity-50" href={data?.githubUrl} target="_blank">
         <img src="https://img.icons8.com/ios-glyphs/30/FFFFFF/github.png" />
-      </div>
+      </a>
     </div>
   );
 };

@@ -26,28 +26,37 @@ const User = () => {
 	const {id} = useParams();
 
 	const [profileData, setProfileData] = useState(null);
+	const [topLanguages, setTopLanguages] = useState(null);
 
 	useEffect(() => {
 		const getProfileData = async () => {
-			const user = await getDeveloper(id);
+			const developer = await getDeveloper(id);
+			setProfileData(developer);
+			filterLanguages(developer);
 
-			console.log('user', user);
-			console.log('id', id)
+			console.log('user', developer);
 		}
 
 		getProfileData();
 	}, [])
-	console.log('id', id);
+
+	const filterLanguages = (developer) => {
+		const tLanguages = languages.filter((language) => {
+			return developer?.topLanguages.includes(language.name);
+		})
+		console.log('top', tLanguages)
+		setTopLanguages(tLanguages)
+	}
 	
 	return (
 		<div>
 			<Header/>
 			<div className="py-10 px-4">
-				<UserIntro data={userData}/>
+				<UserIntro data={profileData}/>
 				
 				<div className="h-8"/>
 				
-				<ScoreBadges data={scoreAndbadges}/>
+				<ScoreBadges data={scoreAndbadges} repos={profileData?.publicRepositories} />
 				
 				<div className="h-8"/>
 				
@@ -60,7 +69,7 @@ const User = () => {
 				<div className="h-8"/>
 				
 				<LanguagesAndTechnologies
-					languages={languages}
+					languages={topLanguages}
 					technologies={technologies}
 				/>
 			</div>

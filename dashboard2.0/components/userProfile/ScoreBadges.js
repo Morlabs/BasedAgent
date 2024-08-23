@@ -1,6 +1,6 @@
 import React from "react";
 
-const ScoreBadges = ({ data }) => {
+const ScoreBadges = ({ data, repos }) => {
   return (
     <div className="bg-zinc-800 text-white p-6 rounded-lg">
       <h2 className="text-lg font-medium mb-4 hover:underline cursor-pointer">
@@ -32,7 +32,7 @@ const ScoreBadges = ({ data }) => {
                 alt="github"
               />
               <span className="text-zinc-100 underline cursor-pointer">
-                {data.score.  repos} repos
+                {repos} repos
               </span>
             </div>
           </div>
