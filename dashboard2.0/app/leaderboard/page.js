@@ -16,7 +16,7 @@ const Leaderboard = () => {
 
   const [currentUser, setCurrentUser] = useState(null);
   const [developers, setDevelopers] = useState([]);
-  const [filteredDevelopers, setFilteredDevelopers] = useState([]);
+  const [filteredDevelopers, setFilteredDevelopers] = useState(null);
   const [filters, setFilters] = useState({
     country: "",
     city: "",
@@ -67,7 +67,7 @@ const Leaderboard = () => {
     if (country) {
       setIsCity(false);
       return developers?.filter((dev) =>
-        dev?.country?.toLowerCase().includes(country?.toLowerCase())
+        dev?.location?.name?.toLowerCase().includes(country?.toLowerCase())
       );
     }
     return developers;
@@ -84,17 +84,18 @@ const Leaderboard = () => {
 
   const filterByTechnology = (developers, technology) => {
     if (technology) {
+      const techLowerCase = technology?.toLowerCase();
       return developers?.filter((dev) =>
-        dev?.top_languages?.includes(technology?.toLowerCase())
+        dev?.topLanguages?.some((lang) => lang?.toLowerCase().includes(techLowerCase))
       );
     }
     return developers;
-  };
+  };  
 
   const sortDevelopers = (developers, sortBy) => {
     if (!sortBy) return developers;
 
-    return developers.sort((a, b) => {
+    return developers?.sort((a, b) => {
       switch (sortBy) {
         case "Rank":
           return compareValues(Number(a?.rank), Number(b?.rank), true);
@@ -103,9 +104,9 @@ const Leaderboard = () => {
         case "Name":
           return compareValues(a?.name, b?.name);
         case "Country":
-          return compareValues(a?.country, b?.country);
+          return compareValues(a?.country || '', b?.country || '');
         case "City":
-          return compareValues(a?.city, b?.city);
+          return compareValues(a?.city || '', b?.city || '');
         default:
           return 0;
       }
@@ -113,7 +114,7 @@ const Leaderboard = () => {
   };
 
   const compareValues = (a, b, isNumeric = false) => {
-    return isNumeric ? a - b : a.localeCompare(b);
+    return isNumeric ? a - b : a?.localeCompare(b);
   };
 
   const handleFilterChange = (id, value) => {
