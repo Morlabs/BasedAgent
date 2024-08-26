@@ -8,8 +8,8 @@ import {getTopLanguages, getTotalContributions, getUserDetails} from '@/helpers/
 const handler = NextAuth({
 	providers: [
 		GithubProvider({
-			clientId: 'Ov23liaL5npr1OPp9IMg',
-			clientSecret: 'b01d39801c73d61f4b3a5dd6bdbed596f4bd9d38',
+			clientId: 'Ov23liqqaWOhYy8noV6M',
+			clientSecret: 'ed6f1966154128388ba57a1ac1ad80b0e4a8f21a',
 		})
 	],
 	callbacks: {
