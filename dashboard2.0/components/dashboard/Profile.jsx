@@ -295,12 +295,6 @@ function Profile({id}) {
 					</div>
 				</div>
 			</form>
-			
-			<div className="mt-6">
-				<>
-					<w3m-button/>
-				</>
-			</div>
 		</>
 	
 	

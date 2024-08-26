@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
-	BriefcaseIcon, CogIcon, SquaresPlusIcon, UserCircleIcon,
+	BriefcaseIcon, CogIcon, SquaresPlusIcon, UserCircleIcon, WalletIcon
 } from '@heroicons/react/24/outline';
 import {getDeveloper} from '@/actions/developer.api';
 
@@ -9,6 +9,7 @@ import JobPreferences from './JobPreferences';
 import Integrations from './Integrations';
 import Profile from './Profile';
 import Account from './Account';
+import Wallet from './Wallet';
 import LoaderLocal from '@/components/common/loaderLocal';
 import {useAuth} from '@/hooks/useAuth'; // Import the custom hook
 import {useRouter} from "next/navigation";
@@ -18,6 +19,7 @@ const subNavigation = [
 	{name: 'Job Preferences', href: '#', icon: BriefcaseIcon, component: JobPreferences},
 	{name: 'Integrations', href: '#', icon: SquaresPlusIcon, component: Integrations},
 	{name: 'Account', href: '#', icon: CogIcon, component: Account},
+	{name: 'Wallets', href: '#', icon: WalletIcon, component: Wallet},
 ];
 
 function classNames(...classes) {
