@@ -69,6 +69,25 @@ export const profile = pgTable('profile', {
 });
 
 
+export const developerInvites = pgTable('developer_invites', {
+  id: serial('id').primaryKey(),
+  developerId: integer('developer_id').references(() => developers.id),
+  email: varchar('email', {length: 255}),
+  status: varchar('status', {length: 50}),
+  earnings: integer('earnings').default(0),
+  inviteDate: timestamp('invite_date'),
+  source: varchar('source', {length: 50}),
+  githubAccess: varchar('github_access', {length: 255}),
+});
+
+export const developerInvitesRelations = relations(developerInvites, ({one}) => ({
+  developer: one(developers, {
+    fields: [developerInvites.developerId],
+    references: [developers.id],
+  }),
+}));
+
+
 export const developersRelations = relations(developers, ({one, many}) => ({
   jobPreferences: one(jobPreferences, {
     fields: [developers.id],
