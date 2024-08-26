@@ -3,6 +3,7 @@ import "./globals.css";
 
 const inter = Inter({subsets: ["latin"]});
 import SessionWrapper from '@/components/common/SessionWrapper'
+import {AppKit} from '@/context/web3modal'
 
 export const metadata = {
 	title: "Create Next App",
@@ -12,9 +13,11 @@ export const metadata = {
 export default function RootLayout({children}) {
 	return (
 		<SessionWrapper>
-			<html lang="en">
-			<body className={inter.className}>{children}</body>
-			</html>
+			<AppKit>
+				<html lang="en">
+				<body className={inter.className}>{children}</body>
+				</html>
+			</AppKit>
 		</SessionWrapper>
 	);
 }
