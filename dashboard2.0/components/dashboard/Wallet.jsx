@@ -42,7 +42,7 @@ function Profile({id}) {
 							htmlFor="last-name"
 							className="block text-sm font-medium leading-6 text-[#dadee2]"
 						>
-							Last name
+							Wallet Address
 						</label>
 						<input
 							id="last-name"
