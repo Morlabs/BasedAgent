@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: helpers/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Node.js version
-        uses: helpers/setup-node@v3
+        uses: actions/setup-node@v3
         with:
           node-version: '18.x'
 
@@ -47,7 +47,7 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: helpers/download-artifact@v4
+        uses: actions/download-artifact@v4
         with:
           name: node-app
 
