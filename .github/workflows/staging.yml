@@ -67,6 +67,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'BA3agent'
-          slot-name: 'staging'
+          slot-name: 'ba3agent-staging'
           package: .
           
