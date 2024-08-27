@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from './formUI/Button';
 import LoaderLocal from '@/components/common/loaderLocal';
-import {getIntegration, upsertIntegration, deleteIntegration} from '@/actions/integration.api';
-import {XMarkIcon} from '@heroicons/react/24/outline';
+import { getIntegration, upsertIntegration, deleteIntegration } from '@/actions/integration.api';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 const integrationsData = {
 	github_oauth: false,
@@ -13,7 +13,7 @@ const integrationsData = {
 	stackoverflow_oauth: false,
 };
 
-function Integrations({id}) {
+function Integrations({ id }) {
 	const [loading, setLoading] = useState(true);
 	const [githubOauth, setGithubOauth] = useState(integrationsData.github_oauth);
 	const [githubPersonalAccessToken, setGithubPersonalAccessToken] = useState(integrationsData.github_personal_access_token);
@@ -25,8 +25,8 @@ function Integrations({id}) {
 	const [gitlabSelfHostedOauthAccessToken, setGitlabSelfHostedOauthAccessToken] = useState('');
 	const [bitbucketOauthAccessToken, setBitbucketOauthAccessToken] = useState('');
 	const [stackoverflowOauthAccessToken, setStackoverflowOauthAccessToken] = useState('');
-	
-	
+
+
 	useEffect(() => {
 		async function fetchData() {
 			setLoading(true);
@@ -47,10 +47,10 @@ function Integrations({id}) {
 				setLoading(false);
 			}
 		}
-		
+
 		fetchData();
 	}, [id]);
-	
+
 	async function handleSubmit(event) {
 		event.preventDefault();
 		setLoading(true);
@@ -66,7 +66,7 @@ function Integrations({id}) {
 			bitbucket_oauth_access_token: bitbucketOauthAccessToken,
 			stackoverflow_oauth_access_token: stackoverflowOauthAccessToken,
 		};
-		
+
 		try {
 			await upsertIntegration(id, formData);
 		} catch (error) {
@@ -75,7 +75,7 @@ function Integrations({id}) {
 			setLoading(false);
 		}
 	}
-	
+
 	const handleRemoveClick = async () => {
 		setLoading(true);
 		setGithubPersonalAccessToken('');
@@ -87,14 +87,18 @@ function Integrations({id}) {
 			setLoading(false);
 		}
 	}
-	
+
 	if (loading) {
-		return (<div className="flex flex-col justify-center items-center h-screen">
-			<LoaderLocal/>
-			<div className="mt-4 text-center">Loading</div>
-		</div>);
+		return (
+			<div className="flex flex-col justify-center items-center h-full relative">
+				<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+					<LoaderLocal />
+					<div className="mt-4 text-center">Loading</div>
+				</div>
+			</div>
+		);
 	}
-	
+
 	return (<>
 		<form method="POST" className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit}>
 			<div className="px-4 py-6 sm:p-6 lg:pb-8">
@@ -104,13 +108,13 @@ function Integrations({id}) {
 						Connect your account with third-party services.
 					</p>
 				</div>
-				
+
 				<div className="mt-6 flex flex-col lg:flex-row">
 					<div className="flex-grow space-y-6">
-						
+
 						<div>
 							<label htmlFor="github_personal_access_token"
-										 className="block text-sm leading-6 font-bold text-[#dadee2]">
+								className="block text-sm leading-6 font-bold text-[#dadee2]">
 								GitHub Personal Access Token
 							</label>
 							<div className="mt-2 flex">
@@ -126,65 +130,65 @@ function Integrations({id}) {
 									type="button"
 									className="ml-2 bg-red-600 text-white font-bold py-1.5 px-4 rounded-md flex items-center"
 									onClick={handleRemoveClick} // Replace with your actual remove handler function
-								
+
 								>
-									<XMarkIcon className="h-5 w-5 mr-2"/>
+									<XMarkIcon className="h-5 w-5 mr-2" />
 									Remove
 								</button>}
 							</div>
 						</div>
-						
-						
+
+
 						<div>
 							<label htmlFor="github_oauth" className="block text-sm   leading-6 font-bold text-[#dadee2]">
 								GitHub
 							</label>
 							<div className="mt-2">
 								<Button text={githubOauth ? "Remove Integration" : "Add Integration"}
-												handleOnclick={() => setGithubOauth(!githubOauth)}/>
+									handleOnclick={() => setGithubOauth(!githubOauth)} />
 							</div>
 						</div>
-						
+
 						<div>
 							<label htmlFor="gitlab_oauth" className="block text-sm   leading-6 font-bold text-[#dadee2]">
 								GitLab
 							</label>
 							<div className="mt-2">
 								<Button text={gitlabOauth ? "Remove Integration" : "Coming Soon"}
-												handleOnclick={() => setGitlabOauth(!gitlabOauth)}/>
+									handleOnclick={() => setGitlabOauth(!gitlabOauth)} />
 							</div>
 						</div>
-						
+
 						<div>
 							<label htmlFor="gitlab_self_hosted_oauth"
-										 className="block text-sm   leading-6 font-bold text-[#dadee2]">
+								className="block text-sm   leading-6 font-bold text-[#dadee2]">
 								GitLab Self-Hosted
 							</label>
 							<div className="mt-2">
 								<Button text={gitlabSelfHostedOauth ? "Remove Integration" : "Coming Soon"}
-												handleOnclick={() => setGitlabSelfHostedOauth(!gitlabSelfHostedOauth)}/>
+									handleOnclick={() => setGitlabSelfHostedOauth(!gitlabSelfHostedOauth)} />
 							</div>
 						</div>
-						
+
 						<div>
 							<label htmlFor="bitbucket_oauth"
-										 className="block text-sm   leading-6 font-bold text-[#dadee2]">
+								className="block text-sm   leading-6 font-bold text-[#dadee2]">
 								Bitbucket
 							</label>
 							<div className="mt-2">
 								<Button text={bitbucketOauth ? "Remove Integration" : "Coming Soon"}
-												handleOnclick={() => setBitbucketOauth(!bitbucketOauth)}/>
+									handleOnclick={() => setBitbucketOauth(!bitbucketOauth)} />
 							</div>
 						</div>
-						
+
 						<div>
 							<label htmlFor="stackoverflow_oauth"
-										 className="block text-sm   leading-6 font-bold text-[#dadee2]">
+								className="block text-sm   leading-6 font-bold text-[#dadee2]">
 								StackOverflow
 							</label>
 							<div className="mt-2">
 								<Button text={stackoverflowOauth ? "Remove Integration" : "Coming Soon"}
-												handleOnclick={() => setStackoverflowOauth(!stackoverflowOauth)}/>
+									handleOnclick={() => setStackoverflowOauth(!stackoverflowOauth)} />
 							</div>
 						</div>
 					</div>
