@@ -1,9 +1,14 @@
 import Navbar from "./navigation/Navbar";
+import NewNavbar from "./navigation/NewNavbar";
 
 function Header() {
-	
+
 	return (
-		<Navbar />
+		<div>
+			{/* <Navbar /> */}
+			<NewNavbar />
+		</div>
+
 	);
 }
 

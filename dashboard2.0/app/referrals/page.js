@@ -35,17 +35,17 @@ export default function BasedAgentReferralProgram() {
 	// Effect to fetch referrals data when the component renders
 	useEffect(() => {
 		if (user) {
-			// setLoading(true);
-			// axios.post('/api/referrals', { developerID: user.id })
-			// 	.then(response => {
-			// 		setReferrals(response.data.developerInvite);
-			// 	})
-			// 	.catch(error => {
-			// 		console.error("Error fetching referrals:", error);
-			// 	})
-			// 	.finally(() => {
-			// 		setLoading(false);
-			// 	});
+			setLoading(true);
+			axios.post('/api/referrals', { developerID: user.id })
+				.then(response => {
+					setReferrals(response.data.developerInvite);
+				})
+				.catch(error => {
+					console.error("Error fetching referrals:", error);
+				})
+				.finally(() => {
+					setLoading(false);
+				});
 		}
 	}, [user]);
 
@@ -105,7 +105,7 @@ export default function BasedAgentReferralProgram() {
 
 		<div className="bg-gray-800 rounded-lg p-6">
 			<div className="flex items-center justify-between mb-4">
-				<div className=''>
+				<div className='flex items-center'>
 					<h2 className="text-xl font-semibold m-0">Your Referrals</h2>
 				</div>
 				<div className="relative">
