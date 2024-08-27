@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	BriefcaseIcon, CogIcon, SquaresPlusIcon, UserCircleIcon, WalletIcon
 } from '@heroicons/react/24/outline';
-import {getDeveloper} from '@/actions/developer.api';
+import { getDeveloper } from '@/actions/developer.api';
 
 import Header from '../Header';
 import JobPreferences from './JobPreferences';
@@ -11,28 +11,28 @@ import Profile from './Profile';
 import Account from './Account';
 import Wallet from './Wallet';
 import LoaderLocal from '@/components/common/loaderLocal';
-import {useAuth} from '@/hooks/useAuth'; // Import the custom hook
-import {useRouter} from "next/navigation";
+import { useAuth } from '@/hooks/useAuth'; // Import the custom hook
+import { useRouter } from "next/navigation";
 
 const subNavigation = [
-	{name: 'Profile', href: '#', icon: UserCircleIcon, component: Profile},
-	{name: 'Job Preferences', href: '#', icon: BriefcaseIcon, component: JobPreferences},
-	{name: 'Integrations', href: '#', icon: SquaresPlusIcon, component: Integrations},
-	{name: 'Account', href: '#', icon: CogIcon, component: Account},
-	{name: 'Wallets', href: '#', icon: WalletIcon, component: Wallet},
+	{ name: 'Profile', href: '#', icon: UserCircleIcon, component: Profile },
+	{ name: 'Job Preferences', href: '#', icon: BriefcaseIcon, component: JobPreferences },
+	{ name: 'Integrations', href: '#', icon: SquaresPlusIcon, component: Integrations },
+	{ name: 'Account', href: '#', icon: CogIcon, component: Account },
+	{ name: 'Wallets', href: '#', icon: WalletIcon, component: Wallet },
 ];
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
 }
 
-export default function Sidebar({id}) {
+export default function Sidebar({ id }) {
 	const [activeTab, setActiveTab] = useState(subNavigation[0]);
 	const [developer, setDeveloper] = useState(null);
 	const [loading, setLoading] = useState(true);
-	const {isLoggedIn, isLoading} = useAuth(); // Use the custom hook
+	const { isLoggedIn, isLoading } = useAuth(); // Use the custom hook
 	const router = useRouter();
-	
+
 	useEffect(() => {
 		async function fetchDeveloper() {
 			setLoading(true);
@@ -40,32 +40,32 @@ export default function Sidebar({id}) {
 			setDeveloper(devData);
 			setLoading(false);
 		}
-		
+
 		if (isLoggedIn) {
 			fetchDeveloper();
 		}
 	}, [id, isLoggedIn]);
-	
-	
+
+
 	useEffect(() => {
 		if (!isLoading && !isLoggedIn) {
 			router.push('/'); // Redirect to homepage if not logged in
 		}
 	}, [isLoggedIn, isLoading, router]);
-	
-	
+
+
 	if (loading || isLoading) {
 		return <div className="flex flex-col justify-center items-center h-screen">
-			<LoaderLocal/>
+			<LoaderLocal />
 			<div className="mt-4 text-center">Loading</div>
 		</div>;
 	}
-	
+
 	const ActiveComponent = activeTab.component;
-	
+
 	return (
 		<div>
-			<Header/>
+			<Header />
 			<main className="relative mt-10">
 				<div className="mx-auto max-w-screen-xl px-4 pb-6 sm:px-6 lg:px-8 lg:pb-16">
 					<div className="overflow-hidden rounded-lg bg-[#161719] shadow border border-solid border-gray-500">
@@ -115,7 +115,7 @@ export default function Sidebar({id}) {
 										</span>
 									</p>
 								</div>
-								
+
 								<nav className="space-y-1">
 									{subNavigation.map((item) => (
 										<a
@@ -144,9 +144,9 @@ export default function Sidebar({id}) {
 									))}
 								</nav>
 							</aside>
-							
-							<div className="lg:col-span-9 p-6">
-								{ActiveComponent && <ActiveComponent id={id}/>}
+
+							<div className="lg:col-span-9 p-6 w-[650px] overflow-x-auto">
+								{ActiveComponent && <ActiveComponent id={id} />}
 							</div>
 						</div>
 					</div>

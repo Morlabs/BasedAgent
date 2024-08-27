@@ -1,28 +1,30 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Combobox from "./formUI/Combobox";
 import ToggleSwitch from "./formUI/ToggleSwitch";
-import {getProfile, upsertProfile} from "@/actions/profile.api";
+import { getProfile, upsertProfile } from "@/actions/profile.api";
 import LoaderLocal from "@/components/common/loaderLocal";
-import {countries} from "@/utils/constants/countries";
+import { countries } from "@/utils/constants/countries";
 
-function Profile({id}) {
+function Profile({ id }) {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [loading, setLoading] = useState(false);
-	
-	
+
+
 	if (loading) {
 		return (
-			<div className="flex flex-col justify-center items-center h-screen">
-				<LoaderLocal/>
-				<div className="mt-4 text-center">Loading</div>
+			<div className="flex flex-col justify-center items-center h-full relative">
+				<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+					<LoaderLocal />
+					<div className="mt-4 text-center">Loading</div>
+				</div>
 			</div>
 		);
 	}
-	
+
 	return (
 		<>
-			
+
 			{/* Profile section */}
 			<div className="px-4 py-6 sm:p-6 lg:pb-8">
 				<div>
@@ -34,9 +36,9 @@ function Profile({id}) {
 						share.
 					</p>
 				</div>
-				
+
 				<div className="mt-6 grid grid-cols-12 gap-6">
-					
+
 					<div className="col-span-12 sm:col-span-6">
 						<label
 							htmlFor="last-name"
@@ -54,18 +56,18 @@ function Profile({id}) {
 							className="mt-2 bg-[#0b0b0c] block w-full rounded-md border-0 px-3 py-1.5 shadow-sm placeholder:text-gray-400 focus:border-0 sm:text-sm sm:leading-6"
 						/>
 					</div>
-					
-					
+
+
 					<div className="mt-6">
-						<w3m-button/>
-					
+						<w3m-button />
+
 					</div>
 				</div>
 			</div>
-		
+
 		</>
-	
-	
+
+
 	)
 		;
 }

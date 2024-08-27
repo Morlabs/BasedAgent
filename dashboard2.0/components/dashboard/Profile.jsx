@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Combobox from "./formUI/Combobox";
 import ToggleSwitch from "./formUI/ToggleSwitch";
-import {getProfile, upsertProfile} from "@/actions/profile.api";
+import { getProfile, upsertProfile } from "@/actions/profile.api";
 import LoaderLocal from "@/components/common/loaderLocal";
-import {countries} from "@/utils/constants/countries";
+import { countries } from "@/utils/constants/countries";
 
-function Profile({id}) {
+function Profile({ id }) {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [genderIdentity, setGenderIdentity] = useState("Male");
@@ -17,7 +17,7 @@ function Profile({id}) {
 	const [twitterHandle, setTwitterHandle] = useState("");
 	const [profileDiscoverability, setProfileDiscoverability] = useState(true);
 	const [loading, setLoading] = useState(true);
-	
+
 	// Fetch initial profile data from API
 	useEffect(() => {
 		async function fetchProfile() {
@@ -27,12 +27,12 @@ function Profile({id}) {
 			if (profileData) {
 				setFirstName(profileData.firstName || "");
 				setLastName(profileData.lastName || "");
-				
+
 				// Parse the genderIdentity JSON string before setting it
 				const parsedGenderIdentity = profileData.genderIdentity
 					? JSON.parse(profileData.genderIdentity)
-					: {id: 1, name: "Male"};
-				
+					: { id: 1, name: "Male" };
+
 				setGenderIdentity(parsedGenderIdentity);
 				setDateOfBirth(profileData.dateOfBirth || "");
 				setCurrentLocation(
@@ -51,14 +51,14 @@ function Profile({id}) {
 			}
 			setLoading(false);
 		}
-		
+
 		fetchProfile();
 	}, [id]);
-	
+
 	async function handleSubmit(event) {
 		event.preventDefault();
 		setLoading(true);
-		
+
 		const profileData = {
 			id, // Pass the id to identify the profile
 			first_name: firstName,
@@ -72,7 +72,7 @@ function Profile({id}) {
 			twitter_handle: twitterHandle,
 			profile_discoverability: profileDiscoverability,
 		};
-		
+
 		try {
 			await upsertProfile(profileData);
 			console.log("Profile saved successfully.");
@@ -82,19 +82,21 @@ function Profile({id}) {
 			setLoading(false);
 		}
 	}
-	
+
 	if (loading) {
 		return (
-			<div className="flex flex-col justify-center items-center h-screen">
-				<LoaderLocal/>
-				<div className="mt-4 text-center">Loading</div>
+			<div className="flex flex-col justify-center items-center h-full relative">
+				<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+					<LoaderLocal />
+					<div className="mt-4 text-center">Loading</div>
+				</div>
 			</div>
 		);
 	}
-	
+
 	return (
 		<>
-			
+
 			<form
 				method="POST"
 				className="divide-y divide-gray-200 lg:col-span-9"
@@ -111,7 +113,7 @@ function Profile({id}) {
 							share.
 						</p>
 					</div>
-					
+
 					<div className="mt-6 grid grid-cols-12 gap-6">
 						<div className="col-span-12 sm:col-span-6">
 							<label
@@ -130,7 +132,7 @@ function Profile({id}) {
 								className="mt-2 bg-[#0b0b0c] block w-full rounded-md border-0 px-3 py-1.5 shadow-sm placeholder:text-gray-400 focus:border-0 sm:text-sm sm:leading-6"
 							/>
 						</div>
-						
+
 						<div className="col-span-12 sm:col-span-6">
 							<label
 								htmlFor="last-name"
@@ -148,7 +150,7 @@ function Profile({id}) {
 								className="mt-2 bg-[#0b0b0c] block w-full rounded-md border-0 px-3 py-1.5 shadow-sm placeholder:text-gray-400 focus:border-0 sm:text-sm sm:leading-6"
 							/>
 						</div>
-						
+
 						<div className="col-span-12 sm:col-span-6">
 							<label
 								htmlFor="gender-identity"
@@ -158,16 +160,16 @@ function Profile({id}) {
 							</label>
 							<Combobox
 								options={[
-									{id: 1, name: "Male"},
-									{id: 2, name: "Female"},
-									{id: 3, name: "Other"},
+									{ id: 1, name: "Male" },
+									{ id: 2, name: "Female" },
+									{ id: 3, name: "Other" },
 								]}
 								selected={genderIdentity}
 								onChange={setGenderIdentity}
 								placeholder="Select Gender"
 							/>
 						</div>
-						
+
 						<div className="col-span-12 sm:col-span-6">
 							<label
 								htmlFor="date-of-birth"
@@ -184,7 +186,7 @@ function Profile({id}) {
 								className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] placeholder:text-gray-400 sm:text-sm sm:leading-6"
 							/>
 						</div>
-						
+
 						<div className="col-span-12">
 							<label
 								htmlFor="current-location"
@@ -199,7 +201,7 @@ function Profile({id}) {
 								placeholder="Select Country"
 							/>
 						</div>
-						
+
 						<div className="col-span-12 sm:col-span-6">
 							<label
 								htmlFor="primary-email"
@@ -217,7 +219,7 @@ function Profile({id}) {
 								className="mt-2 bg-[#0b0b0c] block w-full rounded-md border-0 px-3 py-1.5 shadow-sm placeholder:text-gray-400 focus:border-0 sm:text-sm sm:leading-6"
 							/>
 						</div>
-						
+
 						<div className="col-span-12 sm:col-span-6">
 							<label
 								htmlFor="linkedin-url"
@@ -234,7 +236,7 @@ function Profile({id}) {
 								className="mt-2 bg-[#0b0b0c] block w-full rounded-md border-0 px-3 py-1.5 shadow-sm placeholder:text-gray-400 focus:border-0 sm:text-sm sm:leading-6"
 							/>
 						</div>
-						
+
 						<div className="col-span-12 sm:col-span-6">
 							<label
 								htmlFor="portfolio-website"
@@ -251,7 +253,7 @@ function Profile({id}) {
 								className="mt-2 bg-[#0b0b0c] block w-full rounded-md border-0 px-3 py-1.5 shadow-sm placeholder:text-gray-400 focus:border-0 sm:text-sm sm:leading-6"
 							/>
 						</div>
-						
+
 						<div className="col-span-12 sm:col-span-6">
 							<label
 								htmlFor="twitter-handle"
@@ -268,7 +270,7 @@ function Profile({id}) {
 								className="mt-2 bg-[#0b0b0c] block w-full rounded-md border-0 px-3 py-1.5 shadow-sm placeholder:text-gray-400 focus:border-0 sm:text-sm sm:leading-6"
 							/>
 						</div>
-						
+
 						<div className="col-span-12 sm:col-span-6">
 							<label
 								htmlFor="profile-discoverability"
@@ -284,7 +286,7 @@ function Profile({id}) {
 							</div>
 						</div>
 					</div>
-					
+
 					<div className="mt-6">
 						<button
 							type="submit"
@@ -296,8 +298,8 @@ function Profile({id}) {
 				</div>
 			</form>
 		</>
-	
-	
+
+
 	)
 		;
 }
