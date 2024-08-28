@@ -3,7 +3,7 @@ import NextAuth from "next-auth"
 
 // importing providers
 import GithubProvider from "next-auth/providers/github"
-import {getTopLanguages, getTotalContributions, getUserDetails} from '@/helpers/github'
+import { getTopLanguages, getTotalContributions, getUserDetails, getExtra } from '@/helpers/github'
 
 const handler = NextAuth({
 	providers: [
@@ -13,16 +13,17 @@ const handler = NextAuth({
 		})
 	],
 	callbacks: {
-		async session({session, token, user}) {
+		async session({ session, token, user }) {
 			// Safely add user details to the session object
 			session.user.id = token.sub ?? null;
 			session.user.accessToken = token?.accessToken ?? null;
 			session.user.githubDetails = await getUserDetails(token?.accessToken);
 			session.user.githubDetails.top_languages = await getTopLanguages(token?.accessToken, session.user.githubDetails.login);
 			session.user.githubDetails.total_contribution = await getTotalContributions(token?.accessToken, session.user.githubDetails.login);
+			session.user.githubDetails.extra = await getExtra(token?.accessToken, session.user.githubDetails.login);
 			return session;
 		},
-		async jwt({token, user, account, profile}) {
+		async jwt({ token, user, account, profile }) {
 			// Persist the OAuth access token and the user id to the token right after signin
 			if (account) {
 				token.accessToken = account.access_token;
@@ -35,4 +36,4 @@ const handler = NextAuth({
 	}
 });
 
-export {handler as GET, handler as POST};
+export { handler as GET, handler as POST };
