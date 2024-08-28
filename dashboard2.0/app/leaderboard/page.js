@@ -9,6 +9,8 @@ import { filterOptions, SortOptions } from "@/config/config";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { getAllDeveloper, getDeveloper } from "@/actions/developer.api";
+import { countries } from "@/utils/constants/countries";
+import { cities } from "@/utils/constants/cities";
 
 const Leaderboard = () => {
   const router = useRouter();
@@ -27,10 +29,16 @@ const Leaderboard = () => {
   const [page, setPage] = useState(1);
   const [results, setResults] = useState(20);
   const [totalPages, setTotalPages] = useState(0);
+  const [cityOptions, setCityOptions] = useState([]);
 
   useEffect(() => {
     const fetchDeveloper = async () => {
       const data = await getAllDeveloper(page, results);
+
+      data.developers.map((dev) => {
+        const country = countries?.filter((item) => item?.name?.toLowerCase() == dev?.country?.toLowerCase());
+        dev.country = country?.[0];
+      })
 
       setTotalPages(data?.totalPages);
       setDevelopers(data?.developers);
@@ -42,11 +50,23 @@ const Leaderboard = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const data = auth?.user?.id ? await getDeveloper(auth?.user?.id) : null;
-      setCurrentUser(data)
+      if (auth?.user?.id) {
+        const data = await getDeveloper(auth?.user?.id);
+        data.country = countries?.filter((item) => item?.name?.toLowerCase() == data?.country?.toLowerCase())?.[0];
+        setCurrentUser(data)
+      }
     }
     fetchUser();
   }, [auth])
+
+  useEffect(() => {
+    if (filters.country) {
+      const countryCode = countries.filter(item => item.name?.toLowerCase() === filters.country?.toLowerCase())?.[0];
+      console.log('countryCode', countryCode)
+      const filteredCities = cities.filter(city => city?.country?.toLowerCase() === countryCode?.code?.toLowerCase());
+      setCityOptions(filteredCities.map(item => item.name))
+    }
+  }, [filters.country])
 
   useEffect(() => {
     setFilteredDevelopers(applyFilters(developers, filters, isCity));
@@ -67,7 +87,7 @@ const Leaderboard = () => {
     if (country) {
       setIsCity(false);
       return developers?.filter((dev) =>
-        dev?.location?.name?.toLowerCase().includes(country?.toLowerCase())
+        dev?.country?.name?.toLowerCase().includes(country?.toLowerCase())
       );
     }
     return developers;
@@ -158,7 +178,7 @@ const Leaderboard = () => {
               id={detail.id}
               label={detail.label}
               countryValue={filters.country}
-              options={detail.datalistOptions}
+              options={ detail.id === "city" ? cityOptions : detail.datalistOptions}
               onChange={(value) => handleFilterChange(detail.id, value)}
             />
           ))}
@@ -174,10 +194,15 @@ const Leaderboard = () => {
         </div>
       </div>
       <div className="flex flex-col items-center bg-zinc-800 py-10 gap-4 rounded">
-        <span className="text-[20px] text-center mb-2 px-2">
-          Code Rank. <br /> Earn Transform your repositories into revenue
+        <div>
+        <h2 className="mb-0 text-center">
+          Code Rank Earn
+        </h2>
+        <h1>
+        Transform your repositories into revenue
           streams.
-        </span>
+        </h1>
+        </div>
         <div className="reviewer-form font-bold px-2">
           <button onClick={handleNavigateToSignup}>Try out for free</button>
         </div>

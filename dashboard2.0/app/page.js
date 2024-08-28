@@ -2,6 +2,7 @@
 
 import React, {useEffect} from 'react';
 import {useRouter} from 'next/navigation'
+import LoaderLocal from '@/components/common/loaderLocal';
 
 function Home() {
 	const router = useRouter();
@@ -19,7 +20,8 @@ function Home() {
 	}, []);
 
 	return (
-		<div>
+		<div className='h-[90vh] flex items-center justify-start'>
+			<LoaderLocal/>
 		</div>
 	);
 
