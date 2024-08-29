@@ -19,27 +19,16 @@ export async function POST(request) {
 
 
 
-    // const transporter = nodemailer.createTransport({
-    //     host: 'smtp.mailgun.org',
-    //     port: 465,
-    //     secure: true,
-    //     auth: {
-    //         // user: 'postmaster@growme.services',
-    //         // pass: 'e8867bb749951ca05679bea685a49a84-afce6020-a2be8d32'
-
-    //     }
-    // })
     const transporter = nodemailer.createTransport({
-        host: 'smtp.hostinger.com',
-        service: 'hostinger',
+        host: 'smtp.mailgun.org',
         port: 465,
         secure: true,
         auth: {
-            user: 'antoine@weblab71.fr',
-            pass: 'juQsef-cyckik-2qasdi',
-        },
-    })
+            user: 'postmaster@growme.services',
+            pass: 'e8867bb749951ca05679bea685a49a84-afce6020-a2be8d32'
 
+        }
+    })
 
 
     const referralToken = uuidv4()
@@ -56,7 +45,7 @@ export async function POST(request) {
     const mailOptions = {
         from: {
             name: "Based Agent",
-            address: 'antoine@weblab71.fr',
+            address: 'brad@growme.services'
         },
 
         to: inviteeEmail,
