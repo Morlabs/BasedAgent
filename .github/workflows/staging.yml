@@ -21,14 +21,7 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: Update environment variables in .env file for staging
-        run: |
-          echo "Updating environment variables in .env file for staging environment"
-          cd dashboard2.0
-          sed -i "s|NEXT_PUBLIC_GITHUB_CALLBACK_URL=.*|NEXT_PUBLIC_GITHUB_CALLBACK_URL=https://ba3agent-staging.azurewebsites.net/reviewer-signup/complete|g" .env
-          sed -i "s|NEXTAUTH_URL=.*|NEXTAUTH_URL=https://ba3agent-staging.azurewebsites.net/|g" .env
-
-      - name: npm install, build, and test
+      - name: npm install and build
         run: |
           cd dashboard2.0
           npm install
