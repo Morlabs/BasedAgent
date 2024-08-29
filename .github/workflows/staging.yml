@@ -23,13 +23,14 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          cd Dashboard
-          npm run setup
-          npm run build-prod --if-present
-          npm run test --if-present --passWithNoTests
+          cd dashboard2.0
+          npm run install
+          npm run build --if-present
+          mv ./build/static ./build/standalone/build
+          mv ./public ./build/standalone
 
       - name: Zip artifact for deployment
-        run: zip release.zip Dashboard/src/server* -r
+        run: zip release.zip dashboard2.0/build/standalone* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
