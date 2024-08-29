@@ -21,6 +21,20 @@ jobs:
         with:
           node-version: '18.x'
 
+      - name: Load environment variables from .env file
+        run: |
+          if [ -f dashboard2.0/.env ]; then
+            echo "Loading environment variables from dashboard2.0/.env"
+            export $(cat dashboard2.0/.env | xargs)
+          fi
+
+      - name: Update environment variables for staging
+        run: |
+          echo "Updating environment variables for staging environment"
+          cd dashboard2.0
+          sed -i "s|NEXT_PUBLIC_GITHUB_CALLBACK_URL=.*|NEXT_PUBLIC_GITHUB_CALLBACK_URL=https://ba3agent-staging.azurewebsites.net/reviewer-signup/complete|g" .env
+          sed -i "s|NEXTAUTH_URL=.*|NEXTAUTH_URL=https://ba3agent-staging.azurewebsites.net/|g" .env
+
       - name: npm install, build, and test
         run: |
           cd dashboard2.0
@@ -45,7 +59,7 @@ jobs:
       name: 'ba3agent-staging'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write # This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
