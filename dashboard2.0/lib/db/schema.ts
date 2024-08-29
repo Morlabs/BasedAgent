@@ -14,8 +14,8 @@ export const developers = pgTable('developers', {
   topLanguages: (text('top_languages')).array(),
   publicRepositories: integer('public_repositories'),
   deletedAt: timestamp('deleted_at').defaultNow(),
-  totalWeight: integer('total_weight'),
-  languageWeights: jsonb('language_weights'),
+  country: varchar('country', {length: 255}),
+  city: varchar('city', {length: 255}),
 });
 
 export const contributions = pgTable('contributions', {
@@ -67,6 +67,8 @@ export const profile = pgTable('profile', {
   twitterHandle: varchar('twitter_handle', {length: 255}),
   profileDiscoverability: boolean('profile_discoverability'),
   discordHandle: varchar('discord_handle', {length: 255}),
+  country: varchar('country', {length: 255}),
+  city: varchar('city', {length: 255}),
   
 });
 

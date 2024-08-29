@@ -4,7 +4,6 @@ import { primaryColor } from "@/config/config";
 import LoaderLocal from "../common/loaderLocal";
 
 const LeaderboardTable = ({ data, handlePress, currentUser }) => {
-  console.log("daaaaaaaaaa", currentUser);
 
   return (
     <div className="w-full px-2">
@@ -58,12 +57,12 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
               <span
                 className={`w-8 cursor-pointer text-xl`}
                 onClick={() =>
-                  handlePress("country", currentUser?.location?.name || "")
+                  handlePress("country", currentUser?.country?.name || "")
                 }
               >
-                {currentUser?.location?.code ? (
+                {currentUser?.country?.code ? (
                   <img
-                    src={`https://flagsapi.com/${currentUser?.location?.code}/flat/64.png`}
+                    src={`https://flagsapi.com/${currentUser?.country?.code}/flat/64.png`}
                   />
                 ) : (
                   <img className="w-6 h-6" src="/favicon.png" />
@@ -72,10 +71,10 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
               <span
                 className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
                 onClick={() =>
-                  handlePress("city", currentUser?.location?.city || "")
+                  handlePress("city", currentUser?.city || "")
                 }
               >
-                {currentUser?.location?.city || "Location"}
+                {currentUser?.city || "Location"}
               </span>
             </div>
             <div className="col-span-1 -mt-6 md:mt-0">
@@ -90,70 +89,66 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
       <div className="w-full">
         {data ? (
           <>
-            {data.length > 0 ? (
-              data?.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <div className="grid grid-cols-3 md:grid-cols-6 py-3 px-2 md:px-10 items-center">
-                      <div className="col-span-1">
-                        <span className="text-sm">
-                          {index + 1 < 10 ? `0${index + 1}` : index + 1}.
-                        </span>
-                      </div>
-                      <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between gap-4 md:gap-0 item-center">
-                        <Link
-                          href={`/user/${item?.id}`}
-                          className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
-                        >
-                          {item?.name}
-                        </Link>
-                        <span className="w-1/2 flex justify-start">
-                          <img className="w-6 h-6" src="/favicon.png" />
-                          <a href={item?.githubUrl} target="_blank">
-                            <img
-                              className="w-6 h-6 ml-2"
-                              src="https://img.icons8.com/ios-glyphs/30/FFFFFF/github.png"
-                            />
-                          </a>
-                        </span>
-                      </div>
-                      <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between items-center gap-4 md:gap-0">
-                        <span
-                          className={`w-8 cursor-pointer text-3xl`}
-                          onClick={() =>
-                            handlePress("country", item?.location?.name || "")
-                          }
-                        >
-                          {item?.location?.code ? (
-                            <img
-                              src={`https://flagsapi.com/${item?.location?.code}/flat/64.png`}
-                            />
-                          ) : (
-                            <img className="w-6 h-6" src="/favicon.png" />
-                          )}
-                        </span>
-                        <span
-                          className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
-                          onClick={() =>
-                            handlePress("city", item?.location?.city || "")
-                          }
-                        >
-                          {item?.location?.city || "Location"}
-                        </span>
-                      </div>
-                      <div className="col-span-1 -mt-6 md:mt-0">
-                        <span className="text-sm font-semibold">
-                          {item?.weight || 0}
-                        </span>
-                      </div>
+            {data?.map((item, index) => {
+              return (
+                <div key={index}>
+                  <div className="grid grid-cols-3 md:grid-cols-6 py-3 px-2 md:px-10 items-center">
+                    <div className="col-span-1">
+                      <span className="text-sm">
+                        {index + 1 < 10 ? `0${index + 1}` : index + 1}.
+                      </span>
                     </div>
-                    <div className="h-[1px] bg-zinc-700 w-full"></div>
+                    <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between gap-4 md:gap-0 item-center">
+                      <Link
+                        href={`/user/${item?.id}`}
+                        className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
+                      >
+                        {item?.name}
+                      </Link>
+                      <span className="w-1/2 flex justify-start">
+                        <img className="w-6 h-6" src="/favicon.png" />
+                        <a href={item?.githubUrl} target="_blank">
+                          <img
+                            className="w-6 h-6 ml-2"
+                            src="https://img.icons8.com/ios-glyphs/30/FFFFFF/github.png"
+                          />
+                        </a>
+                      </span>
+                    </div>
+                    <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between items-center gap-4 md:gap-0">
+                      <span
+                        className={`w-8 cursor-pointer text-3xl`}
+                        onClick={() =>
+                          handlePress("country", item?.country?.name || "")
+                        }
+                      >
+                        {item?.country?.code ? (
+                          <img
+                            src={`https://flagsapi.com/${item?.country?.code}/flat/64.png`}
+                          />
+                        ) : (
+                          <img className="w-6 h-6" src="/favicon.png" />
+                        )}
+                      </span>
+                      <span
+                        className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
+                        onClick={() =>
+                          handlePress("city", item?.city || "")
+                        }
+                      >
+                        {item?.city || "Location"}
+                      </span>
+                    </div>
+                    <div className="col-span-1 -mt-6 md:mt-0">
+                      <span className="text-sm font-semibold">
+                        {item?.weight || 0}
+                      </span>
+                    </div>
                   </div>
-                );
-              })
-            ) : (
-              <p className="text-center text-zinc-400">No developer found!</p>
-            )}
+                  <div className="h-[1px] bg-zinc-700 w-full"></div>
+                </div>
+              );
+            })}
           </>
         ) : (
           <div className="w-full flex justify-center">

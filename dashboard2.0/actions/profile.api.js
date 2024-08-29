@@ -35,6 +35,8 @@ export async function upsertProfile(data) {
     portfolio_website,
     twitter_handle,
     profile_discoverability,
+    country,
+    city,
   } = data;
 
   console.log("Upsert Profile Function Called");
@@ -55,6 +57,7 @@ export async function upsertProfile(data) {
     if (existingProfile) {
       // Update the existing profile
       console.log("Updating existing profile for developerId:", id);
+      console.log("checking location", city, country);
       await db
         .update(profile)
         .set({
@@ -68,11 +71,13 @@ export async function upsertProfile(data) {
           portfolioWebsite: portfolio_website,
           twitterHandle: twitter_handle,
           profileDiscoverability: profile_discoverability,
+          country: country,
+          city: city,
         })
-        .where(eq(profile.id, id))
+        .where(eq(profile.developerId, id))
         .returning();
 
-		console.log('current_location', current_location)
+      console.log("profile updated", city, country);
 
       const developer = await getDeveloper(id);
 
@@ -80,13 +85,15 @@ export async function upsertProfile(data) {
         id: id,
         name: first_name + " " + last_name,
         email: primary_email,
-		githubDetails : {
-			login: developer.githubUsername,
-			githubUrl: developer.githubUrl,
-			top_languages: developer.topLanguages,
-			location: current_location,
-			public_repos: developer.publicRepositories,
-		},
+        country: country,
+        city: city,
+        githubDetails: {
+          login: developer.githubUsername,
+          githubUrl: developer.githubUrl,
+          top_languages: developer.topLanguages,
+          location: current_location,
+          public_repos: developer.publicRepositories,
+        },
         image: developer.imageUrl,
       });
 
@@ -106,6 +113,8 @@ export async function upsertProfile(data) {
         portfolioWebsite: portfolio_website,
         twitterHandle: twitter_handle,
         profileDiscoverability: profile_discoverability,
+        country: country,
+        city: city,
       });
 
       console.log("Profile inserted successfully for developerId:", id);

@@ -21,15 +21,23 @@ jobs:
         with:
           node-version: '18.x'
 
+      - name: Update environment variables in .env file for staging
+        run: |
+          echo "Updating environment variables in .env file for staging environment"
+          cd dashboard2.0
+          sed -i "s|NEXT_PUBLIC_GITHUB_CALLBACK_URL=.*|NEXT_PUBLIC_GITHUB_CALLBACK_URL=https://ba3agent-staging.azurewebsites.net/reviewer-signup/complete|g" .env
+          sed -i "s|NEXTAUTH_URL=.*|NEXTAUTH_URL=https://ba3agent-staging.azurewebsites.net/|g" .env
+
       - name: npm install, build, and test
         run: |
-          cd Dashboard
-          npm run setup
-          npm run build-prod --if-present
-          npm run test --if-present --passWithNoTests
+          cd dashboard2.0
+          npm install
+          npm run build --if-present
+          mv ./build/static ./build/standalone/build
+          mv ./public ./build/standalone
 
       - name: Zip artifact for deployment
-        run: zip release.zip Dashboard/src/server* -r
+        run: zip release.zip dashboard2.0/build/standalone* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -44,7 +52,7 @@ jobs:
       name: 'ba3agent-staging'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write # This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
@@ -58,15 +66,14 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.client_id }}
-          tenant-id: ${{ secrets.tenat_id }}
-          subscription-id: ${{ secrets.subscription_id }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }} 
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'BA3agent'
-          slot-name: 'ba3agent-staging'
+          slot-name: 'staging'
           package: .
-          

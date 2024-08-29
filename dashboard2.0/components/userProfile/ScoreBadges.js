@@ -7,17 +7,17 @@ const ScoreBadges = ({ data, repos }) => {
       Achievements
       </h2>
       <div className="flex sm:flex-row flex-col items-start gap-2">
-        <div>
-          <div className="flex items-center justify-between">
-            <div className="border-[1px] text-center border-zinc-600 md:py-4 py-2 md:px-10 px-4">
+        <div className="w-full">
+          <div className="flex items-center justify-between w-full">
+            <div className="border-[1px] text-center border-zinc-600 md:py-4 py-2 md:px-10 px-4 w-1/2">
               <h3 className="text-md font-medium text-gray-100">
-                CodersRank Score
+                Score
               </h3>
               <h2 className="text-xl">{data.score.score}</h2>
             </div>
-            <div className="border-[1px] text-center border-zinc-600 md:py-4 py-2 md:px-10 px-4">
+            <div className="border-[1px] text-center border-zinc-600 md:py-4 py-2 md:px-10 px-4 w-1/2">
               <h3 className="text-md font-medium text-gray-100">
-                CodersRank Rank
+                Rank
               </h3>
               <h2 className="text-xl">{data.score.rank}</h2>
             </div>
