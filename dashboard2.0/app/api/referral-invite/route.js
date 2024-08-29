@@ -20,14 +20,14 @@ export async function POST(request) {
 
 
     const transporter = nodemailer.createTransport({
-        host: 'smtp.mailgun.org',
+        host: process.env.SMTP_HOST,
+        service: process.env.SMTP_SERVICE,
         port: 465,
-        secure: true,
+       secure: true,
         auth: {
-            user: 'postmaster@growme.services',
-            pass: 'e8867bb749951ca05679bea685a49a84-afce6020-a2be8d32'
-
-        }
+          user: process.env.SMTP_EMAIL,
+          pass: process.env.SMTP_PASS,
+        },
     })
 
 
@@ -45,7 +45,7 @@ export async function POST(request) {
     const mailOptions = {
         from: {
             name: "Based Agent",
-            address: 'brad@growme.services'
+            address: process.env.SMTP_EMAIL
         },
 
         to: inviteeEmail,
