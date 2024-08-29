@@ -27,6 +27,7 @@ export default function BasedAgentReferralProgram() {
 	const [sendingInviteLoading, setSendingInviteLoading] = useState(false);
 	const [snackbarOpen, setSnackbarOpen] = useState(false);
 	const [snackbarMessage, setSnackbarMessage] = useState('');
+	const [severity, setSeverity] = useState('success');
 
 	// Calculate total earnings
 	const totalEarnings = referrals.reduce((sum, referral) => sum + referral.earnings, 0);
@@ -73,17 +74,46 @@ export default function BasedAgentReferralProgram() {
 	const sendReferralInvite = async (source) => {
 		try {
 			setSendingInviteLoading(true);
+
+			if (!email) {
+				setSeverity('error');
+				setSnackbarOpen(true);
+				setSnackbarMessage('Please enter the email address');
+				setSendingInviteLoading(false);
+				return;
+			}
+
+			if (email === user.email) {
+				setSeverity('error');
+				setSnackbarOpen(true);
+				setSnackbarMessage('You cannot refer yourself');
+				setSendingInviteLoading(false);
+				return;
+			}
+			// const response = await axios.post('/api/referral-invite', {
+			// 	developerId: user.id,
+			// 	inviteeEmail: email,
+			// 	source: source
+			// });
 			const response = await axios.post('/api/referral-invite', {
 				developerId: user.id,
 				inviteeEmail: email,
-				source: source
+				source: source,
+				totalWeight: user.weight.totalWeight
 			});
+
 			console.log('Referral invite sent:', response.data);
 			setSnackbarOpen(true);
-			setSnackbarMessage('Referral invite sent successfully');
+			if (response.data.message) {
+				setSeverity('error');
+				setSnackbarMessage(response.data.message);
+			} else {
+				setSnackbarMessage('Referral invite sent successfully');
+			}
 			setEmail('');
 		} catch (error) {
 			console.error('Error sending referral invite:', error);
+			setSeverity('error');
 			setSnackbarOpen(true);
 			setSnackbarMessage('Error sending referral invite');
 		}
@@ -116,7 +146,7 @@ export default function BasedAgentReferralProgram() {
 						onClick={() => sendReferralInvite('Email')} // Link the button to sendReferralInvite function
 					>
 						<Mail className="mr-2" size={18} />
-						Invite
+						{sendingInviteLoading ? 'Sending...' : 'Invite'}
 					</button>
 					<button
 						className="bg-transparent border border-blue-400 hover:bg-blue-400 hover:bg-opacity-20 text-blue-400 p-2 rounded">
@@ -147,7 +177,7 @@ export default function BasedAgentReferralProgram() {
 				message={snackbarMessage}
 			>
 				<Alert onClose={() => setSnackbarOpen(false)}
-					severity={snackbarMessage.includes('Error') ? 'error' : 'success'}
+					severity={severity}
 					sx={{ width: '100%' }}>
 					{snackbarMessage}
 				</Alert>
@@ -178,15 +208,15 @@ export default function BasedAgentReferralProgram() {
 					</div>
 				</div>
 				<div className="overflow-x-auto">
-					<table className="w-full">
+					<table className="w-full table-auto">
 						<thead>
 							<tr className="text-left text-gray-400">
-								<th className="pb-2">Email</th>
-								<th className="pb-2">Status</th>
-								<th className="pb-2">Earnings (BAAG)</th>
-								<th className="pb-2">Invite Date</th>
-								<th className="pb-2">Source</th>
-								<th className="pb-2">
+								<th className="pb-2 px-4">Email</th>
+								<th className="pb-2 px-4">Status</th>
+								<th className="pb-2 px-4">Earnings (BAAG)</th>
+								<th className="pb-2 px-4">Invite Date</th>
+								<th className="pb-2 px-4">Source</th>
+								<th className="pb-2 px-4 whitespace-nowrap">
 									Github Access
 									<button
 										className="ml-1 text-gray-400 hover:text-gray-300"
@@ -202,22 +232,22 @@ export default function BasedAgentReferralProgram() {
 										</div>
 									)}
 								</th>
-								<th className="pb-2">Actions</th>
+								<th className="pb-2 px-4">Actions</th>
 							</tr>
 						</thead>
 						<tbody>
 							{referrals.length > 0 ? referrals.map(referral => (
 								<tr key={referral.id} className="border-t border-gray-700">
-									<td className="py-2">{referral.email}</td>
-									<td className="py-2">{referral.status}</td>
-									<td className="py-2">
-										{referral.status === 'Active' ? referral.earnings : '-'}
+									<td className="py-2 px-4 whitespace-nowrap">{referral.email}</td>
+									<td className="py-2 px-4 capitalize">{referral.status}</td>
+									<td className="py-2 px-4">
+										{referral.status === 'Active' || referral.status === 'active' ? referral.earnings : '-'}
 									</td>
-									<td className="py-2">{formatDate(referral.inviteDate)}</td>
-									<td className="py-2">{referral.source}</td>
-									<td className="py-2">{referral.githubAccess ? referral.githubAccess : 'N/A'}</td>
-									<td className="py-2">
-										{referral.status !== 'Active' && (
+									<td className="py-2 px-4">{formatDate(referral.inviteDate)}</td>
+									<td className="py-2 px-4">{referral.source}</td>
+									<td className="py-2 px-4">{referral.githubAccess ? referral.githubAccess : 'N/A'}</td>
+									<td className="py-2 px-4">
+										{(referral.status !== 'Active' && referral.status !== 'active') && (
 											<button
 												onClick={() => handleResendInvite(referral.id)}
 												className="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded flex items-center">
@@ -235,6 +265,7 @@ export default function BasedAgentReferralProgram() {
 						</tbody>
 					</table>
 				</div>
+
 			</div>
 		</div>
 	);

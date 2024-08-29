@@ -4,6 +4,8 @@ import NextAuth from "next-auth"
 // importing providers
 import GithubProvider from "next-auth/providers/github"
 import { getTopLanguages, getTotalContributions, getUserDetails, getExtra } from '@/helpers/github'
+import { calculateDeveloperWeight } from '@/actions/calculateDeveloperWeight.api';
+import { validateReferralSignIn } from "@/actions/validateReferralSignIn.api";
 
 const handler = NextAuth({
 	providers: [
@@ -21,6 +23,16 @@ const handler = NextAuth({
 			session.user.githubDetails.top_languages = await getTopLanguages(token?.accessToken, session.user.githubDetails.login);
 			session.user.githubDetails.total_contribution = await getTotalContributions(token?.accessToken, session.user.githubDetails.login);
 			session.user.githubDetails.extra = await getExtra(token?.accessToken, session.user.githubDetails.login);
+			session.user.weight = await calculateDeveloperWeight(session.user);
+
+			try {
+				let isReferral = await validateReferralSignIn(session.user.email);
+				console.log('isReferral:', isReferral);
+			} catch (error) {
+				console.log('Error in validateReferralSignIn:', error.message);
+				return Response.json({ error: error.message }, { status: 500 });
+			}
+
 			return session;
 		},
 		async jwt({ token, user, account, profile }) {

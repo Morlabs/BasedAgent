@@ -1,9 +1,12 @@
 import { db } from "@/lib/db/connect";
 import { eq } from "drizzle-orm";
 import { developerInvites } from "@/lib/db/schema";
+import { NextResponse } from "next/server";
 
-export async function validateReferralSignIn(email) {
+export async function POST(request) {
     try {
+        const { email } = await request.json(); // Correctly extracting email from the request body
+        console.log('validateReferralSignIn:', email);
 
         // Find the referral by email from developerInvites table
         const referral = await db.query.developerInvites.findFirst({
@@ -13,7 +16,7 @@ export async function validateReferralSignIn(email) {
 
         // If email does not exist, return without error
         if (!referral) {
-            return false
+            return NextResponse.json({ message: 'No referral' });
         }
 
         // If status is pending, then set status to active, else leave unchanged
@@ -21,17 +24,15 @@ export async function validateReferralSignIn(email) {
             await db.update(developerInvites)
                 .set({ status: 'active' })
                 .where(eq(developerInvites.email, email));
-            return true
+            return NextResponse.json({ message: 'Referral sign in validated' });
         }
         else if (referral.status === 'active') {
-            return true
+            return NextResponse.json({ message: 'Referral already active' });
         }
 
-        return false
+        return NextResponse.json({ message: 'False referral' });
     } catch (error) {
         console.error('Error in validateReferralSignIn:', error.message);
-        return false
+        return NextResponse.json({ error: 'Error in validateReferralSignIn' }, { status: 500 });
     }
-
-
 }

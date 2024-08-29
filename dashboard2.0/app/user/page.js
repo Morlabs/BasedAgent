@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from "@/hooks/useAuth";
 import LoaderLocal from "@/components/common/loaderLocal";
 import { addDeveloper } from "@/actions/developer.api";
-import { calculateDeveloperWeight } from '@/actions/calculateDeveloperWeight.api';
 // Assuming this is the API you want to call
 
 const TempRedirect = () => {
@@ -17,8 +16,6 @@ const TempRedirect = () => {
 				// Example API call
 				try {
 					const response = await addDeveloper(user);
-					const weight = await calculateDeveloperWeight(user);
-					console.log("Weight: ", weight);
 
 					console.log('API response:', response); // Handle the response
 				} catch (error) {
