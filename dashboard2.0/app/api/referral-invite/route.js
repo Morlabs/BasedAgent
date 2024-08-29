@@ -34,7 +34,7 @@ export async function POST(request) {
     const referralToken = uuidv4()
     // const baseUrl = 'http://localhost:3000'
     const baseUrl = process.env.FE_BASE_URL
-    const referralLink = `${baseUrl}`
+    const referralLink = `${baseUrl}/home`
 
     const html = `
         <h1>Morlabs Referral Invite</h1>
