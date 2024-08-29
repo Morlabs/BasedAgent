@@ -19,19 +19,33 @@ export async function POST(request) {
 
 
 
+    // const transporter = nodemailer.createTransport({
+    //     host: 'smtp.mailgun.org',
+    //     port: 465,
+    //     secure: true,
+    //     auth: {
+    //         // user: 'postmaster@growme.services',
+    //         // pass: 'e8867bb749951ca05679bea685a49a84-afce6020-a2be8d32'
+
+    //     }
+    // })
     const transporter = nodemailer.createTransport({
-        host: 'smtp.mailgun.org',
+        host: 'smtp.hostinger.com',
+        service: 'hostinger',
         port: 465,
         secure: true,
         auth: {
-            user: 'postmaster@growme.services',
-            pass: 'e8867bb749951ca05679bea685a49a84-afce6020-a2be8d32'
-        }
+            user: 'antoine@weblab71.fr',
+            pass: 'juQsef-cyckik-2qasdi',
+        },
     })
 
+
+
     const referralToken = uuidv4()
-    const baseUrl = 'http://localhost:3000'
-    const referralLink = `${baseUrl}/referral-signup?token=${referralToken}`
+    // const baseUrl = 'http://localhost:3000'
+    const baseUrl = process.env.FE_BASE_URL
+    const referralLink = `${baseUrl}`
 
     const html = `
         <h1>Morlabs Referral Invite</h1>
@@ -41,8 +55,8 @@ export async function POST(request) {
 
     const mailOptions = {
         from: {
-            name: 'Grow Me',
-            address: 'brad@growme.services'
+            name: "Based Agent",
+            address: 'antoine@weblab71.fr',
         },
 
         to: inviteeEmail,

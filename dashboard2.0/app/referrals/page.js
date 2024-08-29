@@ -103,6 +103,7 @@ export default function BasedAgentReferralProgram() {
 			});
 
 			console.log('Referral invite sent:', response.data);
+			setSeverity('success');
 			setSnackbarOpen(true);
 			if (response.data.message) {
 				setSeverity('error');
