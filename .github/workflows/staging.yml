@@ -24,7 +24,7 @@ jobs:
       - name: npm install, build, and test
         run: |
           cd dashboard2.0
-          npm run install
+          npm install
           npm run build --if-present
           mv ./build/static ./build/standalone/build
           mv ./public ./build/standalone
