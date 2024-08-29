@@ -10,8 +10,8 @@ import { validateReferralSignIn } from "@/actions/validateReferralSignIn.api";
 const handler = NextAuth({
 	providers: [
 		GithubProvider({
-			clientId: 'Ov23liqqaWOhYy8noV6M',
-			clientSecret: 'ed6f1966154128388ba57a1ac1ad80b0e4a8f21a',
+			clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
+			clientSecret: process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET,
 		})
 	],
 	callbacks: {
