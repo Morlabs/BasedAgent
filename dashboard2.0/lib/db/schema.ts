@@ -14,6 +14,8 @@ export const developers = pgTable('developers', {
   topLanguages: (text('top_languages')).array(),
   publicRepositories: integer('public_repositories'),
   deletedAt: timestamp('deleted_at').defaultNow(),
+  totalWeight: integer('total_weight'),
+  languageWeights: jsonb('language_weights'),
 });
 
 export const contributions = pgTable('contributions', {
