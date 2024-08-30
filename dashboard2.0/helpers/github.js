@@ -102,30 +102,45 @@ export async function getTotalContributions(accessToken, username) {
 	}
 }
 
-async function getCommitCountLastYear(username, token) {
-	const oneYearAgo = new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString();
-	let totalCommits = 0;
-	let page = 1;
-	let hasMoreCommits = true;
+// async function getCommitCountLastYear(username, token) {
+// 	const oneYearAgo = new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString();
+// 	let totalCommits = 0;
+// 	let page = 1;
+// 	let hasMoreCommits = true;
 
-	while (hasMoreCommits) {
-		const commitsResponse = await axios.get(`https://api.github.com/search/commits?q=author:${username}+committer-date:>${oneYearAgo}&per_page=100&page=${page}`, {
-			headers: {
-				Authorization: `token ${token}`,
-				Accept: 'application/vnd.github.cloak-preview'
-			}
+// 	while (hasMoreCommits) {
+// 		const commitsResponse = await axios.get(`https://api.github.com/search/commits?q=author:${username}+committer-date:>${oneYearAgo}&per_page=100&page=${page}`, {
+// 			headers: {
+// 				Authorization: `token ${token}`,
+// 				Accept: 'application/vnd.github.cloak-preview'
+// 			}
+// 		});
+// 		const commits = commitsResponse.data.items;
+
+// 		// Add the number of commits on this page to the total count
+// 		totalCommits += commits.length;
+
+// 		// Check if there are more pages
+// 		hasMoreCommits = commits.length === 100;  // GitHub API returns 100 results per page max
+// 		page += 1;
+// 	}
+
+// 	return totalCommits;
+// }
+
+async function getCommits(username, token, repos) {
+	const commits = [];
+	for (let repo of repos) {
+		const commitsResponse = await axios.get(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits`, {
+			params: { author: username, per_page: 100 },
+			headers: { Authorization: `token ${token}` }
 		});
-		const commits = commitsResponse.data.items;
+		let commitInfo = {
 
-		// Add the number of commits on this page to the total count
-		totalCommits += commits.length;
-
-		// Check if there are more pages
-		hasMoreCommits = commits.length === 100;  // GitHub API returns 100 results per page max
-		page += 1;
+		}
+		commits.push(commitsResponse.data.length);
 	}
-
-	return totalCommits;
+	return commits;
 }
 
 export async function getCommitCounts(username, token) {
@@ -173,13 +188,32 @@ export async function getCommitCounts(username, token) {
 			.sort((a, b) => b[1] - a[1])
 			.map(([lang, count]) => lang);
 
-		const commitCount = commitsResponse.data.length;  // This only counts the first page
+		const commitCount = commitsResponse.data.length;
+
+		// get commit info for each commit
+		let commitsInfo = []
+		commitsResponse.data.forEach(commit => {
+			commitsInfo.push({
+				// sha: commit.sha,
+				message: commit.commit.message,
+				date: commit.commit.author.date,
+				author: commit.author.login,
+			})
+		})
+
+		// validate if the number of stars is available
+		if (repo.stargazers_count === undefined) {
+			repo.stargazers_count = 0;
+		}
 
 		return {
 			repoName: repo.full_name,
 			numberOfCommitsByUser: commitCount,
 			numberOfStars: repo.stargazers_count,
 			topLanguages: topLanguages,
+			createdAt: repo.created_at,
+			updatedAt: repo.updated_at,
+			commits: commitsInfo,
 		};
 	}));
 
@@ -189,12 +223,24 @@ export async function getCommitCounts(username, token) {
 export async function getExtra(accessToken, username) {
 
 	try {
-		const recentContributions = await getCommitCountLastYear(username, accessToken);
 		const commitCounts = await getCommitCounts(username, accessToken);
+
+		// recent contributions is the sum of the number of commits in the last year
+		const oneYearAgo = new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString();
+		let recentContributions = 0;
+		commitCounts.forEach(repo => {
+			repo.commits.forEach(commit => {
+				if (commit.date > oneYearAgo) {
+					recentContributions += 1;
+				}
+			}
+			)
+		}
+		);
 
 		return { recentContributions: recentContributions, contributions: commitCounts };
 	} catch (error) {
-		console.error('Error fetching total contributions:', error);
+		console.error('Error fetching total contributions from owned and unowned repos:', error);
 		return 0;
 	}
 }

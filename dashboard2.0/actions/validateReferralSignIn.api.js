@@ -9,7 +9,7 @@ export async function validateReferralSignIn(email) {
         const referral = await db.query.developerInvites.findFirst({
             where: eq(developerInvites.email, email)
         });
-        console.log('Referral:', referral);
+        // console.log('Referral:', referral);
 
         // If email does not exist, return without error
         if (!referral) {
