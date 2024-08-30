@@ -83,7 +83,7 @@ const LeaderboardTable = ({
                   handleSearchFilter("city", currentUser?.city || null);
                 }}
               >
-                {currentUser?.city || "Location"}
+                {currentUser?.city || "unknown"}
               </span>
             </div>
             <div className="col-span-1 -mt-6 md:mt-0">
@@ -148,7 +148,7 @@ const LeaderboardTable = ({
                           handleSearchFilter("city", item?.city || null);
                         }}
                       >
-                        {item?.city || "Location"}
+                        {item?.city || "unknown"}
                       </span>
                     </div>
                     <div className="col-span-1 -mt-6 md:mt-0">
