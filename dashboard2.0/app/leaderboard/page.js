@@ -35,14 +35,18 @@ const Leaderboard = () => {
     const fetchDeveloper = async () => {
       const data = await getAllDeveloper(page, results);
 
-      data.developers.map((dev) => {
-        const country = countries?.filter((item) => item?.name?.toLowerCase() == dev?.country?.toLowerCase());
+      data?.developers?.map((dev) => {
+        const country = countries?.filter(
+          (item) => item?.name?.toLowerCase() == dev?.country?.toLowerCase()
+        );
         dev.country = country?.[0];
-      })
+      });
+
+      console.log("develpoer", data);
 
       setTotalPages(data?.totalPages);
-      setDevelopers(data?.developers);
-      setFilteredDevelopers(data?.developers);
+      setDevelopers(data?.developers || []);
+      setFilteredDevelopers(data?.developers || null);
     };
 
     fetchDeveloper();
@@ -52,24 +56,36 @@ const Leaderboard = () => {
     const fetchUser = async () => {
       if (auth?.user?.id) {
         const data = await getDeveloper(auth?.user?.id);
-        data.country = countries?.filter((item) => item?.name?.toLowerCase() == data?.country?.toLowerCase())?.[0];
-        setCurrentUser(data)
+        console.log("current user", data);
+        data
+          ? (data.country = countries?.filter(
+              (item) =>
+                item?.name?.toLowerCase() == data?.country?.toLowerCase()
+            )?.[0])
+          : "";
+        setCurrentUser(data || null);
       }
-    }
+    };
     fetchUser();
-  }, [auth])
+  }, [auth]);
 
   useEffect(() => {
     if (filters.country) {
-      const countryCode = countries.filter(item => item.name?.toLowerCase() === filters.country?.toLowerCase())?.[0];
-      console.log('countryCode', countryCode)
-      const filteredCities = cities.filter(city => city?.country?.toLowerCase() === countryCode?.code?.toLowerCase());
-      setCityOptions(filteredCities.map(item => item.name))
+      const countryCode = countries.filter(
+        (item) => item.name?.toLowerCase() === filters.country?.toLowerCase()
+      )?.[0];
+      console.log("countryCode", countryCode);
+      const filteredCities = cities.filter(
+        (city) =>
+          city?.country?.toLowerCase() === countryCode?.code?.toLowerCase()
+      );
+      setCityOptions(filteredCities.map((item) => item.name));
     }
-  }, [filters.country])
+  }, [filters.country]);
 
   useEffect(() => {
-    setFilteredDevelopers(applyFilters(developers, filters, isCity));
+    developers &&
+      setFilteredDevelopers(applyFilters(developers, filters, isCity));
   }, [filters, developers, isCity]);
 
   const applyFilters = (developers, filters, isCity) => {
@@ -106,11 +122,13 @@ const Leaderboard = () => {
     if (technology) {
       const techLowerCase = technology?.toLowerCase();
       return developers?.filter((dev) =>
-        dev?.topLanguages?.some((lang) => lang?.toLowerCase().includes(techLowerCase))
+        dev?.topLanguages?.some((lang) =>
+          lang?.toLowerCase().includes(techLowerCase)
+        )
       );
     }
     return developers;
-  };  
+  };
 
   const sortDevelopers = (developers, sortBy) => {
     if (!sortBy) return developers;
@@ -124,9 +142,9 @@ const Leaderboard = () => {
         case "Name":
           return compareValues(a?.name, b?.name);
         case "Country":
-          return compareValues(a?.country || '', b?.country || '');
+          return compareValues(a?.country || "", b?.country || "");
         case "City":
-          return compareValues(a?.city || '', b?.city || '');
+          return compareValues(a?.city || "", b?.city || "");
         default:
           return 0;
       }
@@ -152,13 +170,13 @@ const Leaderboard = () => {
     if (page != totalPages) {
       setPage((prevPage) => prevPage + 1);
     }
-  }
+  };
 
   const decreasePage = () => {
     if (page > 0 && page != 1) {
       setPage((prevPage) => prevPage - 1);
     }
-  }
+  };
 
   return (
     <div className="px-4 xl:px-2">
@@ -178,7 +196,9 @@ const Leaderboard = () => {
               id={detail.id}
               label={detail.label}
               countryValue={filters.country}
-              options={ detail.id === "city" ? cityOptions : detail.datalistOptions}
+              options={
+                detail.id === "city" ? cityOptions : detail.datalistOptions
+              }
               onChange={(value) => handleFilterChange(detail.id, value)}
             />
           ))}
@@ -195,16 +215,19 @@ const Leaderboard = () => {
       </div>
       <div className="flex flex-col items-center bg-zinc-800 py-10 gap-4 rounded">
         <div>
-        <h2 className="mb-0 text-center">
-          Code Rank Earn
-        </h2>
-        <h1>
-        Transform your repositories into revenue
-          streams.
-        </h1>
+          <h2 className="mb-0 text-center">
+            {currentUser ? "Grow Together, Earn Together" : "Code Rank Earn"}
+          </h2>
+          <h1>
+            {currentUser
+              ? "Invite fellow coders to BasedAgent and unlock 10% recurring reward"
+              : "Transform your repositories into revenue streams."}
+          </h1>
         </div>
         <div className="reviewer-form font-bold px-2">
-          <button onClick={handleNavigateToSignup}>Try out for free</button>
+          <button onClick={currentUser ? handleNavigateToSignup : () => {}}>
+            Try out for free
+          </button>
         </div>
 
         <LeaderboardTable
@@ -230,10 +253,7 @@ const Leaderboard = () => {
           </div>
           <div className="flex items-center gap-2">
             <div className="reviewer-form">
-              <button
-                className="font-extrabold"
-                onClick={decreasePage}
-              >
+              <button className="font-extrabold" onClick={decreasePage}>
                 <img src="/left_arrow.png" className="w-6 h-6" />
               </button>
             </div>
@@ -245,10 +265,7 @@ const Leaderboard = () => {
             />
             <span className="mx-2">of {totalPages}</span>
             <div className="reviewer-form">
-              <button
-                className="font-extrabold"
-                onClick={increasePage}
-              >
+              <button className="font-extrabold" onClick={increasePage}>
                 <img src="/right_arrow.png" className="w-6 h-6" />
               </button>
             </div>

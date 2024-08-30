@@ -1,8 +1,15 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 
-const CustomDropdown = ({ id, label, options, onChange, value, countryValue }) => {
+const CustomDropdown = ({
+  id,
+  label,
+  options,
+  onChange,
+  value,
+  countryValue,
+}) => {
   const [showDropdown, setShowDropdown] = useState(false);
   // const [inputValue, setInputValue] = useState(value);
 
@@ -14,11 +21,15 @@ const CustomDropdown = ({ id, label, options, onChange, value, countryValue }) =
 
   const isDisabled = () => {
     if (id === "city") {
-      return countryValue !== '' || value ? false : true;
+      return countryValue !== "" || value ? false : true;
     } else {
       return false;
     }
-  }
+  };
+  const handleClearInput = (e) => {
+    e.stopPropagation(); // To prevent the input focus or dropdown opening
+    onChange("");
+  };
 
   return (
     <div className="relative">
@@ -40,26 +51,39 @@ const CustomDropdown = ({ id, label, options, onChange, value, countryValue }) =
         }}
         className={`${
           id === "results" ? "bg-zinc-700" : "bg-zinc-800"
-        } py-3 px-2 w-full md:w-28 lg:w-40 rounded outline-none bg-[length:30px_30px] md:bg-[length:15px_15px] lg:bg-[length:30px_30px] bg-no-repeat bg-right bg-[url('https://img.icons8.com/material-sharp/96/FFFFFF/expand-arrow--v1.png')] ${
+        } py-3 px-2 w-full md:w-28 lg:w-40 rounded outline-none bg-[length:30px_30px] md:bg-[length:15px_15px] lg:bg-[length:30px_30px] bg-no-repeat bg-right 
+         ${
+          value
+            ? "none"
+            : "bg-[url('https://img.icons8.com/material-sharp/96/FFFFFF/expand-arrow--v1.png')]"
+        }
+         ${
           id === "city" && isDisabled() ? "opacity-50" : ""
         }`}
       />
+      {value && id !== "results" && (
+        <div
+          onClick={handleClearInput}
+          className="absolute z-10 -right-2 top-2 cursor-pointer bg-[length:30px_30px] md:bg-[length:15px_15px] lg:bg-[length:30px_30px] bg-no-repeat w-10 h-10 bg-[url('https://img.icons8.com/ios-glyphs/90/FFFFFF/multiply.png')]"
+        />
+      )}
       {showDropdown && filteredOptions.length > 0 && (
         <div className="absolute z-10 bg-zinc-800 max-h-72 mt-1 overflow-y-auto rounded w-full md:w-28 lg:w-40 shadow-lg">
           {filteredOptions.map((option, index) => {
-            return(
-            <div
-              key={index}
-              onClick={() => {
-                // setInputValue(option);
-                onChange(option);
-                setShowDropdown(false);
-              }}
-              className={`cursor-pointer hover:bg-[#64D894] hover:text-black p-2`}
-            >
-              {option}
-            </div>
-          )})}
+            return (
+              <div
+                key={index}
+                onClick={() => {
+                  // setInputValue(option);
+                  onChange(option);
+                  setShowDropdown(false);
+                }}
+                className={`cursor-pointer hover:bg-[#64D894] hover:text-black p-2`}
+              >
+                {option}
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
