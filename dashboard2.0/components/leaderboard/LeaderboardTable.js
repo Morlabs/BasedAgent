@@ -3,8 +3,12 @@ import Link from "next/link";
 import { primaryColor } from "@/config/config";
 import LoaderLocal from "../common/loaderLocal";
 
-const LeaderboardTable = ({ data, handlePress, currentUser }) => {
-
+const LeaderboardTable = ({
+  data,
+  handlePress,
+  currentUser,
+  handleSearchFilter,
+}) => {
   return (
     <div className="w-full px-2">
       {/* table header */}
@@ -56,9 +60,13 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
             <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between gap-4 md:gap-0 items-center">
               <span
                 className={`w-8 cursor-pointer text-xl`}
-                onClick={() =>
-                  handlePress("country", currentUser?.country?.name || "")
-                }
+                onClick={() => {
+                  handlePress("country", currentUser?.country?.name || "");
+                  handleSearchFilter(
+                    "country",
+                    currentUser?.country?.name || null
+                  );
+                }}
               >
                 {currentUser?.country?.code ? (
                   <img
@@ -70,9 +78,10 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
               </span>
               <span
                 className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
-                onClick={() =>
-                  handlePress("city", currentUser?.city || "")
-                }
+                onClick={() => {
+                  handlePress("city", currentUser?.city || "");
+                  handleSearchFilter("city", currentUser?.city || null);
+                }}
               >
                 {currentUser?.city || "Location"}
               </span>
@@ -118,8 +127,10 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
                     <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-between items-center gap-4 md:gap-0">
                       <span
                         className={`w-8 cursor-pointer text-3xl`}
-                        onClick={() =>
+                        onClick={() => {
                           handlePress("country", item?.country?.name || "")
+                          handleSearchFilter("country", item?.country?.name || null);
+                        }
                         }
                       >
                         {item?.country?.code ? (
@@ -132,9 +143,10 @@ const LeaderboardTable = ({ data, handlePress, currentUser }) => {
                       </span>
                       <span
                         className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
-                        onClick={() =>
+                        onClick={() => {
                           handlePress("city", item?.city || "")
-                        }
+                          handleSearchFilter("city", item?.city || null);
+                        }}
                       >
                         {item?.city || "Location"}
                       </span>

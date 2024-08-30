@@ -8,7 +8,7 @@ export const useAuth = () => {
 		isLoading: true,
 		user: null,
 	});
-	console.log('session from useAuth', session);
+	// console.log('session from useAuth', session);
 	useEffect(() => {
 		if (status === 'loading') {
 			setAuthState({

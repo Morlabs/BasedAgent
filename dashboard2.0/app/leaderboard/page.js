@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CustomDropdown from "@/components/leaderboard/CustomDropdown";
 import LeaderboardTable from "@/components/leaderboard/LeaderboardTable";
 import { filterOptions, SortOptions } from "@/config/config";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { getAllDeveloper, getDeveloper } from "@/actions/developer.api";
 import { countries } from "@/utils/constants/countries";
@@ -15,21 +15,51 @@ import { cities } from "@/utils/constants/cities";
 const Leaderboard = () => {
   const router = useRouter();
   const auth = useAuth();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+  const countryQuery = searchParams.get("country");
+  const cityQuery = searchParams.get("city");
+  const technologyQuery = searchParams.get("technology");
+  const sortByQuery = searchParams.get("sortBy");
+
+  const createQueryString = useCallback(
+    (name, value) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
+  const testing = () => {
+    router.push(pathname + "?" + createQueryString("country", "pakistan"));
+  };
 
   const [currentUser, setCurrentUser] = useState(null);
   const [developers, setDevelopers] = useState([]);
   const [filteredDevelopers, setFilteredDevelopers] = useState(null);
   const [filters, setFilters] = useState({
-    country: "",
-    city: "",
-    technology: "",
-    sortBy: "",
+    country: countryQuery || "",
+    city: cityQuery || "",
+    technology: technologyQuery || "",
+    sortBy: sortByQuery || "",
   });
   const [isCity, setIsCity] = useState(true);
   const [page, setPage] = useState(1);
   const [results, setResults] = useState(20);
   const [totalPages, setTotalPages] = useState(0);
   const [cityOptions, setCityOptions] = useState([]);
+
+  useEffect(() => {
+    setFilters({
+      country: countryQuery || "",
+      city: cityQuery || "",
+      technology: technologyQuery || "",
+      sortBy: sortByQuery || "",
+    })
+  }, [countryQuery,  cityQuery, technologyQuery, sortByQuery])
 
   useEffect(() => {
     const fetchDeveloper = async () => {
@@ -41,8 +71,6 @@ const Leaderboard = () => {
         );
         dev.country = country?.[0];
       });
-
-      console.log("develpoer", data);
 
       setTotalPages(data?.totalPages);
       setDevelopers(data?.developers || []);
@@ -56,7 +84,6 @@ const Leaderboard = () => {
     const fetchUser = async () => {
       if (auth?.user?.id) {
         const data = await getDeveloper(auth?.user?.id);
-        console.log("current user", data);
         data
           ? (data.country = countries?.filter(
               (item) =>
@@ -74,27 +101,32 @@ const Leaderboard = () => {
       const countryCode = countries.filter(
         (item) => item.name?.toLowerCase() === filters.country?.toLowerCase()
       )?.[0];
-      console.log("countryCode", countryCode);
       const filteredCities = cities.filter(
         (city) =>
           city?.country?.toLowerCase() === countryCode?.code?.toLowerCase()
       );
       setCityOptions(filteredCities.map((item) => item.name));
     }
-  }, [filters.country]);
+  }, [filters]);
 
   useEffect(() => {
     developers &&
       setFilteredDevelopers(applyFilters(developers, filters, isCity));
-  }, [filters, developers, isCity]);
+  }, [countryQuery,  cityQuery, technologyQuery, sortByQuery, developers]);
 
   const applyFilters = (developers, filters, isCity) => {
     let filtered = [...developers];
 
-    filtered = filterByCountry(filtered, filters.country, isCity);
-    filtered = filterByCity(filtered, filters.city);
-    filtered = filterByTechnology(filtered, filters.technology);
-    filtered = sortDevelopers(filtered, filters.sortBy);
+    filtered = filterByCountry(filtered, countryQuery, isCity);
+    filtered = filterByCity(filtered, cityQuery);
+    filtered = filterByTechnology(filtered, technologyQuery);
+    filtered = sortDevelopers(filtered, sortByQuery);
+
+    console.log('filtered', filtered)
+    console.log('countryQuery', countryQuery)
+    console.log('cityQuery', cityQuery)
+    console.log('technologyQuery', technologyQuery)
+    console.log('sortByQuery', sortByQuery)
 
     return filtered;
   };
@@ -134,6 +166,8 @@ const Leaderboard = () => {
     if (!sortBy) return developers;
 
     return developers?.sort((a, b) => {
+      console.log('sorting a', a?.country?.name)
+      console.log('sorting b', b?.country?.name)
       switch (sortBy) {
         case "Rank":
           return compareValues(Number(a?.rank), Number(b?.rank), true);
@@ -142,7 +176,7 @@ const Leaderboard = () => {
         case "Name":
           return compareValues(a?.name, b?.name);
         case "Country":
-          return compareValues(a?.country || "", b?.country || "");
+          return compareValues(a?.country?.name || "", b?.country?.name || "");
         case "City":
           return compareValues(a?.city || "", b?.city || "");
         default:
@@ -160,6 +194,19 @@ const Leaderboard = () => {
       ...prevFilters,
       [id]: value,
     }));
+  };
+
+  const handleSearchFilter = (id, value) => {
+    const params = new URLSearchParams(searchParams);
+  
+    if (value) {
+      params.set(id, value);
+    } else {
+      params.delete(id);
+    }
+  
+    const queryString = params.toString();
+    router.push(`${pathname}${queryString ? `?${queryString}` : ""}`);
   };
 
   const handleNavigateToSignup = () => {
@@ -200,6 +247,9 @@ const Leaderboard = () => {
                 detail.id === "city" ? cityOptions : detail.datalistOptions
               }
               onChange={(value) => handleFilterChange(detail.id, value)}
+              handleSearchFilter={(value) =>
+                handleSearchFilter(detail?.id, value)
+              }
             />
           ))}
           <span className="text-gray-400">Sort by:</span>
@@ -210,6 +260,7 @@ const Leaderboard = () => {
             label={SortOptions.label}
             options={SortOptions.datalistOptions}
             onChange={(value) => handleFilterChange("sortBy", value)}
+            handleSearchFilter={(value) => handleSearchFilter("sortBy", value)}
           />
         </div>
       </div>
@@ -225,7 +276,10 @@ const Leaderboard = () => {
           </h1>
         </div>
         <div className="reviewer-form font-bold px-2">
-          <button onClick={currentUser ? handleNavigateToSignup : () => {}}>
+          <button
+            // onClick={currentUser ? handleNavigateToSignup : () => {}}
+            onClick={testing}
+          >
             Try out for free
           </button>
         </div>
@@ -234,6 +288,7 @@ const Leaderboard = () => {
           data={filteredDevelopers}
           currentUser={currentUser}
           handlePress={handleFilterChange}
+          handleSearchFilter={handleSearchFilter}
         />
 
         {/* pagination */}

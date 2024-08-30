@@ -9,6 +9,7 @@ const CustomDropdown = ({
   onChange,
   value,
   countryValue,
+  handleSearchFilter = () => {},
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   // const [inputValue, setInputValue] = useState(value);
@@ -29,6 +30,7 @@ const CustomDropdown = ({
   const handleClearInput = (e) => {
     e.stopPropagation(); // To prevent the input focus or dropdown opening
     onChange("");
+    handleSearchFilter(null);
   };
 
   return (
@@ -64,7 +66,7 @@ const CustomDropdown = ({
       {value && id !== "results" && (
         <div
           onClick={handleClearInput}
-          className="absolute z-10 -right-2 top-2 cursor-pointer bg-[length:30px_30px] md:bg-[length:15px_15px] lg:bg-[length:30px_30px] bg-no-repeat w-10 h-10 bg-[url('https://img.icons8.com/ios-glyphs/90/FFFFFF/multiply.png')]"
+          className="absolute z-10 -right-2 md:-right-3 lg:-right-2 top-[14px] md:top-4 lg:top-[14px] cursor-pointer bg-[length:20px_20px] md:bg-[length:15px_15px] lg:bg-[length:20px_20px] bg-no-repeat w-8 h-8 bg-[url('https://img.icons8.com/ios-glyphs/90/FFFFFF/multiply.png')]"
         />
       )}
       {showDropdown && filteredOptions.length > 0 && (
@@ -76,6 +78,7 @@ const CustomDropdown = ({
                 onClick={() => {
                   // setInputValue(option);
                   onChange(option);
+                  handleSearchFilter(option);
                   setShowDropdown(false);
                 }}
                 className={`cursor-pointer hover:bg-[#64D894] hover:text-black p-2`}
