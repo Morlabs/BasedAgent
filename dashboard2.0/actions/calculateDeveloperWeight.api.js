@@ -47,10 +47,13 @@ export async function calculateDeveloperWeight(user) {
 
 
         // Calculate Global Weight (GW)
-        const GW = (BR * AF * CF * DF * CIF) + LB;
+        // const GW = (BR * AF * CF * DF * CIF) + LB;
+        const GW = BR + AF + CF + DF + CIF + LB;
 
         // Calculate Final Weight (W)
-        const W = GW + LB;
+        // let W = GW + LB;
+        let W = GW;
+        W = Math.round(W);
 
         return { totalWeight: W, languageWeights };
     } catch (error) {
@@ -101,7 +104,7 @@ export async function calculateLanguageWeights(user) {
             if (numberOfStars === undefined) {
                 numberOfStars = 0;
             }
-            return acc + Math.log(1 + numberOfStars) * numberOfCommitsByUser;
+            return acc + (Math.log(1 + numberOfStars) * numberOfCommitsByUser);
         }, 0);
 
         // Language Popularity (LP) 
@@ -109,7 +112,9 @@ export async function calculateLanguageWeights(user) {
         const LP = 1 + (1 / languageRank);
 
         // language specific weight LW
-        const LW = (LR * LAF * LCF * LCIF) * LP;
+        // const LW = (LR * LAF * LCF * LCIF) * LP;
+        let LW = (LR + LAF + LCF + LCIF) * LP;
+        LW = Math.round(LW)
 
         return { language, weight: LW };
     });
