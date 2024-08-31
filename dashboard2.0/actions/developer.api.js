@@ -59,7 +59,7 @@ export async function addDeveloper(user) {
         last_name: user?.name?.split(" ")[1] || "",
         gender_identity: "",
         date_of_birth: null,
-        current_location: location || "",
+        current_location: user?.githubDetails?.location || "",
         primary_email: user?.email || "",
         linkedin_url: "",
         portfolio_website: "",

@@ -1,0 +1,1 @@
+ALTER TABLE "developers" ALTER COLUMN "weight" SET DATA TYPE varchar;

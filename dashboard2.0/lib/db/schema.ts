@@ -16,7 +16,7 @@ export const developers = pgTable('developers', {
   deletedAt: timestamp('deleted_at').defaultNow(),
   country: varchar('country', {length: 255}),
   city: varchar('city', {length: 255}),
-  weight: varchar('weight', {length: 255}),
+  weight: varchar('weight'),
 });
 
 export const contributions = pgTable('contributions', {

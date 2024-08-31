@@ -9,6 +9,8 @@ const LeaderboardTable = ({
   currentUser,
   handleSearchFilter,
 }) => {
+
+  console.log('currentUser', currentUser)
   return (
     <div className="w-full px-2">
       {/* table header */}
