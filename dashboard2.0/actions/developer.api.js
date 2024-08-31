@@ -1,6 +1,6 @@
 "use server";
 
-import { developers } from "@/lib/db/schema";
+import { contributions, developerInvites, developers, integrations, jobPreferences, profile } from "@/lib/db/schema";
 import { db } from "@/lib/db/connect";
 import { eq } from "drizzle-orm";
 import { upsertProfile } from "./profile.api";
@@ -177,13 +177,15 @@ export async function getAllDeveloper(page = 1, resultsPerPage = 10) {
 
 export async function deleteDeveloper(developerId) {
   try {
+    await db.delete(profile).where(eq(profile.developerId, developerId));
+    await db.delete(contributions).where(eq(contributions.developerId, developerId));
+    await db.delete(jobPreferences).where(eq(jobPreferences.developerId, developerId));
+    await db.delete(integrations).where(eq(integrations.developerId, developerId));
+    await db.delete(developerInvites).where(eq(developerInvites.developerId, developerId));
     await db
-      .update(developers)
-      .set({
-        deletedAt: new Date(), // Set the current timestamp
-      })
-      .where(eq(developers.id, developerId))
-      .execute();
+      .delete(developers)
+       .where(eq(developers.id, developerId));
+
     return true;
   } catch (error) {
     console.error("Error deleting integration:", error);
