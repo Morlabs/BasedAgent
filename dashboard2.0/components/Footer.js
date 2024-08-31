@@ -30,7 +30,7 @@ const navigation = {
 		{ name: 'Home', href: '/home' },
 		{ name: 'About', href: '/about' },
 		{ name: 'BAAG Token', href: '/baag-token' },
-		{ name: 'Leaderboard', href: 'leaderboard' },
+		{ name: 'Leaderboard', href: '/leaderboard' },
 		{ name: 'Referrals', href: '/referrals' },
 		{ name: 'FAQs', href: '/faqs' },
 	],
