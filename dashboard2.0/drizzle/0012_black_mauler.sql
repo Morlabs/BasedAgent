@@ -1,0 +1,1 @@
+ALTER TABLE "developers" ADD COLUMN "weight" varchar(255);

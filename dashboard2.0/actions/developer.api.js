@@ -5,6 +5,7 @@ import { db } from "@/lib/db/connect";
 import { eq } from "drizzle-orm";
 import { upsertProfile } from "./profile.api";
 import { getCityAndCountry } from "@/utils/country";
+import { calculateDeveloperWeight } from "./calculateDeveloperWeight.api";
 
 export async function addDeveloper(user) {
   try {
@@ -17,6 +18,8 @@ export async function addDeveloper(user) {
     const skillsArray = user.githubDetails.top_languages.join(", ").split(", ");
 
     console.log("Generated skills array:", skillsArray);
+
+    const weight = await calculateDeveloperWeight(user);
 
     // 1. Check if the user exists in the database using their GitHub ID
     const existingUser = await db.query.developers.findFirst({
@@ -47,6 +50,7 @@ export async function addDeveloper(user) {
         publicRepositories: user.githubDetails.public_repos,
         country: "",
         city: "",
+        weight: weight
       });
 
       await upsertProfile({
@@ -78,7 +82,8 @@ export async function addDeveloper(user) {
       existingUser.imageUrl !== user.image ||
       existingUser?.location !== user?.githubDetails?.location ||
 	  existingUser?.city !== user?.city ||
-	  existingUser?.country !== user?.country;
+	  existingUser?.country !== user?.country ||
+    existingUser?.weight !== weight;
 
     console.log("Data changed:", dataChanged);
 
@@ -97,6 +102,7 @@ export async function addDeveloper(user) {
           location: user?.githubDetails?.location,
           country: user?.country,
           city: user?.city,
+          weight: weight,
           // Update the image URL if it has changed
         })
         .where(eq(developers.githubUsername, user.githubDetails.login))
@@ -137,7 +143,7 @@ export async function getAllDeveloper(page = 1, resultsPerPage = 10) {
     const offset = (page - 1) * resultsPerPage;
 
     // Query the database with limit and offset for pagination
-    const developers = await db.query.developers.findMany({
+    let developers = await db.query.developers.findMany({
       offset: offset,
       limit: resultsPerPage,
     });
@@ -146,6 +152,13 @@ export async function getAllDeveloper(page = 1, resultsPerPage = 10) {
     const totalCount = await db.query.developers.findMany({
       select: { id: true },
     });
+
+    developers = developers.map((ele) => {
+      return {
+        ...ele,
+        weight: JSON.parse(ele.weight).totalWeight
+      }
+    })
 
     // The total count is the length of the result from the count query
     const count = totalCount.length;
