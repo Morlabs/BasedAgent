@@ -36,9 +36,12 @@ function Profile({ id }) {
 
         // Parse the genderIdentity JSON string before setting it
         const parsedGenderIdentity = profileData.genderIdentity
-          ? JSON.parse(profileData.genderIdentity)
+          ? [
+              { id: 1, name: "Male" },
+              { id: 2, name: "Female" },
+              { id: 3, name: "Other" },
+            ].find((item) => item?.name === profileData.genderIdentity)
           : { id: 1, name: "Male" };
-
         setGenderIdentity(parsedGenderIdentity);
         setDateOfBirth(profileData.dateOfBirth || "");
         setCurrentLocation();
