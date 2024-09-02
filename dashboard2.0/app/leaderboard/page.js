@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Suspense } from "react";
-import LeaderboardPage from './LeaderboardPage';
+import LeaderboardPage from '../home/LeaderboardPage';
 
 const Leaderboard = () => {
 

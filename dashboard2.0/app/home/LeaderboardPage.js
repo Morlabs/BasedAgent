@@ -44,8 +44,8 @@ const LeaderboardPage = () => {
       city: cityQuery || "",
       technology: technologyQuery || "",
       sortBy: sortByQuery || "",
-    })
-  }, [countryQuery,  cityQuery, technologyQuery, sortByQuery])
+    });
+  }, [countryQuery, cityQuery, technologyQuery, sortByQuery]);
 
   useEffect(() => {
     const fetchDeveloper = async () => {
@@ -57,6 +57,8 @@ const LeaderboardPage = () => {
         );
         dev.country = country?.[0];
       });
+
+      console.log(data.developers)
 
       setTotalPages(data?.totalPages);
       setDevelopers(data?.developers || []);
@@ -70,6 +72,12 @@ const LeaderboardPage = () => {
     const fetchUser = async () => {
       if (auth?.user?.id) {
         const data = await getDeveloper(auth?.user?.id);
+        data
+          ? (data.country = countries?.filter(
+              (item) =>
+                item?.name?.toLowerCase() == data?.country?.toLowerCase()
+            )?.[0])
+          : "";
         data.weight = JSON.parse(data?.weight);
         setCurrentUser(data || null);
       }
@@ -81,8 +89,9 @@ const LeaderboardPage = () => {
     if (countryQuery) {
       const fetch = async () => {
         const cities = await fetchCities(countryQuery);
+        cities.shift();
         setCityOptions(cities);
-      }
+      };
       fetch();
     }
   }, [countryQuery]);
@@ -90,7 +99,7 @@ const LeaderboardPage = () => {
   useEffect(() => {
     developers &&
       setFilteredDevelopers(applyFilters(developers, filters, isCity));
-  }, [countryQuery,  cityQuery, technologyQuery, sortByQuery, developers]);
+  }, [countryQuery, cityQuery, technologyQuery, sortByQuery, developers]);
 
   const applyFilters = (developers, filters, isCity) => {
     let filtered = [...developers];
@@ -167,13 +176,13 @@ const LeaderboardPage = () => {
 
   const handleSearchFilter = (id, value) => {
     const params = new URLSearchParams(searchParams);
-  
+
     if (value) {
       params.set(id, value);
     } else {
       params.delete(id);
     }
-  
+
     const queryString = params.toString();
     router.push(`${pathname}${queryString ? `?${queryString}` : ""}`);
   };
@@ -245,9 +254,7 @@ const LeaderboardPage = () => {
           </h1>
         </div>
         <div className="reviewer-form font-bold px-2">
-          <button
-            onClick={currentUser ? handleNavigateToSignup : () => {}}
-          >
+          <button onClick={currentUser ? handleNavigateToSignup : () => {}}>
             Try out for free
           </button>
         </div>
