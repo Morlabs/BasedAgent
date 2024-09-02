@@ -10,7 +10,6 @@ const LeaderboardTable = ({
   handleSearchFilter,
 }) => {
 
-  console.log('currentUser', currentUser)
   return (
     <div className="w-full px-2">
       {/* table header */}
@@ -90,7 +89,7 @@ const LeaderboardTable = ({
             </div>
             <div className="col-span-1 -mt-6 md:mt-0">
               <span className="text-sm font-semibold">
-                {currentUser?.githubDetails?.weight || 0}
+                {currentUser?.weight?.totalWeight || 0}
               </span>
             </div>
           </div>

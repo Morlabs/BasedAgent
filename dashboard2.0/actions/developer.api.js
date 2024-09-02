@@ -4,7 +4,6 @@ import { contributions, developerInvites, developers, integrations, jobPreferenc
 import { db } from "@/lib/db/connect";
 import { eq } from "drizzle-orm";
 import { upsertProfile } from "./profile.api";
-import { getCityAndCountry } from "@/utils/country";
 import { calculateDeveloperWeight } from "./calculateDeveloperWeight.api";
 
 export async function addDeveloper(user) {
@@ -89,7 +88,7 @@ export async function addDeveloper(user) {
 
     if (dataChanged) {
       // Case 2: User exists, but data has changed, so update the user
-      console.log("User data has changed, updating user");
+      console.log("User data has changed, updating user", user?.country, user?.city);
       await db
         .update(developers)
         .set({

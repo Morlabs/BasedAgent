@@ -10,7 +10,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { getAllDeveloper, getDeveloper } from "@/actions/developer.api";
 import { countries } from "@/utils/constants/countries";
-import { cities } from "@/utils/constants/cities";
+import { fetchCities } from "@/utils/cities";
 
 const LeaderboardPage = () => {
   const router = useRouter();
@@ -22,20 +22,6 @@ const LeaderboardPage = () => {
   const cityQuery = searchParams.get("city");
   const technologyQuery = searchParams.get("technology");
   const sortByQuery = searchParams.get("sortBy");
-
-  const createQueryString = useCallback(
-    (name, value) => {
-      const params = new URLSearchParams(searchParams);
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams]
-  );
-
-  const testing = () => {
-    router.push(pathname + "?" + createQueryString("country", "pakistan"));
-  };
 
   const [currentUser, setCurrentUser] = useState(null);
   const [developers, setDevelopers] = useState([]);
@@ -84,12 +70,7 @@ const LeaderboardPage = () => {
     const fetchUser = async () => {
       if (auth?.user?.id) {
         const data = await getDeveloper(auth?.user?.id);
-        data
-          ? (data.country = countries?.filter(
-              (item) =>
-                item?.name?.toLowerCase() == data?.country?.toLowerCase()
-            )?.[0])
-          : "";
+        data.weight = JSON.parse(data?.weight);
         setCurrentUser(data || null);
       }
     };
@@ -97,17 +78,14 @@ const LeaderboardPage = () => {
   }, [auth]);
 
   useEffect(() => {
-    if (filters.country) {
-      const countryCode = countries.filter(
-        (item) => item.name?.toLowerCase() === filters.country?.toLowerCase()
-      )?.[0];
-      const filteredCities = cities.filter(
-        (city) =>
-          city?.country?.toLowerCase() === countryCode?.code?.toLowerCase()
-      );
-      setCityOptions(filteredCities.map((item) => item.name));
+    if (countryQuery) {
+      const fetch = async () => {
+        const cities = await fetchCities(countryQuery);
+        setCityOptions(cities);
+      }
+      fetch();
     }
-  }, [filters]);
+  }, [countryQuery]);
 
   useEffect(() => {
     developers &&
@@ -121,13 +99,6 @@ const LeaderboardPage = () => {
     filtered = filterByCity(filtered, cityQuery);
     filtered = filterByTechnology(filtered, technologyQuery);
     filtered = sortDevelopers(filtered, sortByQuery);
-
-    console.log('filtered', filtered)
-    console.log('countryQuery', countryQuery)
-    console.log('cityQuery', cityQuery)
-    console.log('technologyQuery', technologyQuery)
-    console.log('sortByQuery', sortByQuery)
-
     return filtered;
   };
 
@@ -166,8 +137,6 @@ const LeaderboardPage = () => {
     if (!sortBy) return developers;
 
     return developers?.sort((a, b) => {
-      console.log('sorting a', a?.country?.name)
-      console.log('sorting b', b?.country?.name)
       switch (sortBy) {
         case "Rank":
           return compareValues(Number(a?.rank), Number(b?.rank), true);
@@ -277,8 +246,7 @@ const LeaderboardPage = () => {
         </div>
         <div className="reviewer-form font-bold px-2">
           <button
-            // onClick={currentUser ? handleNavigateToSignup : () => {}}
-            onClick={testing}
+            onClick={currentUser ? handleNavigateToSignup : () => {}}
           >
             Try out for free
           </button>

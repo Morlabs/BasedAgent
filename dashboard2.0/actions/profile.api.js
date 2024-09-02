@@ -37,6 +37,7 @@ export async function upsertProfile(data) {
     profile_discoverability,
     country,
     city,
+    githubDetails
   } = data;
 
   console.log("Upsert Profile Function Called");
@@ -93,6 +94,7 @@ export async function upsertProfile(data) {
           top_languages: developer.topLanguages,
           location: current_location,
           public_repos: developer.publicRepositories,
+          ...githubDetails
         },
         image: developer.imageUrl,
       });

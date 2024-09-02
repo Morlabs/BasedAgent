@@ -4,7 +4,6 @@ import ToggleSwitch from "./formUI/ToggleSwitch";
 import { getProfile, upsertProfile } from "@/actions/profile.api";
 import LoaderLocal from "@/components/common/loaderLocal";
 import { countries } from "@/utils/constants/countries";
-import { cities } from "@/utils/constants/cities";
 import { useAuth } from "@/hooks/useAuth";
 
 function Profile({ id }) {
@@ -79,6 +78,7 @@ function Profile({ id }) {
       profile_discoverability: profileDiscoverability,
 	  city: city,
 	  country: country?.name,
+    githubDetails: auth?.user?.githubDetails,
     };
 
     try {
