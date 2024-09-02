@@ -74,9 +74,9 @@ const LeaderboardPage = () => {
         const data = await getDeveloper(auth?.user?.id);
         data
           ? (data.country = countries?.filter(
-              (item) =>
-                item?.name?.toLowerCase() == data?.country?.toLowerCase()
-            )?.[0])
+            (item) =>
+              item?.name?.toLowerCase() == data?.country?.toLowerCase()
+          )?.[0])
           : "";
         data.weight = JSON.parse(data?.weight);
         setCurrentUser(data || null);
@@ -188,7 +188,8 @@ const LeaderboardPage = () => {
   };
 
   const handleNavigateToSignup = () => {
-    router.push("/reviewer-signup");
+    if (currentUser) router.push("/referrals");
+    else router.push("/reviewer-signup");
   };
 
   const increasePage = () => {
@@ -254,8 +255,8 @@ const LeaderboardPage = () => {
           </h1>
         </div>
         <div className="reviewer-form font-bold px-2">
-          <button onClick={currentUser ? handleNavigateToSignup : () => {}}>
-            Try out for free
+          <button onClick={handleNavigateToSignup}>
+            {currentUser ? "Refer" : "Try out for free"}
           </button>
         </div>
 
