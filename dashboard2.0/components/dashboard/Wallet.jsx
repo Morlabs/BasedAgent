@@ -39,23 +39,23 @@ function Profile({ id }) {
 
 				<div className="mt-6 grid grid-cols-12 gap-6">
 
-					<div className="col-span-12 sm:col-span-6">
-						<label
-							htmlFor="last-name"
-							className="block text-sm font-medium leading-6 text-[#dadee2]"
-						>
-							Wallet Address
-						</label>
-						<input
-							id="last-name"
-							name="last-name"
-							type="text"
-							value={lastName}
-							onChange={(e) => setLastName(e.target.value)}
-							autoComplete="family-name"
-							className="mt-2 bg-[#0b0b0c] block w-full rounded-md border-0 px-3 py-1.5 shadow-sm placeholder:text-gray-400 focus:border-0 sm:text-sm sm:leading-6"
-						/>
-					</div>
+					{/*<div className="col-span-12 sm:col-span-6">*/}
+					{/*	<label*/}
+					{/*		htmlFor="last-name"*/}
+					{/*		className="block text-sm font-medium leading-6 text-[#dadee2]"*/}
+					{/*	>*/}
+					{/*		Wallet Address*/}
+					{/*	</label>*/}
+					{/*	<input*/}
+					{/*		id="last-name"*/}
+					{/*		name="last-name"*/}
+					{/*		type="text"*/}
+					{/*		value={lastName}*/}
+					{/*		onChange={(e) => setLastName(e.target.value)}*/}
+					{/*		autoComplete="family-name"*/}
+					{/*		className="mt-2 bg-[#0b0b0c] block w-full rounded-md border-0 px-3 py-1.5 shadow-sm placeholder:text-gray-400 focus:border-0 sm:text-sm sm:leading-6"*/}
+					{/*	/>*/}
+					{/*</div>*/}
 
 
 					<div className="mt-6">

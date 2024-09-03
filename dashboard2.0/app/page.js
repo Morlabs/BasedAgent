@@ -15,7 +15,7 @@ function Home() {
 		
 		return () => {
 			document.body.removeChild(script);
-			router.push('/leaderboard');
+			router.push('/home');
 		};
 	}, []);
 
