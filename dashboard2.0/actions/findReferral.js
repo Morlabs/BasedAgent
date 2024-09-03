@@ -8,6 +8,10 @@ export async function findReferral(referralToken) {
         where: eq(developerInvites.referralToken, referralToken)
     });
 
+    if (!referral) {
+        return;
+    }
+
     const developer = await db.query.developers.findFirst({
         where: eq(developers.id, referral.developerId)
     });

@@ -36,6 +36,7 @@ export default function ReferralSignUpPage() {
             }
         } catch (error) {
             setLoading(false);
+            router.push('/home')
             setMessage('Error fetching referral');
             setSeverity('error');
             setShowSnackBar(true);
@@ -50,8 +51,7 @@ export default function ReferralSignUpPage() {
 
     const handleReferralSignup = async () => {
         try {
-            await signIn();
-            router.push('/user');
+            const response = await signIn('email', { callbackUrl: '/user' });
         } catch (error) {
             console.error('Error in handleReferralSignup:', error.message);
             setMessage('Error signing in');
@@ -66,7 +66,6 @@ export default function ReferralSignUpPage() {
 
 
             <Container
-                minHeight="100vh"
                 maxWidth="sm" sx={{ mt: 4 }}>
                 {loading ? (
                     <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
