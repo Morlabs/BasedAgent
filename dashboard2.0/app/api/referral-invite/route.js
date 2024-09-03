@@ -18,13 +18,13 @@ export async function POST(request) {
     }
 
     // search if the developer is already registered
-    // const existingDeveloper = await db.query.developers.findFirst({
-    //     where: eq(developers.email, inviteeEmail)
-    // });
+    const existingDeveloper = await db.query.developers.findFirst({
+        where: eq(developers.email, inviteeEmail)
+    });
 
-    // if (existingDeveloper) {
-    //     return Response.json({ message: 'Developer already exists' })
-    // }
+    if (existingDeveloper) {
+        return Response.json({ message: 'Developer already exists' })
+    }
 
 
 
