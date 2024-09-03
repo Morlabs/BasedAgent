@@ -1,11 +1,11 @@
 import nodemailer from 'nodemailer'
 import { db } from "@/lib/db/connect";
 import { sql, eq } from "drizzle-orm";
-import { developerInvites } from "@/lib/db/schema";
+import { developerInvites, developers } from "@/lib/db/schema";
 import { v4 as uuidv4 } from 'uuid'
 
 export async function POST(request) {
-    const { developerId, inviteeEmail, source, totalWeight } = await request.json()
+    const { developerId, inviteeEmail, source } = await request.json()
 
 
     // Check if the referral already exists
@@ -17,27 +17,44 @@ export async function POST(request) {
         return Response.json({ message: 'Referral already exists' })
     }
 
+    // search if the developer is already registered
+    // const existingDeveloper = await db.query.developers.findFirst({
+    //     where: eq(developers.email, inviteeEmail)
+    // });
+
+    // if (existingDeveloper) {
+    //     return Response.json({ message: 'Developer already exists' })
+    // }
+
 
 
     const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST,
         service: process.env.SMTP_SERVICE,
         port: 465,
-       secure: true,
+        secure: true,
         auth: {
-          user: process.env.SMTP_EMAIL,
-          pass: process.env.SMTP_PASS,
+            user: process.env.SMTP_EMAIL,
+            pass: process.env.SMTP_PASS,
         },
     })
+
+    const developer = await db.query.developers.findFirst({
+        where: eq(developers.id, developerId)
+    })
+
+    if (!developer) {
+        return Response.json({ message: 'Developer not found' })
+    }
 
 
     const referralToken = uuidv4()
     // const baseUrl = 'http://localhost:3000'
     const baseUrl = process.env.FE_BASE_URL
-    const referralLink = `${baseUrl}/home`
+    const referralLink = `${baseUrl}/referral-signup?token=${referralToken}`
 
     const html = `
-        <h1>Morlabs Referral Invite</h1>
+        <h1> Morlabs Referral Invite from ${developer.name}</h1>
         <p>Hi there! You've been invited to join Morlabs referral program. Click the link below to get started:</p>
         <a href="${referralLink}">${referralLink}</a>
     `
@@ -56,7 +73,7 @@ export async function POST(request) {
     try {
         await transporter.sendMail(mailOptions)
 
-        let earnings = totalWeight * 0.1
+        let earnings = 0
         earnings = Math.round(earnings)
 
         // Step 1: Fetch the current maximum id
@@ -70,7 +87,7 @@ export async function POST(request) {
 
         // Step 2: Reset the sequence based on the maximum id
         await db.execute(
-            sql`SELECT setval(pg_get_serial_sequence('developer_invites', 'id'), ${maxId + 1}, false);`
+            sql`SELECT setval(pg_get_serial_sequence('developer_invites', 'id'), ${maxId + 1}, false); `
         );
 
         // Step 3: Insert the new record
@@ -81,7 +98,8 @@ export async function POST(request) {
             earnings: earnings,                  // Initial earnings (default is 0)
             inviteDate: new Date(),           // Current timestamp for invite date
             source: source,                   // Source of the invite (e.g., email, LinkedIn)
-            githubAccess: 'Level 1'
+            githubAccess: 'Level 1',
+            referralToken: referralToken,
         })
 
         console.log('Referral invite sent:', invite)

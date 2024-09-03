@@ -83,6 +83,7 @@ export const developerInvites = pgTable('developer_invites', {
   inviteDate: timestamp('invite_date'),
   source: varchar('source', {length: 50}),
   githubAccess: varchar('github_access', {length: 255}),
+  referralToken: varchar('referral_token', {length: 255}),
 });
 
 export const developerInvitesRelations = relations(developerInvites, ({one}) => ({

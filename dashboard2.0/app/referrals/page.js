@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import axios from 'axios'; // Import axios for making the API request
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const inviteOptions = [
 	{
@@ -83,13 +85,13 @@ export default function BasedAgentReferralProgram() {
 				return;
 			}
 
-			if (email === user.email) {
-				setSeverity('error');
-				setSnackbarOpen(true);
-				setSnackbarMessage('You cannot refer yourself');
-				setSendingInviteLoading(false);
-				return;
-			}
+			// if (email === user.email) {
+			// 	setSeverity('error');
+			// 	setSnackbarOpen(true);
+			// 	setSnackbarMessage('You cannot refer yourself');
+			// 	setSendingInviteLoading(false);
+			// 	return;
+			// }
 			// const response = await axios.post('/api/referral-invite', {
 			// 	developerId: user.id,
 			// 	inviteeEmail: email,
@@ -99,7 +101,9 @@ export default function BasedAgentReferralProgram() {
 				developerId: user.id,
 				inviteeEmail: email,
 				source: source,
-				totalWeight: user.weight.totalWeight
+				totalWeight: user.weight.totalWeight,
+				userName: user.name,
+				userEmail: user.email,
 			});
 
 			console.log('Referral invite sent:', response.data);
@@ -130,6 +134,7 @@ export default function BasedAgentReferralProgram() {
 
 	return (
 		<div className="bg-gray-900 text-white p-6 font-sans">
+			<Header />
 			<h1 className="text-3xl font-bold mb-6">DEVELOPER REFERRAL PROGRAM</h1>
 
 			<div className="bg-gray-800 rounded-lg p-6 mb-6">
@@ -214,7 +219,7 @@ export default function BasedAgentReferralProgram() {
 							<tr className="text-left text-gray-400">
 								<th className="pb-2 px-4">Email</th>
 								<th className="pb-2 px-4">Status</th>
-								<th className="pb-2 px-4">Earnings (BAAG)</th>
+								<th className="pb-2 px-4">Referral Weights</th>
 								<th className="pb-2 px-4">Invite Date</th>
 								<th className="pb-2 px-4">Source</th>
 								<th className="pb-2 px-4 whitespace-nowrap">
@@ -268,6 +273,11 @@ export default function BasedAgentReferralProgram() {
 				</div>
 
 			</div>
+			{/* total earning */}
+			<div className="mt-10 text-right">
+				<h3 className="text-xl font-semibold">Total Earnings: {totalEarnings} BAAG</h3>
+			</div>
+			<Footer />
 		</div>
 	);
 }

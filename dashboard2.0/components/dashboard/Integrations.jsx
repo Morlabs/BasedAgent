@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Button from './formUI/Button';
 import LoaderLocal from '@/components/common/loaderLocal';
 import { getIntegration, upsertIntegration, deleteIntegration } from '@/actions/integration.api';
-import { XMarkIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon, EyeIcon, EyeSlashIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 const integrationsData = {
 	github_oauth: false,
@@ -124,10 +126,17 @@ function Integrations({ id }) {
 							showTokenInputField && (
 
 								<div>
-									<label htmlFor="github_personal_access_token"
-										className="block text-sm leading-6 font-bold text-[#dadee2]">
-										GitHub Personal Access Token
-									</label>
+									<div className='flex gap-1 items-center'>
+										<label htmlFor="github_personal_access_token"
+											className="block text-sm leading-6 font-bold text-[#dadee2]">
+											GitHub Personal Access Token
+										</label>
+										<Tooltip placement='top' title="Personal Access Token is required to access your GitHub repositories.">
+											<IconButton>
+												<InformationCircleIcon className="h-5 w-5 text-gray-400" />
+											</IconButton>
+										</Tooltip>
+									</div>
 									<div className="mt-2 flex">
 										<div className="relative w-full">
 											<input
