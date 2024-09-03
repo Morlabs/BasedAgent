@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from './formUI/Button';
 import LoaderLocal from '@/components/common/loaderLocal';
 import { getIntegration, upsertIntegration, deleteIntegration } from '@/actions/integration.api';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 const integrationsData = {
 	github_oauth: false,
@@ -25,6 +25,8 @@ function Integrations({ id }) {
 	const [gitlabSelfHostedOauthAccessToken, setGitlabSelfHostedOauthAccessToken] = useState('');
 	const [bitbucketOauthAccessToken, setBitbucketOauthAccessToken] = useState('');
 	const [stackoverflowOauthAccessToken, setStackoverflowOauthAccessToken] = useState('');
+	const [showToken, setShowToken] = useState(false);
+	const [showTokenInputField, setShowTokenInputField] = useState(true);
 
 
 	useEffect(() => {
@@ -88,6 +90,12 @@ function Integrations({ id }) {
 		}
 	}
 
+	const handleGithubIntegration = () => {
+		console.log('githubOauth', githubOauth);
+		setGithubOauth(!githubOauth);
+		setShowTokenInputField(!showTokenInputField);
+	}
+
 	if (loading) {
 		return (
 			<div className="flex flex-col justify-center items-center h-full relative">
@@ -112,40 +120,57 @@ function Integrations({ id }) {
 				<div className="mt-6 flex flex-col lg:flex-row">
 					<div className="flex-grow space-y-6">
 
-						<div>
-							<label htmlFor="github_personal_access_token"
-								className="block text-sm leading-6 font-bold text-[#dadee2]">
-								GitHub Personal Access Token
-							</label>
-							<div className="mt-2 flex">
-								<input
-									id="github_personal_access_token"
-									name="github_personal_access_token"
-									type="text"
-									value={githubPersonalAccessToken}
-									onChange={(e) => setGithubPersonalAccessToken(e.target.value)}
-									className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6"
-								/>
-								{githubPersonalAccessToken && <button
-									type="button"
-									className="ml-2 bg-red-600 text-white font-bold py-1.5 px-4 rounded-md flex items-center"
-									onClick={handleRemoveClick} // Replace with your actual remove handler function
+						{
+							showTokenInputField && (
 
-								>
-									<XMarkIcon className="h-5 w-5 mr-2" />
-									Remove
-								</button>}
-							</div>
-						</div>
+								<div>
+									<label htmlFor="github_personal_access_token"
+										className="block text-sm leading-6 font-bold text-[#dadee2]">
+										GitHub Personal Access Token
+									</label>
+									<div className="mt-2 flex">
+										<div className="relative w-full">
+											<input
+												id="github_personal_access_token"
+												name="github_personal_access_token"
+												type={showToken ? "text" : "password"}
+												value={githubPersonalAccessToken}
+												onChange={(e) => setGithubPersonalAccessToken(e.target.value)}
+												className="bg-[#0b0b0c] block w-full rounded-md border-0 p-1.5 text-[#dadee2] shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6"
+											/>
+											<div
+												className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+												onClick={() => setShowToken(!showToken)}
+											>
+												{showToken ? (
+													<EyeSlashIcon className="h-5 w-5 text-gray-400" />
+												) : (
+													<EyeIcon className="h-5 w-5 text-gray-400" />
+												)}
+											</div>
+										</div>
+										{githubPersonalAccessToken && <button
+											type="button"
+											className="ml-2 bg-red-600 text-white font-bold py-1.5 px-4 rounded-md flex items-center"
+											onClick={handleRemoveClick} // Replace with your actual remove handler function
 
+										>
+											<XMarkIcon className="h-5 w-5 mr-2" />
+											Remove
+										</button>}
+									</div>
+								</div>
+							)}
 
 						<div>
 							<label htmlFor="github_oauth" className="block text-sm   leading-6 font-bold text-[#dadee2]">
 								GitHub
 							</label>
 							<div className="mt-2">
-								<Button text={githubOauth ? "Remove Integration" : "Add Integration"}
-									handleOnclick={() => setGithubOauth(!githubOauth)} />
+								<Button
+									onClick={handleGithubIntegration}
+									text={githubOauth ? "Remove Integration" : "Add Integration"}
+								/>
 							</div>
 						</div>
 
@@ -155,7 +180,7 @@ function Integrations({ id }) {
 							</label>
 							<div className="mt-2">
 								<Button text={gitlabOauth ? "Remove Integration" : "Coming Soon"}
-									handleOnclick={() => setGitlabOauth(!gitlabOauth)} />
+									handleOnclick={handleGithubIntegration} />
 							</div>
 						</div>
 
