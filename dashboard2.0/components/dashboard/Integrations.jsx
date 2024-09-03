@@ -26,7 +26,7 @@ function Integrations({ id }) {
 	const [bitbucketOauthAccessToken, setBitbucketOauthAccessToken] = useState('');
 	const [stackoverflowOauthAccessToken, setStackoverflowOauthAccessToken] = useState('');
 	const [showToken, setShowToken] = useState(false);
-	const [showTokenInputField, setShowTokenInputField] = useState(true);
+	const [showTokenInputField, setShowTokenInputField] = useState(false);
 
 
 	useEffect(() => {
