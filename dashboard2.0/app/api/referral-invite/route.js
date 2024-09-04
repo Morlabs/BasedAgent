@@ -18,13 +18,13 @@ export async function POST(request) {
     }
 
     // search if the developer is already registered
-    const existingDeveloper = await db.query.developers.findFirst({
-        where: eq(developers.email, inviteeEmail)
-    });
+    // const existingDeveloper = await db.query.developers.findFirst({
+    //     where: eq(developers.email, inviteeEmail)
+    // });
 
-    if (existingDeveloper) {
-        return Response.json({ message: 'Developer already exists' })
-    }
+    // if (existingDeveloper) {
+    //     return Response.json({ message: 'Developer already exists' })
+    // }
 
 
 
@@ -51,7 +51,8 @@ export async function POST(request) {
     const referralToken = uuidv4()
     // const baseUrl = 'http://localhost:3000'
     const baseUrl = process.env.FE_BASE_URL
-    const referralLink = `${baseUrl}/referral-signup?token=${referralToken}`
+    // const referralLink = `${baseUrl}/referral-signup?token=${referralToken}`
+    const referralLink = `${baseUrl}/referral-signup?referral=${developerId}`
 
     const html = `
         <h1> Morlabs Referral Invite from ${developer.name}</h1>
@@ -99,7 +100,7 @@ export async function POST(request) {
             inviteDate: new Date(),           // Current timestamp for invite date
             source: source,                   // Source of the invite (e.g., email, LinkedIn)
             githubAccess: 'Level 1',
-            referralToken: referralToken,
+            // referralToken: referralToken,
         })
 
         console.log('Referral invite sent:', invite)

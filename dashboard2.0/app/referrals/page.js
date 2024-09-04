@@ -31,6 +31,43 @@ export default function BasedAgentReferralProgram() {
 	const [snackbarMessage, setSnackbarMessage] = useState('');
 	const [severity, setSeverity] = useState('success');
 
+
+	const shareOnFacebook = () => {
+		window.open(
+			// `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+			`https://www.facebook.com/sharer/sharer.php`,
+			'facebook-share-dialog',
+			'width=800,height=600'
+		);
+	};
+
+	const shareOnTwitter = () => {
+		window.open(
+			// `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
+			`https://twitter.com/intent/tweet`,
+			'twitter-share-dialog',
+			'width=800,height=600'
+		);
+	};
+
+	const shareOnLinkedIn = () => {
+		window.open(
+			// `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`,
+			`https://www.linkedin.com/shareArticle?mini=true`,
+			'linkedin-share-dialog',
+			'width=800,height=600'
+		);
+	};
+
+	const copyReferralLink = () => {
+		const developerId = user.id;
+		const getBaseUrl = window.location.origin;
+		const referralLink = `${getBaseUrl}/referral-signup?referral=${developerId}`;
+		navigator.clipboard.writeText(referralLink);
+		setSnackbarOpen(true);
+		setSnackbarMessage('Referral link copied to clipboard');
+	};
+
 	// Calculate total earnings
 	const totalEarnings = referrals.reduce((sum, referral) => sum + referral.earnings, 0);
 
@@ -155,18 +192,22 @@ export default function BasedAgentReferralProgram() {
 						{sendingInviteLoading ? 'Sending...' : 'Invite'}
 					</button>
 					<button
+						onClick={shareOnTwitter}
 						className="bg-transparent border border-blue-400 hover:bg-blue-400 hover:bg-opacity-20 text-blue-400 p-2 rounded">
 						<Twitter size={18} />
 					</button>
 					<button
+						onClick={shareOnFacebook}
 						className="bg-transparent border border-blue-600 hover:bg-blue-600 hover:bg-opacity-20 text-blue-600 p-2 rounded">
 						<Facebook size={18} />
 					</button>
 					<button
+						onClick={shareOnLinkedIn}
 						className="bg-transparent border border-blue-500 hover:bg-blue-500 hover:bg-opacity-20 text-blue-500 p-2 rounded">
 						<Linkedin size={18} />
 					</button>
 					<button
+						onClick={copyReferralLink}
 						className="bg-transparent border border-gray-400 hover:bg-gray-400 hover:bg-opacity-20 text-gray-400 px-4 py-2 rounded flex items-center">
 						<Copy className="mr-2" size={18} />
 						Copy referral link

@@ -16,16 +16,39 @@ export default function ReferralSignUpPage() {
     const [message, setMessage] = useState('');
     const [severity, setSeverity] = useState('success');
     const searchParams = useSearchParams();
-    const referralToken = searchParams.get('token');
+    // const referralToken = searchParams.get('token');
+    const referralDeveloperId = searchParams.get('referral');
     const router = useRouter();
     const [developer, setDeveloper] = useState(null);
     const [showSnackBar, setShowSnackBar] = useState(false);
 
+    function setReferralCookie(referralId) {
+        const cookieName = 'referralDeveloperId';
+        const cookieValue = referralId;
+        const daysToExpire = 1;
+
+        const date = new Date();
+        date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+
+        document.cookie = `${cookieName}=${cookieValue}; ${expires}; path=/ ;`;
+    }
+
     const fetchReferral = async () => {
         setLoading(true);
         try {
-            const { referral, developer } = await findReferral(referralToken);
-            if (referral) {
+            const { developer } = await findReferral(referralDeveloperId);
+            // if (referral) {
+            //     setDeveloper(developer);
+            //     setLoading(false);
+            // } else {
+            //     setLoading(false);
+            //     setMessage('Referral not found');
+            //     setSeverity('error');
+            //     setShowSnackBar(true);
+            // }
+
+            if (developer) {
                 setDeveloper(developer);
                 setLoading(false);
             } else {
@@ -44,14 +67,23 @@ export default function ReferralSignUpPage() {
     };
 
     useEffect(() => {
-        if (referralToken) {
+        if (referralDeveloperId) {
             fetchReferral();
         }
-    }, [referralToken]);
+    }, [referralDeveloperId]);
 
     const handleReferralSignup = async () => {
         try {
-            const response = await signIn('email', { callbackUrl: '/user' });
+
+            // const response = await signIn('email', { callbackUrl: '/user' });
+            // pass referral developer id to the signIn function
+            // const response = await signIn('email', { referral: referralDeveloperId, callbackUrl: '/user' });
+            setReferralCookie(referralDeveloperId);
+            // log cookies
+            console.log(document.cookie);
+            const response = await signIn('github', { callbackUrl: '/user' }, { referralDeveloperId: referralDeveloperId, prompt: 'login' });
+
+
         } catch (error) {
             console.error('Error in handleReferralSignup:', error.message);
             setMessage('Error signing in');

@@ -3,21 +3,20 @@ import { db } from "@/lib/db/connect";
 import { sql, eq } from "drizzle-orm";
 import { developerInvites, developers } from "@/lib/db/schema";
 
-export async function findReferral(referralToken) {
-    const referral = await db.query.developerInvites.findFirst({
-        where: eq(developerInvites.referralToken, referralToken)
-    });
+export async function findReferral(developerId) {
+    // const referral = await db.query.developerInvites.findFirst({
+    //     where: eq(developerInvites.referralToken, referralToken)
+    // });
 
-    if (!referral) {
-        return;
-    }
+    // if (!referral) {
+    //     return;
+    // }
 
     const developer = await db.query.developers.findFirst({
-        where: eq(developers.id, referral.developerId)
+        where: eq(developers.id, developerId)
     });
 
     return {
-        referral,
         developer
     }
 }

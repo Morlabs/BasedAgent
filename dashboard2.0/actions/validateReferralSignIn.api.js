@@ -2,15 +2,55 @@ import { db } from "@/lib/db/connect";
 import { eq } from "drizzle-orm";
 import { developerInvites, developers } from "@/lib/db/schema";
 
-export async function validateReferralSignIn(email) {
+export async function validateReferralSignIn(email, referralDeveloperId = null) {
     try {
+
+
+        // handle referral using social media
+        if (referralDeveloperId) {
+            const referral = await db.query.developerInvites.findFirst({
+                where: eq(developerInvites.email, email),
+            });
+
+            // to prevent duplicate referrals for the same email through social media
+            if (referral) {
+                console.log('Referral already exists:', referral);
+            }
+            else {
+                // if developer already exists, return false
+                const existingDeveloper = await db.query.developers.findFirst({
+                    where: eq(developers.email, email),
+                });
+
+                if (existingDeveloper) {
+                    console.log('Developer already exists');
+                    return false;
+                }
+                // insert referral for the email through social media
+                await db.insert(developerInvites)
+                    .values({
+                        developerId: referralDeveloperId,
+                        email: email,
+                        status: 'pending',
+                        earnings: 0,
+                        inviteDate: new Date(),
+                        source: "X, twitter, LinkedIn",
+                        githubAccess: 'Level 1',
+                    })
+            }
+
+        }
+
+        // handle referral using email invite and social media as source
         const referral = await db.query.developerInvites.findFirst({
             where: eq(developerInvites.email, email),
         });
 
+
         if (!referral) {
             return false;
         }
+
 
         const developer = await db.query.developers.findFirst({
             where: eq(developers.email, email),
