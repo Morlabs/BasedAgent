@@ -69,7 +69,7 @@ export default function ReferralSignUpPage() {
 
     const handleReferralSignup = async () => {
         try {
-            setReferralCookie(developer?.referralDeveloperId);
+            setReferralCookie(developer?.id);
             const response = await signIn('github', { callbackUrl: '/user' }, { referralDeveloperId: developer?.referralDeveloperId, prompt: 'login' });
         } catch (error) {
             console.error('Error in handleReferralSignup:', error.message);
