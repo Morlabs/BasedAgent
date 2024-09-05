@@ -32,7 +32,7 @@ function ReferralSearchParams({ setDeveloper, setLoading, setMessage, setSeverit
             }
         } catch (error) {
             setLoading(false);
-            router.push('/home');
+            router.push('/');
             setMessage('Error fetching referral');
             setSeverity('error');
             setShowSnackBar(true);
@@ -82,8 +82,8 @@ export default function ReferralSignUpPage() {
     return (
         <div>
             <Header />
-            <Container maxWidth="sm" sx={{ mt: 4 }}>
-                <Suspense fallback={<Box display="flex" justifyContent="center" alignItems="center" height="100vh"><LoaderLocal /></Box>}>
+            <Container maxWidth="sm" sx={{ mt: 4, minHeight: '50vh' }}>
+                <Suspense fallback={<Box display="flex" justifyContent="center" alignItems="center"><LoaderLocal /></Box>}>
                     {/* Pass necessary state setters to ReferralSearchParams */}
                     <ReferralSearchParams
                         setDeveloper={setDeveloper}

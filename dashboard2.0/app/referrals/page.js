@@ -34,7 +34,6 @@ export default function BasedAgentReferralProgram() {
 
 	const shareOnFacebook = () => {
 		window.open(
-			// `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
 			`https://www.facebook.com/sharer/sharer.php`,
 			'facebook-share-dialog',
 			'width=800,height=600'
@@ -43,7 +42,6 @@ export default function BasedAgentReferralProgram() {
 
 	const shareOnTwitter = () => {
 		window.open(
-			// `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
 			`https://twitter.com/intent/tweet`,
 			'twitter-share-dialog',
 			'width=800,height=600'
@@ -51,12 +49,11 @@ export default function BasedAgentReferralProgram() {
 	};
 
 	const shareOnLinkedIn = () => {
-		window.open(
-			// `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`,
-			`https://www.linkedin.com/shareArticle?mini=true`,
-			'linkedin-share-dialog',
-			'width=800,height=600'
-		);
+		const url = encodeURIComponent('https://example.com');
+		const title = encodeURIComponent('Amazing content');
+		const summary = encodeURIComponent('This is a great article you should read!');
+		const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${summary}`;
+		window.open(linkedInShareUrl, 'linkedin-share-dialog', 'width=800,height=600');
 	};
 
 	const copyReferralLink = () => {
@@ -170,8 +167,10 @@ export default function BasedAgentReferralProgram() {
 	};
 
 	return (
-		<div className="bg-gray-900 text-white p-6 font-sans">
-			<Header />
+		<div className="bg-gray-900 text-white p-6 font-sans w-full lg:w-[70%]">
+			<div className='mb-5'>
+				<Header />
+			</div>
 			<h1 className="text-3xl font-bold mb-6">DEVELOPER REFERRAL PROGRAM</h1>
 
 			<div className="bg-gray-800 rounded-lg p-6 mb-6">
@@ -231,7 +230,7 @@ export default function BasedAgentReferralProgram() {
 			</Snackbar>
 
 			<div className="bg-gray-800 rounded-lg p-6">
-				<div className="flex items-center justify-between mb-4">
+				<div className="flex flex-col md:flex-row items-center justify-between gap-2 mb-4">
 					<div className='flex items-center'>
 						<h2 className="text-xl font-semibold m-0">Your Referrals</h2>
 					</div>
@@ -315,7 +314,7 @@ export default function BasedAgentReferralProgram() {
 
 			</div>
 			{/* total earning */}
-			<div className="mt-10 text-right">
+			<div className="mt-10 text-center md:text-right">
 				<h3 className="text-xl font-semibold">Total Earnings: {totalEarnings} BAAG</h3>
 			</div>
 			<Footer />

@@ -53,6 +53,7 @@ export default function Example() {
     let profileDropdown = isLoggedIn
         ? [
             { name: 'Account', href: '#', clickEvent: handleRouting },
+            { name: 'Referrals', href: '/referrals', clickEvent: () => { } },
             { name: 'Logout', href: '#', clickEvent: handleLogout },
         ]
         : [
@@ -188,8 +189,8 @@ export default function Example() {
                             />
                         </div>
                         <div className="ml-3">
-                            <div className="text-base font-medium text-white">{user?.name || 'Guest User'}</div>
-                            <div className="text-sm font-medium text-gray-400">{user?.email || 'guest@example.com'}</div>
+                            <div className="text-base font-medium text-white">{user?.name}</div>
+                            <div className="text-sm font-medium text-gray-400">{user?.email}</div>
                         </div>
                     </div>
                     <div className="mt-3 space-y-1 px-2">

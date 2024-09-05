@@ -143,7 +143,7 @@ const LeaderboardTable = ({
                         )}
                       </span>
                       <span
-                        className={`w-1/2 text-sm text-[${primaryColor}] hover:underline cursor-pointer`}
+                        className={`w-1/2 text-sm break-words md:truncate text-[${primaryColor}] hover:underline cursor-pointer`}
                         onClick={() => {
                           handlePress("city", item?.city || "")
                           handleSearchFilter("city", item?.city || null);
