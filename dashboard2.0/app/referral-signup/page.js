@@ -1,7 +1,7 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
-import { useState, useEffect } from 'react';
+import { useState, Suspense, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { findReferral } from '@/actions/findReferral';
 import Snackbar from '@mui/material/Snackbar';
@@ -11,14 +11,47 @@ import LoaderLocal from "@/components/common/loaderLocal";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+// Extracted component for handling referral logic with useSearchParams
+function ReferralSearchParams({ setDeveloper, setLoading, setMessage, setSeverity, setShowSnackBar }) {
+    const searchParams = useSearchParams();
+    const referralDeveloperId = searchParams.get('referral');
+    const router = useRouter();
+
+    const fetchReferral = async () => {
+        setLoading(true);
+        try {
+            const { developer } = await findReferral(referralDeveloperId);
+            if (developer) {
+                setDeveloper(developer);
+                setLoading(false);
+            } else {
+                setLoading(false);
+                setMessage('Referral not found');
+                setSeverity('error');
+                setShowSnackBar(true);
+            }
+        } catch (error) {
+            setLoading(false);
+            router.push('/home');
+            setMessage('Error fetching referral');
+            setSeverity('error');
+            setShowSnackBar(true);
+        }
+    };
+
+    useEffect(() => {
+        if (referralDeveloperId) {
+            fetchReferral();
+        }
+    }, [referralDeveloperId]);
+
+    return null; // This component only handles logic, no UI
+}
+
 export default function ReferralSignUpPage() {
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState('');
     const [severity, setSeverity] = useState('success');
-    const searchParams = useSearchParams();
-    // const referralToken = searchParams.get('token');
-    const referralDeveloperId = searchParams.get('referral');
-    const router = useRouter();
     const [developer, setDeveloper] = useState(null);
     const [showSnackBar, setShowSnackBar] = useState(false);
 
@@ -34,56 +67,10 @@ export default function ReferralSignUpPage() {
         document.cookie = `${cookieName}=${cookieValue}; ${expires}; path=/ ;`;
     }
 
-    const fetchReferral = async () => {
-        setLoading(true);
-        try {
-            const { developer } = await findReferral(referralDeveloperId);
-            // if (referral) {
-            //     setDeveloper(developer);
-            //     setLoading(false);
-            // } else {
-            //     setLoading(false);
-            //     setMessage('Referral not found');
-            //     setSeverity('error');
-            //     setShowSnackBar(true);
-            // }
-
-            if (developer) {
-                setDeveloper(developer);
-                setLoading(false);
-            } else {
-                setLoading(false);
-                setMessage('Referral not found');
-                setSeverity('error');
-                setShowSnackBar(true);
-            }
-        } catch (error) {
-            setLoading(false);
-            router.push('/home')
-            setMessage('Error fetching referral');
-            setSeverity('error');
-            setShowSnackBar(true);
-        }
-    };
-
-    useEffect(() => {
-        if (referralDeveloperId) {
-            fetchReferral();
-        }
-    }, [referralDeveloperId]);
-
     const handleReferralSignup = async () => {
         try {
-
-            // const response = await signIn('email', { callbackUrl: '/user' });
-            // pass referral developer id to the signIn function
-            // const response = await signIn('email', { referral: referralDeveloperId, callbackUrl: '/user' });
-            setReferralCookie(referralDeveloperId);
-            // log cookies
-            console.log(document.cookie);
-            const response = await signIn('github', { callbackUrl: '/user' }, { referralDeveloperId: referralDeveloperId, prompt: 'login' });
-
-
+            setReferralCookie(developer?.referralDeveloperId);
+            const response = await signIn('github', { callbackUrl: '/user' }, { referralDeveloperId: developer?.referralDeveloperId, prompt: 'login' });
         } catch (error) {
             console.error('Error in handleReferralSignup:', error.message);
             setMessage('Error signing in');
@@ -95,15 +82,19 @@ export default function ReferralSignUpPage() {
     return (
         <div>
             <Header />
+            <Container maxWidth="sm" sx={{ mt: 4 }}>
+                <Suspense fallback={<Box display="flex" justifyContent="center" alignItems="center" height="100vh"><LoaderLocal /></Box>}>
+                    {/* Pass necessary state setters to ReferralSearchParams */}
+                    <ReferralSearchParams
+                        setDeveloper={setDeveloper}
+                        setLoading={setLoading}
+                        setMessage={setMessage}
+                        setSeverity={setSeverity}
+                        setShowSnackBar={setShowSnackBar}
+                    />
+                </Suspense>
 
-
-            <Container
-                maxWidth="sm" sx={{ mt: 4 }}>
-                {loading ? (
-                    <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-                        <LoaderLocal />
-                    </Box>
-                ) : (
+                {!loading && (
                     <Box textAlign="center">
                         <Typography variant="h4" gutterBottom>
                             Referral Signup

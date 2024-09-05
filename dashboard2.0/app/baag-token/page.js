@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 function BAAGToken() {
 	return (
 		<div>
-			<Header/>
+			<Header />
 			<div className="content">
 				<h1>BAAG Token</h1>
 				<section className="tokenomics-section">
@@ -25,7 +25,7 @@ function BAAGToken() {
 					</div>
 					<div className="column">
 						<p>The BAAG token primarily serves as the governance token for Based Agent, playing a crucial role in
-							steering the platform's development and operational strategies.</p>
+							steering the platform&apos;s development and operational strategies.</p>
 						<p>Starting from the Ubud phase, users will have the opportunity to stake BAAG tokens to gain priority
 							access to code reviews. The amount of BAAG staked directly correlates with the speed and priority of the
 							review process, ensuring faster feedback and integration for developers who are committed to rapid
@@ -54,7 +54,7 @@ function BAAGToken() {
 							<li>→ 4% to Protection</li>
 						</ul>
 						<div className="distribution-graphic">
-							<img src="/baag_distribution_chart.png" alt="BAAG Distribution Graphic"/>
+							<img src="/baag_distribution_chart.png" alt="BAAG Distribution Graphic" />
 						</div>
 					</div>
 				</section>
@@ -67,7 +67,7 @@ function BAAGToken() {
 						<p>The block reward will start at 14,400 BAAG per day and then decline by 2.468994701 BAAG each day until
 							the reward reaches 0 on day 5,833.</p>
 						<div className="emission-chart">
-							<img src="/baag_emission_schedule_white.png" alt="BAAG Emission Schedule Chart"/>
+							<img src="/baag_emission_schedule_white.png" alt="BAAG Emission Schedule Chart" />
 						</div>
 					</div>
 				</section>
@@ -77,12 +77,12 @@ function BAAGToken() {
 					</div>
 					<div className="column">
 						<div className="emission-chart">
-							<img src="/baag_cumulative_emissions_white.png" alt="Cumulative BAAG Emissions Chart"/>
+							<img src="/baag_cumulative_emissions_white.png" alt="Cumulative BAAG Emissions Chart" />
 						</div>
 					</div>
 				</section>
 			</div>
-			<Footer/>
+			<Footer />
 		</div>
 	);
 }

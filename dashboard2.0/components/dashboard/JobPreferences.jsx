@@ -89,7 +89,7 @@ function JobPreferences({ id }) {
 				<div>
 					<h2 className="text-lg font-medium leading-6 text-[#dadee2]">Job Preferences</h2>
 					<p className="mt-1 text-sm text-[#dadee2]">
-						Let us know what you're looking for.
+						Let us know what you&apos;re looking for.
 					</p>
 				</div>
 

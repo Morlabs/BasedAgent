@@ -6,13 +6,13 @@ import Footer from '@/components/Footer';
 function About() {
 	return (
 		<div>
-			<Header/>
+			<Header />
 			<div className="content">
 				<h1>About Based Agent</h1>
 				<p>
 					Built by <a href="https://morlabs.xyz/">Mor Labs</a>, Based Agent is an accelerationist AI coding assistant
 					that revolutionizes the way developers build within the Morpheus ecosystem. Inspired by the innovative
-					approach of Cognition AI's Devin, our vision is to create a collaborative and decentralized AI-driven coding
+					approach of Cognition AI&apos;s Devin, our vision is to create a collaborative and decentralized AI-driven coding
 					environment where developers, capital providers, and the community come together to accelerate the speed of
 					development within the Morpheus Ecosystem.
 				</p>
@@ -30,10 +30,10 @@ function About() {
 				<p>
 					Join us in shaping the future of decentralized AI with Based Agent. Learn more about the project, participate
 					in the community through our <a href="https://discord.gg/KBD3XBmNUf">Discord</a>, help us build, and together,
-					let's create a decentralized future that benefits everyone.
+					let&apos;s create a decentralized future that benefits everyone.
 				</p>
 			</div>
-			<Footer/>
+			<Footer />
 		</div>
 	);
 }
