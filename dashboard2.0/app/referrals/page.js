@@ -33,26 +33,31 @@ export default function BasedAgentReferralProgram() {
 
 
 	const shareOnFacebook = () => {
-		window.open(
-			`https://www.facebook.com/sharer/sharer.php`,
-			'facebook-share-dialog',
-			'width=800,height=600'
-		);
+		const facebookReferralLink = `${window?.location?.origin}/referral-signup?referral=${user?.id}&source=Facebook`
+		navigator.clipboard.writeText(facebookReferralLink);
+		const url = encodeURIComponent(facebookReferralLink);
+		const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+		window.open(facebookShareUrl, 'facebook-share-dialog', 'width=800,height=600');
 	};
 
 	const shareOnTwitter = () => {
-		window.open(
-			`https://twitter.com/intent/tweet`,
-			'twitter-share-dialog',
-			'width=800,height=600'
-		);
+		const twitterReferralLink = `${window?.location?.origin}/referral-signup?referral=${user?.id}&source=X`
+		navigator.clipboard.writeText(twitterReferralLink);
+
+		const url = encodeURIComponent(twitterReferralLink);
+		const text = encodeURIComponent("Join Morlabs referral program and earn rewards");
+		const hashtags = encodeURIComponent("morlabs,basedagent,referralprogram");
+		const twitterShareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}`;
+		window.open(twitterShareUrl, 'twitter-share-dialog', 'width=800,height=600');
 	};
 
 	const shareOnLinkedIn = () => {
-		const url = encodeURIComponent('https://example.com');
-		const title = encodeURIComponent('Amazing content');
-		const summary = encodeURIComponent('This is a great article you should read!');
-		const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${summary}`;
+		const linkedInReferralLink = `${window?.location?.origin}/referral-signup?referral=${user?.id}&source=LinkedIn`
+		navigator.clipboard.writeText(linkedInReferralLink);
+		const url = encodeURIComponent(linkedInReferralLink);
+		const title = encodeURIComponent("Morlabs Referral Invite");
+		const summary = encodeURIComponent("Join Morlabs referral program and earn rewards");
+		const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&title=${title}&summary=${summary}`;
 		window.open(linkedInShareUrl, 'linkedin-share-dialog', 'width=800,height=600');
 	};
 

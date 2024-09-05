@@ -2,7 +2,7 @@ import { db } from "@/lib/db/connect";
 import { eq } from "drizzle-orm";
 import { developerInvites, developers } from "@/lib/db/schema";
 
-export async function validateReferralSignIn(email, referralDeveloperId = null) {
+export async function validateReferralSignIn(email, referralDeveloperId = null, referralPlatformSource = null) {
     try {
 
 
@@ -34,7 +34,7 @@ export async function validateReferralSignIn(email, referralDeveloperId = null) 
                         status: 'pending',
                         earnings: 0,
                         inviteDate: new Date(),
-                        source: "X, twitter, LinkedIn",
+                        source: referralPlatformSource || 'X, Facebook, Linkedin',
                         githubAccess: 'Level 1',
                     })
             }

@@ -12,9 +12,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 // Extracted component for handling referral logic with useSearchParams
-function ReferralSearchParams({ setDeveloper, setLoading, setMessage, setSeverity, setShowSnackBar }) {
+function ReferralSearchParams({ setDeveloper, setLoading, setMessage, setSeverity, setShowSnackBar, setReferralPlatformSource }) {
     const searchParams = useSearchParams();
     const referralDeveloperId = searchParams.get('referral');
+    const referralPlatformSource = searchParams.get('source')
+
     const router = useRouter();
 
     const fetchReferral = async () => {
@@ -23,6 +25,7 @@ function ReferralSearchParams({ setDeveloper, setLoading, setMessage, setSeverit
             const { developer } = await findReferral(referralDeveloperId);
             if (developer) {
                 setDeveloper(developer);
+                setReferralPlatformSource(referralPlatformSource)
                 setLoading(false);
             } else {
                 setLoading(false);
@@ -54,6 +57,7 @@ export default function ReferralSignUpPage() {
     const [severity, setSeverity] = useState('success');
     const [developer, setDeveloper] = useState(null);
     const [showSnackBar, setShowSnackBar] = useState(false);
+    const [referralPlatformSource, setReferralPlatformSource] = useState('X, Facebook, Linked')
 
     function setReferralCookie(referralId) {
         const cookieName = 'referralDeveloperId';
@@ -65,6 +69,7 @@ export default function ReferralSignUpPage() {
         const expires = "expires=" + date.toUTCString();
 
         document.cookie = `${cookieName}=${cookieValue}; ${expires}; path=/ ;`;
+        document.cookie = `referralPlatformSource=${referralPlatformSource}; ${expires}; path=/ ;`;
     }
 
     const handleReferralSignup = async () => {
@@ -91,6 +96,7 @@ export default function ReferralSignUpPage() {
                         setMessage={setMessage}
                         setSeverity={setSeverity}
                         setShowSnackBar={setShowSnackBar}
+                        setReferralPlatformSource={setReferralPlatformSource}
                     />
                 </Suspense>
 

@@ -32,7 +32,14 @@ const handler = (req, res) => NextAuth(req, res, {
 				.find(cookie => cookie.startsWith('referralDeveloperId='))
 				?.split('=')[1];
 
+			const referralPlatformSource = cookies
+				.split('; ')
+				.find(cookie => cookie.startsWith('referralPlatformSource='))
+				?.split('=')[1];
+
+
 			console.log('referralDeveloperId:', referralDeveloperId);
+			console.log('referralPlatformSource:', referralPlatformSource);
 
 			// Safely add user details to the session object
 			session.user.id = token.sub ?? null;
@@ -51,7 +58,7 @@ const handler = (req, res) => NextAuth(req, res, {
 			}
 
 			try {
-				let isReferral = await validateReferralSignIn(session.user.email, referralDeveloperId);
+				let isReferral = await validateReferralSignIn(session.user.email, referralDeveloperId, referralPlatformSource);
 				// console.log('isReferral:', isReferral);
 			} catch (error) {
 				console.log('Error in validateReferralSignIn:', error.message);
