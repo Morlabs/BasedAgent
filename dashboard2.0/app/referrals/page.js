@@ -34,7 +34,10 @@ export default function BasedAgentReferralProgram() {
 
 	const shareOnFacebook = () => {
 		const facebookReferralLink = `${window?.location?.origin}/referral-signup?referral=${user?.id}&source=Facebook`
-		navigator.clipboard.writeText(facebookReferralLink);
+		const message = `Join Morlabs referral program and earn rewards using the link below: \n${facebookReferralLink}`;
+		navigator.clipboard.writeText(message);
+		setSnackbarMessage('Referral post message copied to clipboard');
+		setSnackbarOpen(true);
 		const url = encodeURIComponent(facebookReferralLink);
 		// const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
 		const facebookShareUrl = `https://www.facebook.com/dialog/share?
@@ -46,11 +49,11 @@ export default function BasedAgentReferralProgram() {
 	};
 
 	const shareOnTwitter = () => {
-		const twitterReferralLink = `${window?.location?.origin}/referral-signup?referral=${user?.id}&source=X`
+		const twitterReferralLink = `${window?.location?.origin}/referral-signup?referral=${user?.id}&source=X\n`
 		navigator.clipboard.writeText(twitterReferralLink);
 
 		const url = encodeURIComponent(twitterReferralLink);
-		const text = encodeURIComponent("Join Morlabs referral program and earn rewards");
+		const text = encodeURIComponent("Join Morlabs referral program and earn rewards using the link below: \n");
 		const hashtags = encodeURIComponent("morlabs,basedagent,referralprogram");
 		const twitterShareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}`;
 		window.open(twitterShareUrl, 'twitter-share-dialog', 'width=800,height=600');
@@ -58,10 +61,11 @@ export default function BasedAgentReferralProgram() {
 
 	const shareOnLinkedIn = () => {
 		const linkedInReferralLink = `${window?.location?.origin}/referral-signup?referral=${user?.id}&source=LinkedIn`
-		navigator.clipboard.writeText(linkedInReferralLink);
+		const message = `Join Morlabs referral program and earn rewards using the link below: \n${linkedInReferralLink}`;
+		navigator.clipboard.writeText(message);
+		setSnackbarMessage('Referral post message copied to clipboard');
+		setSnackbarOpen(true);
 		const url = encodeURIComponent(linkedInReferralLink);
-		const title = encodeURIComponent("Morlabs Referral Invite");
-		const summary = encodeURIComponent("Join Morlabs referral program and earn rewards");
 		// const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&title=${title}&summary=${summary}`;
 		const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
 		window.open(linkedInShareUrl, 'linkedin-share-dialog', 'width=800,height=600');
