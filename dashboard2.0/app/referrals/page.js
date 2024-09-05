@@ -36,7 +36,12 @@ export default function BasedAgentReferralProgram() {
 		const facebookReferralLink = `${window?.location?.origin}/referral-signup?referral=${user?.id}&source=Facebook`
 		navigator.clipboard.writeText(facebookReferralLink);
 		const url = encodeURIComponent(facebookReferralLink);
-		const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+		// const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+		const facebookShareUrl = `https://www.facebook.com/dialog/share?
+  app_id=145634995501895
+  &display=popup
+  &href=${url}
+  &redirect_uri=${url}`;
 		window.open(facebookShareUrl, 'facebook-share-dialog', 'width=800,height=600');
 	};
 
@@ -57,7 +62,8 @@ export default function BasedAgentReferralProgram() {
 		const url = encodeURIComponent(linkedInReferralLink);
 		const title = encodeURIComponent("Morlabs Referral Invite");
 		const summary = encodeURIComponent("Join Morlabs referral program and earn rewards");
-		const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&title=${title}&summary=${summary}`;
+		// const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&title=${title}&summary=${summary}`;
+		const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
 		window.open(linkedInShareUrl, 'linkedin-share-dialog', 'width=800,height=600');
 	};
 

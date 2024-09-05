@@ -21,10 +21,6 @@ const handler = (req, res) => NextAuth(req, res, {
 
 		async session({ session, token, user }) {
 
-			// const cookies = cookie.parse(req.headers.cookie || '');
-			// console.log("request:", req.headers)
-			// referralDeveloperId = cookies.referralDeveloperId;
-			// console.log('referralDeveloperId:', referralDeveloperId);
 
 			const cookies = req.headers.get('cookie');
 			referralDeveloperId = cookies
