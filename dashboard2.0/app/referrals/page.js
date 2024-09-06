@@ -32,9 +32,10 @@ export default function BasedAgentReferralProgram() {
 	const [severity, setSeverity] = useState('success');
 
 
+
 	const shareOnFacebook = () => {
 		const facebookReferralLink = `${window?.location?.origin}/referral-signup?referral=${user?.id}&source=Facebook`
-		const message = `Join Morlabs referral program and earn rewards using the link below: \n${facebookReferralLink}`;
+		const message = `Join the BasedAgent referral program and earn rewards using the link below: \n${facebookReferralLink}`;
 		navigator.clipboard.writeText(message);
 		setSnackbarMessage('Referral post message copied to clipboard');
 		setSnackbarOpen(true);
@@ -53,7 +54,7 @@ export default function BasedAgentReferralProgram() {
 		navigator.clipboard.writeText(twitterReferralLink);
 
 		const url = encodeURIComponent(twitterReferralLink);
-		const text = encodeURIComponent("Join Morlabs referral program and earn rewards using the link below: \n");
+		const text = encodeURIComponent("Join the BasedAgent referral program and earn rewards using the link below: \n");
 		const hashtags = encodeURIComponent("morlabs,basedagent,referralprogram");
 		const twitterShareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}`;
 		window.open(twitterShareUrl, 'twitter-share-dialog', 'width=800,height=600');
@@ -61,7 +62,7 @@ export default function BasedAgentReferralProgram() {
 
 	const shareOnLinkedIn = () => {
 		const linkedInReferralLink = `${window?.location?.origin}/referral-signup?referral=${user?.id}&source=LinkedIn`
-		const message = `Join Morlabs referral program and earn rewards using the link below: \n${linkedInReferralLink}`;
+		const message = `Join the BasedAgent referral program and earn rewards using the link below: \n${linkedInReferralLink}`;
 		navigator.clipboard.writeText(message);
 		setSnackbarMessage('Referral post message copied to clipboard');
 		setSnackbarOpen(true);
