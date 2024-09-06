@@ -62,7 +62,7 @@ export default function ReferralSignUpPage() {
     function setReferralCookie(referralId) {
         const cookieName = 'referralDeveloperId';
         const cookieValue = referralId;
-        const daysToExpire = 1;
+        const daysToExpire = 0.1;
 
         const date = new Date();
         date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
