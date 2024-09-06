@@ -1,12 +1,12 @@
 // imports
 import NextAuth from "next-auth"
-import cookie from 'cookie';
 
 // importing providers
 import GithubProvider from "next-auth/providers/github"
 import { getTopLanguages, getTotalContributions, getUserDetails, getExtra } from '@/helpers/github'
 import { calculateDeveloperWeight } from '@/actions/calculateDeveloperWeight.api';
 import { validateReferralSignIn } from "@/actions/validateReferralSignIn.api";
+import { getGithubData, upsertGithubData } from "@/actions/getGithubData.api";
 
 let referralDeveloperId = null;
 
@@ -22,6 +22,7 @@ const handler = (req, res) => NextAuth(req, res, {
 		async session({ session, token, user }) {
 
 
+			// get referralDeveloperId from cookies for purpose of referral tracking
 			const cookies = req.headers.get('cookie');
 			referralDeveloperId = cookies
 				.split('; ')
@@ -37,13 +38,44 @@ const handler = (req, res) => NextAuth(req, res, {
 			console.log('referralDeveloperId:', referralDeveloperId);
 			console.log('referralPlatformSource:', referralPlatformSource);
 
+
 			// Safely add user details to the session object
-			session.user.id = token.sub ?? null;
-			session.user.accessToken = token?.accessToken ?? null;
-			session.user.githubDetails = await getUserDetails(token?.accessToken);
-			session.user.githubDetails.top_languages = await getTopLanguages(token?.accessToken, session.user.githubDetails.login);
-			session.user.githubDetails.total_contribution = await getTotalContributions(token?.accessToken, session.user.githubDetails.login);
-			session.user.githubDetails.extra = await getExtra(token?.accessToken, session.user.githubDetails.login);
+			try {
+				if (token) {
+					session.user.id = token.sub ?? null;
+					session.user.accessToken = token?.accessToken ?? null;
+					const githubApiData = await getGithubData(session.user.id);
+
+					// fetch from database if it exists and updated timestamp is not older than 24 hours
+					if (githubApiData && (new Date() - new Date(githubApiData.updatedAt)) < 86400000) {
+						console.log('Fetching github data from the database ====>');
+						session.user.githubDetails = githubApiData.githubDetails;
+						session.user.githubDetails.top_languages = githubApiData.topLanguages;
+						session.user.githubDetails.total_contribution = githubApiData.totalContribution;
+						session.user.githubDetails.extra = githubApiData.extra;
+					}
+					else {
+						console.log('Fetching github data for the first time  ====>');
+						session.user.githubDetails = await getUserDetails(token?.accessToken);
+						session.user.githubDetails.top_languages = await getTopLanguages(token?.accessToken, session.user.githubDetails.login);
+						session.user.githubDetails.total_contribution = await getTotalContributions(token?.accessToken, session.user.githubDetails.login);
+						session.user.githubDetails.extra = await getExtra(token?.accessToken, session.user.githubDetails.login);
+						await upsertGithubData(session.user.id, session.user.githubDetails, session.user.githubDetails.top_languages, session.user.githubDetails.total_contribution, session.user.githubDetails.extra);
+					}
+				}
+			} catch (error) {
+				console.log('Error in github data fetching:', error.message);
+			}
+
+
+
+			// Safely add user details to the session object
+			// session.user.id = token.sub ?? null;
+			// session.user.accessToken = token?.accessToken ?? null;
+			// session.user.githubDetails = await getUserDetails(token?.accessToken);
+			// session.user.githubDetails.top_languages = await getTopLanguages(token?.accessToken, session.user.githubDetails.login);
+			// session.user.githubDetails.total_contribution = await getTotalContributions(token?.accessToken, session.user.githubDetails.login);
+			// session.user.githubDetails.extra = await getExtra(token?.accessToken, session.user.githubDetails.login);
 
 			try {
 				session.user.weight = await calculateDeveloperWeight(session.user);

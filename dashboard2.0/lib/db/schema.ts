@@ -141,3 +141,21 @@ export const profileRelations = relations(profile, ({one}) => ({
   }),
 }));
 
+
+export const githubApiData = pgTable('github_api_data', {
+  id: serial('id').primaryKey(),
+  // developerId: integer('developer_id').references(() => developers.id),
+  githubDetails: jsonb('github_details'),
+  topLanguages: text('top_languages').array(),
+  totalContribution: integer('total_contribution'),
+  extra: jsonb('extra'),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
+// export const githubApiDataRelations = relations(githubApiData, ({one}) => ({
+//   developer: one(developers, {
+//     fields: [githubApiData.developerId],
+//     references: [developers.id],
+//   }),
+// }));

@@ -80,9 +80,9 @@ export async function addDeveloper(user) {
       existingUser.publicRepositories !== user.githubDetails.public_repos ||
       existingUser.imageUrl !== user.image ||
       existingUser?.location !== user?.githubDetails?.location ||
-	  existingUser?.city !== user?.city ||
-	  existingUser?.country !== user?.country ||
-    existingUser?.weight !== weight;
+      existingUser?.city !== user?.city ||
+      existingUser?.country !== user?.country ||
+      existingUser?.weight !== weight;
 
     console.log("Data changed:", dataChanged);
 
@@ -127,7 +127,7 @@ export async function getDeveloper(developerID) {
       .select()
       .from(developers)
       .where(eq(developers.id, Number(developerID)));
-    console.log("developer:", developer);
+    // console.log("developer:", developer);
 
     return developer[0];
   } catch (error) {
@@ -183,7 +183,7 @@ export async function deleteDeveloper(developerId) {
     await db.delete(developerInvites).where(eq(developerInvites.developerId, developerId));
     await db
       .delete(developers)
-       .where(eq(developers.id, developerId));
+      .where(eq(developers.id, developerId));
 
     return true;
   } catch (error) {

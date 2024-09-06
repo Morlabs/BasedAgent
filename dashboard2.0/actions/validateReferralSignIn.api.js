@@ -1,3 +1,5 @@
+"use server"
+
 import { db } from "@/lib/db/connect";
 import { eq } from "drizzle-orm";
 import { developerInvites, developers } from "@/lib/db/schema";
@@ -14,7 +16,7 @@ export async function validateReferralSignIn(email, referralDeveloperId = null, 
 
             // to prevent duplicate referrals for the same email through social media
             if (referral) {
-                console.log('Referral already exists:', referral);
+                console.log('Referral already exists for:', referral.email);
             }
             else {
                 // if developer already exists, return false
