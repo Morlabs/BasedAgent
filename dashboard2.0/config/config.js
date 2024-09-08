@@ -239,6 +239,296 @@ export const scoreAndbadges = {
   ],
 };
 
+export const badges = [
+  {
+    "name": "C#",
+    "imgLink": "https://icon-widget.codersrank.io/api/C%23",
+    "level": "Top 1",
+    "role": "Developer",
+    "country": "Australia"
+  },
+  {
+    "name": "C++",
+    "imgLink": "https://icon-widget.codersrank.io/api/C%2B%2B",
+    "level": "Top 1",
+    "role": "Developer",
+    "country": "Australia"
+  },
+  {
+    "name": "JavaScript",
+    "imgLink": "https://icon-widget.codersrank.io/api/JavaScript",
+    "level": "Top 1",
+    "role": "Developer",
+    "country": "Australia"
+  },
+  {
+    "name": "Python",
+    "imgLink": "https://icon-widget.codersrank.io/api/Python",
+    "level": "Top 2",
+    "role": "Data Scientist",
+    "country": "United States"
+  },
+  {
+    "name": "Java",
+    "imgLink": "https://icon-widget.codersrank.io/api/Java",
+    "level": "Top 3",
+    "role": "Software Engineer",
+    "country": "India"
+  },
+  {
+    "name": "Go",
+    "imgLink": "https://icon-widget.codersrank.io/api/Go",
+    "level": "Top 5",
+    "role": "Backend Developer",
+    "country": "Germany"
+  },
+  {
+    "name": "Ruby",
+    "imgLink": "https://icon-widget.codersrank.io/api/Ruby",
+    "level": "Top 2",
+    "role": "Full-Stack Developer",
+    "country": "Japan"
+  },
+  {
+    "name": "TypeScript",
+    "imgLink": "https://icon-widget.codersrank.io/api/TypeScript",
+    "level": "Top 4",
+    "role": "Frontend Developer",
+    "country": "Canada"
+  },
+  {
+    "name": "PHP",
+    "imgLink": "https://icon-widget.codersrank.io/api/PHP",
+    "level": "Top 1",
+    "role": "Backend Developer",
+    "country": "France"
+  },
+  {
+    "name": "Kotlin",
+    "imgLink": "https://icon-widget.codersrank.io/api/Kotlin",
+    "level": "Top 3",
+    "role": "Mobile Developer",
+    "country": "Russia"
+  },
+  {
+    "name": "Swift",
+    "imgLink": "https://icon-widget.codersrank.io/api/Swift",
+    "level": "Top 1",
+    "role": "iOS Developer",
+    "country": "United Kingdom"
+  },
+  {
+    "name": "R",
+    "imgLink": "https://icon-widget.codersrank.io/api/R",
+    "level": "Top 3",
+    "role": "Data Analyst",
+    "country": "Brazil"
+  },
+  {
+    "name": "Perl",
+    "imgLink": "https://icon-widget.codersrank.io/api/Perl",
+    "level": "Top 4",
+    "role": "Systems Administrator",
+    "country": "Netherlands"
+  },
+  {
+    "name": "Rust",
+    "imgLink": "https://icon-widget.codersrank.io/api/Rust",
+    "level": "Top 2",
+    "role": "Systems Engineer",
+    "country": "Sweden"
+  },
+  {
+    "name": "Scala",
+    "imgLink": "https://icon-widget.codersrank.io/api/Scala",
+    "level": "Top 5",
+    "role": "Big Data Developer",
+    "country": "Italy"
+  },
+  {
+    "name": "Haskell",
+    "imgLink": "https://icon-widget.codersrank.io/api/Haskell",
+    "level": "Top 1",
+    "role": "Research Engineer",
+    "country": "Denmark"
+  },
+  {
+    "name": "Dart",
+    "imgLink": "https://icon-widget.codersrank.io/api/Dart",
+    "level": "Top 2",
+    "role": "Mobile Developer",
+    "country": "New Zealand"
+  },
+  {
+    "name": "Objective-C",
+    "imgLink": "https://icon-widget.codersrank.io/api/Objective-C",
+    "level": "Top 3",
+    "role": "iOS Developer",
+    "country": "South Korea"
+  },
+  {
+    "name": "Shell",
+    "imgLink": "https://icon-widget.codersrank.io/api/Shell",
+    "level": "Top 4",
+    "role": "DevOps Engineer",
+    "country": "China"
+  },
+  {
+    "name": "Lua",
+    "imgLink": "https://icon-widget.codersrank.io/api/Lua",
+    "level": "Top 5",
+    "role": "Game Developer",
+    "country": "Mexico"
+  },
+  {
+    "name": "Elixir",
+    "imgLink": "https://icon-widget.codersrank.io/api/Elixir",
+    "level": "Top 3",
+    "role": "Backend Developer",
+    "country": "Portugal"
+  },
+  {
+    "name": "Elm",
+    "imgLink": "https://icon-widget.codersrank.io/api/Elm",
+    "level": "Top 5",
+    "role": "Frontend Developer",
+    "country": "Norway"
+  },
+  {
+    "name": "Erlang",
+    "imgLink": "https://icon-widget.codersrank.io/api/Erlang",
+    "level": "Top 2",
+    "role": "Telecom Engineer",
+    "country": "Finland"
+  },
+  {
+    "name": "Julia",
+    "imgLink": "https://icon-widget.codersrank.io/api/Julia",
+    "level": "Top 4",
+    "role": "Data Scientist",
+    "country": "Spain"
+  },
+  {
+    "name": "Tcl",
+    "imgLink": "https://icon-widget.codersrank.io/api/Tcl",
+    "level": "Top 5",
+    "role": "Systems Engineer",
+    "country": "Israel"
+  },
+  {
+    "name": "F#",
+    "imgLink": "https://icon-widget.codersrank.io/api/F%23",
+    "level": "Top 1",
+    "role": "Functional Programmer",
+    "country": "Iceland"
+  },
+  {
+    "name": "Prolog",
+    "imgLink": "https://icon-widget.codersrank.io/api/Prolog",
+    "level": "Top 3",
+    "role": "AI Researcher",
+    "country": "Belgium"
+  },
+  {
+    "name": "OCaml",
+    "imgLink": "https://icon-widget.codersrank.io/api/OCaml",
+    "level": "Top 4",
+    "role": "Functional Developer",
+    "country": "Switzerland"
+  },
+  {
+    "name": "Fortran",
+    "imgLink": "https://icon-widget.codersrank.io/api/Fortran",
+    "level": "Top 1",
+    "role": "Scientific Programmer",
+    "country": "Austria"
+  },
+  {
+    "name": "VB.NET",
+    "imgLink": "https://icon-widget.codersrank.io/api/VB.NET",
+    "level": "Top 3",
+    "role": "Software Developer",
+    "country": "South Africa"
+  },
+  {
+    "name": "COBOL",
+    "imgLink": "https://icon-widget.codersrank.io/api/COBOL",
+    "level": "Top 1",
+    "role": "Legacy System Developer",
+    "country": "United States"
+  },
+  {
+    "name": "Racket",
+    "imgLink": "https://icon-widget.codersrank.io/api/Racket",
+    "level": "Top 2",
+    "role": "Research Engineer",
+    "country": "South Korea"
+  },
+  {
+    "name": "Ada",
+    "imgLink": "https://icon-widget.codersrank.io/api/Ada",
+    "level": "Top 5",
+    "role": "Aerospace Engineer",
+    "country": "Germany"
+  },
+  {
+    "name": "Pascal",
+    "imgLink": "https://icon-widget.codersrank.io/api/Pascal",
+    "level": "Top 1",
+    "role": "Embedded Systems Developer",
+    "country": "Brazil"
+  },
+  {
+    "name": "Scheme",
+    "imgLink": "https://icon-widget.codersrank.io/api/Scheme",
+    "level": "Top 3",
+    "role": "Researcher",
+    "country": "United Kingdom"
+  },
+  {
+    "name": "Nim",
+    "imgLink": "https://icon-widget.codersrank.io/api/Nim",
+    "level": "Top 4",
+    "role": "Systems Developer",
+    "country": "Hungary"
+  },
+  {
+    "name": "VHDL",
+    "imgLink": "https://icon-widget.codersrank.io/api/VHDL",
+    "level": "Top 2",
+    "role": "Hardware Engineer",
+    "country": "India"
+  },
+  {
+    "name": "Verilog",
+    "imgLink": "https://icon-widget.codersrank.io/api/Verilog",
+    "level": "Top 3",
+    "role": "Embedded Developer",
+    "country": "Japan"
+  },
+  {
+    "name": "Zig",
+    "imgLink": "https://icon-widget.codersrank.io/api/Zig",
+    "level": "Top 5",
+    "role": "Systems Engineer",
+    "country": "Canada"
+  },
+  {
+    "name": "Crystal",
+    "imgLink": "https://icon-widget.codersrank.io/api/Crystal",
+    "level": "Top 1",
+    "role": "Backend Developer",
+    "country": "Argentina"
+  },
+  {
+    "name": "Groovy",
+    "imgLink": "https://icon-widget.codersrank.io/api/Groovy",
+    "level": "Top 2",
+    "role": "Full Stack Developer",
+    "country": "Italy"
+  }
+];
+
 export const technologies = [
   {
     name: "Wpf",

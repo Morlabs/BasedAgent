@@ -1,8 +1,8 @@
 "use server";
 
-import { contributions, developerInvites, developers, integrations, jobPreferences, profile } from "@/lib/db/schema";
+import { contributions, developerInvites, developerLanguages, developers, integrations, jobPreferences, profile } from "@/lib/db/schema";
 import { db } from "@/lib/db/connect";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { upsertProfile } from "./profile.api";
 import { calculateDeveloperWeight } from "./calculateDeveloperWeight.api";
 
@@ -26,6 +26,11 @@ export async function addDeveloper(user) {
         eq(developers.githubUsername, user.githubDetails.login),
     });
 
+    const languagesData = {
+      totalWeight: weight?.totalWeight,
+      languageWeights: weight?.languageWeights,
+    };
+
     console.log(
       "Existing user Name Details:",
       existingUser?.name,
@@ -33,6 +38,7 @@ export async function addDeveloper(user) {
     );
 
     if (!existingUser) {
+      
       // Case 1: User does not exist in the database, so add the user
       console.log("User not found, inserting new user");
 
@@ -51,6 +57,14 @@ export async function addDeveloper(user) {
         city: "",
         weight: weight
       });
+
+      const result = await db.insert(developerLanguages).values({
+        developerId: user.id,
+        languages: languagesData, // Store languages as JSONB
+      });
+
+      console.log('languages added successfully')
+      console.log(result);
 
       await upsertProfile({
         id: user.id,
@@ -107,6 +121,13 @@ export async function addDeveloper(user) {
         .where(eq(developers.githubUsername, user.githubDetails.login))
         .execute();
 
+        const result = await db.update(developerLanguages).set({
+          developerId: user.id,
+          languages: languagesData, // Store languages as JSONB
+        });
+        console.log('languages updated successfully')
+        console.log(result)
+
       console.log("User updated successfully");
       return true;
     }
@@ -133,6 +154,41 @@ export async function getDeveloper(developerID) {
   } catch (error) {
     console.error("Error processing user:", error);
     return null;
+  }
+}
+
+export async function getLanguages(developerId) {
+  try {
+    const result = await db.execute(sql`
+      WITH language_rankings AS (
+          SELECT
+              jsonb_array_elements(languages->'languageWeights')->>'language' AS language,
+              (jsonb_array_elements(languages->'languageWeights')->>'weight')::int AS weight,
+              developer_id
+          FROM developer_languages
+      ),
+      top_5_languages AS (
+          SELECT language, weight
+          FROM (
+              SELECT
+                  language,
+                  weight,
+                  ROW_NUMBER() OVER (PARTITION BY language ORDER BY weight DESC) AS rank
+              FROM language_rankings
+          ) AS ranked_languages
+          WHERE rank <= 5
+      )
+      SELECT DISTINCT t5.language
+      FROM developer_languages dl
+      JOIN top_5_languages t5 ON jsonb_exists(dl.languages->'languageWeights', t5.language)
+      WHERE dl.developer_id = ${developerId} AND t5.weight = ANY(ARRAY(
+          SELECT (jsonb_array_elements(dl.languages->'languageWeights')->>'weight')::int
+      ));
+    `);
+
+    return result.rows.map(row => row.language);
+  } catch (err) {
+    console.error("Error fetching languages:", err);
   }
 }
 

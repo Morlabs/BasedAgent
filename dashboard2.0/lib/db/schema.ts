@@ -19,6 +19,11 @@ export const developers = pgTable('developers', {
   weight: varchar('weight'),
 });
 
+export const developerLanguages = pgTable('developerLanguages', {
+  developerId: integer('developer_id').primaryKey(),
+  languages: jsonb('languages'),
+});
+
 export const contributions = pgTable('contributions', {
   id: serial('id').primaryKey(),
   developerId: integer('developer_id').references(() => developers.id),

@@ -18,7 +18,7 @@ import {
 } from "@/config/config";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getDeveloper } from "@/actions/developer.api";
+import { getDeveloper, getLanguages } from "@/actions/developer.api";
 
 const User = () => {
   const { id } = useParams();
@@ -31,8 +31,11 @@ const User = () => {
       const developer = await getDeveloper(id);
       setProfileData(developer);
       filterLanguages(developer);
+      console.log('developer', JSON.parse(developer.weight))
+      console.log('languages', await getLanguages(117704821))
     };
     getProfileData();
+    
   }, []);
 
   const filterLanguages = (developer) => {

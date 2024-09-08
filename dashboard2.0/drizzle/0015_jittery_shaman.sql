@@ -1,0 +1,1 @@
+ALTER TABLE "developer_languages" RENAME TO "developerLanguages";
